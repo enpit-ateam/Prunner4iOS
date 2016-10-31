@@ -1,0 +1,15 @@
+# User specific & automatically generated files #
+#################################################
+build
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# IDE and editor specific files #
+#################################
+/nbproject
+.idea
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
