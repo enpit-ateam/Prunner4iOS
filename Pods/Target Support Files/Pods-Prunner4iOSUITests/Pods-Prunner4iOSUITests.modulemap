@@ -1,0 +1,6 @@
+framework module Pods_Prunner4iOSUITests {
+  umbrella header "Pods-Prunner4iOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
