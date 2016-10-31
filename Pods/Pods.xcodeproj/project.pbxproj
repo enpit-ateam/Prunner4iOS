@@ -19,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0717A53FA3146A1C539652799CFFFCB1 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		08EA29592D9C780DFBC25E72DA138749 /* Pods_Prunner4iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Prunner4iOSUITests.framework; path = "Pods-Prunner4iOSUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09DD7CAEAF52B49B3E7F0AF989AAFE01 /* Pods-Prunner4iOSUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Prunner4iOSUITests-dummy.m"; sourceTree = "<group>"; };
 		12D7A4AA195DDCBF36153AC1CD437278 /* Pods_Prunner4iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Prunner4iOSTests.framework; path = "Pods-Prunner4iOSTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,12 +34,14 @@
 		66CFCDA692E4CD4D190C4D99DB20E713 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C2E634CBFB66C9FDA33370F9A5E3E0B /* Pods-Prunner4iOSUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Prunner4iOSUITests-resources.sh"; sourceTree = "<group>"; };
 		76E98794A85B91908CE706682D648968 /* Pods-Prunner4iOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Prunner4iOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7A96742FFAC6754BBC1ABD7D4638EAF1 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Subspecs/Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		7D35C589AED94BAFAB4EC70E676D7DAE /* Pods-Prunner4iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Prunner4iOS-umbrella.h"; sourceTree = "<group>"; };
 		7F94228DE6EDA1AFD4DD60286158E56E /* Pods-Prunner4iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Prunner4iOS.modulemap"; sourceTree = "<group>"; };
 		8899DE412AA2FF7776CCC27E9AB4E590 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8F4BF784828FBDFB24446F5B675E86CE /* Pods-Prunner4iOSTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Prunner4iOSTests-umbrella.h"; sourceTree = "<group>"; };
 		903AB0EA88771D55D7334D542F0D0241 /* Pods-Prunner4iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Prunner4iOS-resources.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9BC0EEC24B7854CA83D1BB6A57028B31 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Subspecs/Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		9C821CB5E268FA37EADD2CA1A8D9354F /* Pods-Prunner4iOSTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Prunner4iOSTests.modulemap"; sourceTree = "<group>"; };
 		A2F0AE7C1AD86E33C42C36BB101C6882 /* Pods-Prunner4iOSUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Prunner4iOSUITests-frameworks.sh"; sourceTree = "<group>"; };
 		A34486C6A96972BEC9543E21833AF22A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		B2D64F0F9FA2CE226B425C6C4193002D /* Pods-Prunner4iOSUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Prunner4iOSUITests.modulemap"; sourceTree = "<group>"; };
 		B5D3F8981D3BEDA2667FB4F1F150E6F9 /* Pods-Prunner4iOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Prunner4iOSTests-dummy.m"; sourceTree = "<group>"; };
 		BAFE4DEFA07AE49C441659D21E0D79B2 /* Pods-Prunner4iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Prunner4iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BEC993795583B87B1EC31F69AA6F331A /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Subspecs/Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		CA673969DE48C8B7048D261FEE2B7819 /* Pods-Prunner4iOSUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Prunner4iOSUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CC2783DBE1BBF44CBC88BE208219C413 /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03853DF8004FCD538DE122EB2387F73D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A96742FFAC6754BBC1ABD7D4638EAF1 /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1418B056D31B27EE2CEBA552B5ADFE56 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				03853DF8004FCD538DE122EB2387F73D /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		151D79315B6340795DE5BCF36F932F10 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +112,41 @@
 				08EA29592D9C780DFBC25E72DA138749 /* Pods_Prunner4iOSUITests.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				1418B056D31B27EE2CEBA552B5ADFE56 /* Base */,
+				6BC99F081C91F80679CFA5DDC6213D57 /* Maps */,
+			);
+			name = GoogleMaps;
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		3AEC177709F5E2CA8647760385A95C03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0717A53FA3146A1C539652799CFFFCB1 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6BC99F081C91F80679CFA5DDC6213D57 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				8B88C91FA4176430C15D1E9BF028871B /* Frameworks */,
+				3AEC177709F5E2CA8647760385A95C03 /* Resources */,
+			);
+			name = Maps;
 			sourceTree = "<group>";
 		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
@@ -107,9 +162,19 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */,
 				151D79315B6340795DE5BCF36F932F10 /* Products */,
 				AE75BE50E8EDA9E05F84BF195F657C0D /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8B88C91FA4176430C15D1E9BF028871B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BC0EEC24B7854CA83D1BB6A57028B31 /* GoogleMaps.framework */,
+				BEC993795583B87B1EC31F69AA6F331A /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9784B85D67E932DB912B9207AB5DDB23 /* Pods-Prunner4iOS */ = {

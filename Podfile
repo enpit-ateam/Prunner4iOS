@@ -6,7 +6,8 @@ target 'Prunner4iOS' do
   use_frameworks!
 
   # Pods for Prunner4iOS
-
+  pod 'GoogleMaps'
+  
   target 'Prunner4iOSTests' do
     inherit! :search_paths
     # Pods for testing
