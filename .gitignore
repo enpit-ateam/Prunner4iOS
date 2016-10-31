@@ -5,7 +5,7 @@ build
 xcdebugger
 !*.xcodeproj/project.pbxproj
 Pods
-Podflile.lock
+Podfile.lock
 
 # IDE and editor specific files #
 #################################
