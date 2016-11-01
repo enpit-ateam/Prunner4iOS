@@ -17,6 +17,7 @@
 		9B01632C1DC7F2480086445E /* Prunner4iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B01632B1DC7F2480086445E /* Prunner4iOSTests.swift */; };
 		9B0163371DC7F2480086445E /* Prunner4iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163361DC7F2480086445E /* Prunner4iOSUITests.swift */; };
 		9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BCBFF7B1DC8098B0039679A /* GoogleMaps.plist */; };
+		9BCBFF7E1DC91D6A0039679A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */; };
 		B7E8AE4BEC3F05FB34BE29E9 /* Pods_Prunner4iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */; };
 		E773F1B235227E2413D9E20E /* Pods_Prunner4iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		9B0163361DC7F2480086445E /* Prunner4iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prunner4iOSUITests.swift; sourceTree = "<group>"; };
 		9B0163381DC7F2480086445E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BCBFF7B1DC8098B0039679A /* GoogleMaps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoogleMaps.plist; sourceTree = "<group>"; };
+		9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2B4E3E101A2951DCDCDC33 /* Pods-Prunner4iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCBFF7E1DC91D6A0039679A /* CoreLocation.framework in Frameworks */,
 				0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +112,7 @@
 		83E53C5F27B768EA0CBB1234 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */,
 				2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */,
 				BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */,
 				A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */,
@@ -528,6 +532,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -578,6 +583,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
