@@ -5,6 +5,7 @@ build
 xcdebugger
 !*.xcodeproj/project.pbxproj
 Pods
+Pods/*
 Podfile.lock
 GoogleMaps.plist
 
