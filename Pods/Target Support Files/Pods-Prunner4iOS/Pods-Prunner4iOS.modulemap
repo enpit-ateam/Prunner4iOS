@@ -1,6 +1,0 @@
-framework module Pods_Prunner4iOS {
-  umbrella header "Pods-Prunner4iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

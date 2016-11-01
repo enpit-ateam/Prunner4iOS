@@ -2,7 +2,10 @@
 #################################################
 build
 *.xcodeproj/*
+xcdebugger
 !*.xcodeproj/project.pbxproj
+Pods
+Podfile.lock
 
 # IDE and editor specific files #
 #################################
