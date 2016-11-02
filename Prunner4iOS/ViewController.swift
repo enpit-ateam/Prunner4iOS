@@ -8,42 +8,72 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlacePicker
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
-class ViewController: UIViewController , CLLocationManagerDelegate{
+class ViewController: UIViewController, CLLocationManagerDelegate{
 
   var locationManager: CLLocationManager?
-  var mapView: GMSMapView?
+  var placePicker: GMSPlacePicker?
+  var placeClient: GMSPlacesClient?
+  
+  @IBOutlet var mapView: PrunnerMapView!
+  @IBOutlet var distanceTextField: UITextField!
+  
+  @IBAction func onTappedSearchButton(_ sender: UIButton) {
+    distanceTextField.resignFirstResponder()
+    mapView.clear()
+    
+    let distanceText = distanceTextField.text
+    let distance = NSString(string: distanceText!).doubleValue
+    
+    let zoom = 20 - log2(distance/10)
+    print(zoom)
+    let camera = GMSCameraPosition.camera(withLatitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, zoom: Float(zoom))
+    mapView.camera = camera
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let parameters = [
+      "key": appDelegate.apiKey,
+      "location": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude),
+      "radius": distance
+    ] as [String : Any]
+    Alamofire.request("https://maps.googleapis.com/maps/api/place/nearbysearch/json", method: .get, parameters: parameters)
+      .responseJSON { response in
+        // ここに処理を記述していく
+        guard let object = response.result.value else{
+          return
+        }
+        let json = JSON(object)
+        json["results"].forEach{(_, place) in
+          let location = place["geometry"]["location"].dictionaryValue
+          let  position = CLLocationCoordinate2DMake((location["lat"]?.doubleValue)!, (location["lng"]?.doubleValue)!)
+          let marker = GMSMarker(position: position)
+          marker.title = place["name"].stringValue
+          marker.map = self.mapView
+
+        }
+      }
+    
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
+    placeClient = GMSPlacesClient()
     // 位置情報サービスが利用できるかどうかをチェック
     if CLLocationManager.locationServicesEnabled() {
       locationManager = CLLocationManager()
-      locationManager?.delegate = self;
+      locationManager?.delegate = self
       // 測位開始
-      locationManager?.startUpdatingLocation();
+      locationManager?.startUpdatingLocation()
     }
     
-    // カメラを作成
-    let camera = GMSCameraPosition.camera(withLatitude: -33.868,
-                                          longitude:151.2086, zoom:6)
-    // ビューを作成
-    mapView = GMSMapView.map(withFrame: CGRect.zero, camera:camera)
-    mapView?.isMyLocationEnabled = true;
+    mapView.isMyLocationEnabled = true
     
-    
-    /*
-    let marker = GMSMarker()
-    marker.position = camera.target
-    marker.snippet = "Hello World"
-    marker.appearAnimation = kGMSMarkerAnimationPop
-    marker.map = mapView
-    */
-
-    self.view = mapView
+    self.view.addSubview(mapView!)
   }
 
   override func didReceiveMemoryWarning() {
@@ -66,7 +96,8 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
     guard let newLocation = locations.last, CLLocationCoordinate2DIsValid(newLocation.coordinate) else {
       return
     }
-    mapView?.animate(toLocation: newLocation.coordinate)
+    let camera = GMSCameraPosition.camera(withLatitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude, zoom: mapView.camera.zoom)
+    mapView.camera = camera
   }
 }
 
