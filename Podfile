@@ -10,6 +10,8 @@ target 'Prunner4iOS' do
   pod 'GooglePlacePicker'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'APIKit'
+  pod 'ObjectMapper'
   
   target 'Prunner4iOSTests' do
     inherit! :search_paths
