@@ -8,7 +8,7 @@ target 'Prunner4iOS' do
   # Pods for Prunner4iOS
   pod 'GoogleMaps'
   pod 'GooglePlacePicker'
-  pod 'Alamofire'
+  #pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'APIKit'
   pod 'ObjectMapper'

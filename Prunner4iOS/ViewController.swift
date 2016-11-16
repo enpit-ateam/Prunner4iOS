@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreFoundation
 import GoogleMaps
 import GooglePlacePicker
 import CoreLocation
-import Alamofire
+//import Alamofire
 import SwiftyJSON
+
+import APIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
 
@@ -33,6 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     print(zoom)
     let camera = GMSCameraPosition.camera(withLatitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, zoom: Float(zoom))
     mapView.camera = camera
+    
+    /*
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let parameters = [
       "key": appDelegate.apiKey,
@@ -55,6 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
 
         }
       }
+ */
     
   }
   
@@ -74,6 +80,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.isMyLocationEnabled = true
     
     self.view.addSubview(mapView!)
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var request = GMDirectionRequest()
+    request.queryParameters = [
+      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
+      "key": appDelegate.apiKey as AnyObject
+    ]
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+        let direction = response
+        print(direction)
+      case .failure(let error):
+        print("error: \(error)")
+      }
+    }
+    
+    /*
+    let parameters = [
+      "key": appDelegate.apiKey,
+      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude),
+      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0)
+      ] as [String : Any]
+    Alamofire.request("https://maps.googleapis.com/maps/api/directions/json", method: .get, parameters: parameters)
+      .responseJSON { response in
+        // ここに処理を記述していく
+        guard let object = response.result.value else{
+          return
+        }
+        let json = JSON(object)
+        print(object)
+    }
+ */
+    
   }
 
   override func didReceiveMemoryWarning() {
