@@ -11,7 +11,6 @@ import CoreFoundation
 import GoogleMaps
 import GooglePlacePicker
 import CoreLocation
-//import Alamofire
 import SwiftyJSON
 
 import APIKit
@@ -30,38 +29,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.clear()
     
     let distanceText = distanceTextField.text
-    let distance = NSString(string: distanceText!).doubleValue
+    let distance = NSString(string: distanceText!)
     
-    let zoom = 20 - log2(distance/10)
+    let zoom = 20 - log2(distance.doubleValue/10)
     print(zoom)
     let camera = GMSCameraPosition.camera(withLatitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, zoom: Float(zoom))
     mapView.camera = camera
     
-    /*
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let parameters = [
-      "key": appDelegate.apiKey,
-      "location": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude),
-      "radius": distance
-    ] as [String : Any]
-    Alamofire.request("https://maps.googleapis.com/maps/api/place/nearbysearch/json", method: .get, parameters: parameters)
-      .responseJSON { response in
-        // ここに処理を記述していく
-        guard let object = response.result.value else{
-          return
-        }
-        let json = JSON(object)
-        json["results"].forEach{(_, place) in
-          let location = place["geometry"]["location"].dictionaryValue
-          let  position = CLLocationCoordinate2DMake((location["lat"]?.doubleValue)!, (location["lng"]?.doubleValue)!)
-          let marker = GMSMarker(position: position)
-          marker.title = place["name"].stringValue
-          marker.map = self.mapView
-
-        }
-      }
- */
     
+    //Placeを取得してmapに表示させる
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let request = GMPlaceRequest.NearBySearch()
+    request.queryParameters = [
+      "key": appDelegate.apiKey as AnyObject,
+      "location": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+      "radius": distance as AnyObject
+    ]
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+        let places = response
+        places.forEach{(place) in
+          let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
+          let marker = GMSMarker(position: position)
+          marker.title = place.name
+          marker.map = self.mapView
+        }
+      case .failure(let error):
+        print("error: \(error)")
+      }
+    }
   }
   
   override func viewDidLoad() {
@@ -81,6 +78,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     self.view.addSubview(mapView!)
     
+    /*
+    //ある距離からある距離までのルートを取得
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var request = GMDirectionRequest()
     request.queryParameters = [
@@ -96,25 +95,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       case .failure(let error):
         print("error: \(error)")
       }
-    }
-    
-    /*
-    let parameters = [
-      "key": appDelegate.apiKey,
-      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude),
-      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0)
-      ] as [String : Any]
-    Alamofire.request("https://maps.googleapis.com/maps/api/directions/json", method: .get, parameters: parameters)
-      .responseJSON { response in
-        // ここに処理を記述していく
-        guard let object = response.result.value else{
-          return
-        }
-        let json = JSON(object)
-        print(object)
-    }
- */
-    
+    }*/
   }
 
   override func didReceiveMemoryWarning() {

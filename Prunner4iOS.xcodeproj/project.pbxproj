@@ -24,8 +24,11 @@
 		9B12B1281DDB061800E7977F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B12B1221DDB061800E7977F /* Route.swift */; };
 		9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B12B12B1DDB17A700E7977F /* GMDirectionRequest.swift */; };
 		9B12B12F1DDB17FB00E7977F /* GMBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B12B12E1DDB17FB00E7977F /* GMBaseRequest.swift */; };
+		9B12B1351DDC3A0200E7977F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B12B1341DDC3A0200E7977F /* Place.swift */; };
+		9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B12B1361DDC3ABA00E7977F /* Geometry.swift */; };
 		9B5E25B01DC93E75006FD296 /* PrunnerMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5E25AF1DC93E75006FD296 /* PrunnerMapView.xib */; };
 		9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E25B11DC93E8E006FD296 /* PrunnerMapView.swift */; };
+		9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A2941DDD834400A86E03 /* GMPlaceRequest.swift */; };
 		9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BCBFF7B1DC8098B0039679A /* GoogleMaps.plist */; };
 		9BCBFF7E1DC91D6A0039679A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */; };
 		B7E8AE4BEC3F05FB34BE29E9 /* Pods_Prunner4iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */; };
@@ -78,8 +81,11 @@
 		9B12B1221DDB061800E7977F /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Route.swift; path = Models/Direction/Route.swift; sourceTree = "<group>"; };
 		9B12B12B1DDB17A700E7977F /* GMDirectionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GMDirectionRequest.swift; path = Components/APIs/GoogleMaps/GMDirectionRequest.swift; sourceTree = "<group>"; };
 		9B12B12E1DDB17FB00E7977F /* GMBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GMBaseRequest.swift; path = Components/APIs/GoogleMaps/GMBaseRequest.swift; sourceTree = "<group>"; };
+		9B12B1341DDC3A0200E7977F /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Models/Place/Place.swift; sourceTree = "<group>"; };
+		9B12B1361DDC3ABA00E7977F /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = Models/Place/Geometry.swift; sourceTree = "<group>"; };
 		9B5E25AF1DC93E75006FD296 /* PrunnerMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrunnerMapView.xib; path = Views/PrunnerMapView/PrunnerMapView.xib; sourceTree = "<group>"; };
 		9B5E25B11DC93E8E006FD296 /* PrunnerMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrunnerMapView.swift; path = Views/PrunnerMapView/PrunnerMapView.swift; sourceTree = "<group>"; };
+		9B89A2941DDD834400A86E03 /* GMPlaceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GMPlaceRequest.swift; path = Components/APIs/GoogleMaps/GMPlaceRequest.swift; sourceTree = "<group>"; };
 		9BCBFF7B1DC8098B0039679A /* GoogleMaps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GoogleMaps.plist; sourceTree = "<group>"; };
 		9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,8 +226,18 @@
 			children = (
 				9B12B12B1DDB17A700E7977F /* GMDirectionRequest.swift */,
 				9B12B12E1DDB17FB00E7977F /* GMBaseRequest.swift */,
+				9B89A2941DDD834400A86E03 /* GMPlaceRequest.swift */,
 			);
 			name = GoogleMaps;
+			sourceTree = "<group>";
+		};
+		9B12B1331DDC39EC00E7977F /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				9B12B1341DDC3A0200E7977F /* Place.swift */,
+				9B12B1361DDC3ABA00E7977F /* Geometry.swift */,
+			);
+			name = Place;
 			sourceTree = "<group>";
 		};
 		9B52A4111DD2E604000B4BF6 /* Directions */ = {
@@ -255,6 +271,7 @@
 		9B5E25A91DC93D3D006FD296 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9B12B1331DDC39EC00E7977F /* Place */,
 				9B52A4111DD2E604000B4BF6 /* Directions */,
 			);
 			name = Models;
@@ -555,7 +572,10 @@
 				9B12B12F1DDB17FB00E7977F /* GMBaseRequest.swift in Sources */,
 				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
+				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
+				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
+				9B12B1351DDC3A0200E7977F /* Place.swift in Sources */,
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,

@@ -31,7 +31,7 @@ extension Dictionary {
 public protocol GMBaseRequest: Request {
 }
 
-extension GMBaseRequest where Self.Response: Mappable {
+public extension GMBaseRequest where Self.Response: Mappable {
   public var baseURL: URL {
     return URL(string: "https://maps.googleapis.com/maps/api/")! as URL
   }
@@ -39,8 +39,8 @@ extension GMBaseRequest where Self.Response: Mappable {
   public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Self.Response {
     let mapper = Mapper<Response>()
     guard let dictionary = object as? [String: Any],
-          let response = mapper.map(JSON: dictionary) else {
-      throw ResponseError.unexpectedObject(object)
+      let response = mapper.map(JSON: dictionary) else {
+        throw ResponseError.unexpectedObject(object)
     }
     return response
   }
