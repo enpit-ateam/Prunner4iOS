@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +21,63 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ob3-xh-wSu" customClass="PrunnerMapView" customModule="Prunner4iOS">
+                                <rect key="frame" x="0.0" y="355" width="375" height="312"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="10" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDe-Rj-VhL">
+                                <rect key="frame" x="118" y="111" width="138" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO6-2m-8Tj">
+                                <rect key="frame" x="54" y="116" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-bS-3Fq">
+                                <rect key="frame" x="285" y="116" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PK-bL-xoc">
+                                <rect key="frame" x="172" y="183" width="31" height="30"/>
+                                <state key="normal" title="検索"/>
+                                <connections>
+                                    <action selector="onTappedSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N9J-ec-mx2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ob3-xh-wSu" secondAttribute="bottom" id="3bR-tk-dy3"/>
+                            <constraint firstItem="ob3-xh-wSu" firstAttribute="top" secondItem="8PK-bL-xoc" secondAttribute="bottom" constant="142" id="3gv-Mq-LJE"/>
+                            <constraint firstItem="8PK-bL-xoc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="156" id="Bhe-Lu-fCM"/>
+                            <constraint firstItem="8PK-bL-xoc" firstAttribute="top" secondItem="QDe-Rj-VhL" secondAttribute="bottom" constant="42" id="HAx-2Y-rfM"/>
+                            <constraint firstItem="9lg-bS-3Fq" firstAttribute="leading" secondItem="QDe-Rj-VhL" secondAttribute="trailing" constant="29" id="WFs-ns-PX2"/>
+                            <constraint firstAttribute="trailing" secondItem="ob3-xh-wSu" secondAttribute="trailing" id="Wey-0f-FtG"/>
+                            <constraint firstItem="ob3-xh-wSu" firstAttribute="top" secondItem="9lg-bS-3Fq" secondAttribute="bottom" constant="218" id="Wt4-eE-iCO"/>
+                            <constraint firstItem="QDe-Rj-VhL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="91" id="Ygj-YB-UW1"/>
+                            <constraint firstItem="ob3-xh-wSu" firstAttribute="top" secondItem="fO6-2m-8Tj" secondAttribute="bottom" constant="218" id="ZSL-No-EsG"/>
+                            <constraint firstItem="ob3-xh-wSu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="au2-hF-aoQ"/>
+                            <constraint firstItem="QDe-Rj-VhL" firstAttribute="leading" secondItem="fO6-2m-8Tj" secondAttribute="trailing" constant="22" id="awG-BH-nvi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8PK-bL-xoc" secondAttribute="trailing" constant="156" id="fyl-3P-BdS"/>
+                            <constraint firstItem="fO6-2m-8Tj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="38" id="ood-bS-Oeb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9lg-bS-3Fq" secondAttribute="trailing" constant="32" id="rMl-sR-mcT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="distanceTextField" destination="QDe-Rj-VhL" id="w52-TU-lzC"/>
+                        <outlet property="mapView" destination="ob3-xh-wSu" id="Pt1-dL-NrC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="126.38680659670166"/>
         </scene>
     </scenes>
 </document>

@@ -8,15 +8,23 @@
 
 import UIKit
 import CoreData
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  var apiKey: String!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    let path = Bundle.main.path(forResource: "GoogleMaps", ofType: "plist")
+    let dict = NSDictionary(contentsOfFile: path!)
+    apiKey = dict!.object(forKey: "APIKey") as! String
+    GMSServices.provideAPIKey(apiKey)
+    GMSPlacesClient.provideAPIKey(apiKey)
     return true
   }
 
