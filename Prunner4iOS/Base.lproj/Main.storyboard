@@ -35,19 +35,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6cy-Dl-NZn">
                                 <rect key="frame" x="46" y="120" width="283" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO6-2m-8Tj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距離" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO6-2m-8Tj">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="10" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDe-Rj-VhL">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="10" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDe-Rj-VhL">
                                         <rect key="frame" x="45" y="0.0" width="204.5" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-bS-3Fq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-bS-3Fq">
                                         <rect key="frame" x="259.5" y="0.0" width="23.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -86,19 +86,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itm-7p-9Q7" userLabel="Map View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itm-7p-9Q7" userLabel="Map View" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="40" width="375" height="586"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="itm-7p-9Q7" firstAttribute="leading" secondItem="p1P-jZ-eRy" secondAttribute="leading" id="3x9-3f-C5P"/>
-                            <constraint firstAttribute="trailing" secondItem="itm-7p-9Q7" secondAttribute="trailing" id="Fcn-gZ-zPJ"/>
-                            <constraint firstItem="itm-7p-9Q7" firstAttribute="top" secondItem="p1P-jZ-eRy" secondAttribute="top" id="vfc-cf-enM"/>
-                            <constraint firstItem="itm-7p-9Q7" firstAttribute="bottom" secondItem="wMd-vl-kFD" secondAttribute="top" id="w04-LX-kVl"/>
+                            <constraint firstItem="itm-7p-9Q7" firstAttribute="leading" secondItem="p1P-jZ-eRy" secondAttribute="leading" id="6z2-SA-7ih"/>
+                            <constraint firstItem="itm-7p-9Q7" firstAttribute="centerY" secondItem="p1P-jZ-eRy" secondAttribute="centerY" id="9hn-Br-fWe"/>
+                            <constraint firstItem="itm-7p-9Q7" firstAttribute="top" secondItem="dsl-tZ-KZC" secondAttribute="bottom" constant="20" id="gjh-2t-dAS"/>
+                            <constraint firstAttribute="trailing" secondItem="itm-7p-9Q7" secondAttribute="trailing" id="hRe-Qx-01J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="itm-7p-9Q7" id="fVb-xB-dLO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7P-8Y-JBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
