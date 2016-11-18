@@ -20,6 +20,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
   var locationManager: CLLocationManager?
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
+  var selectedPlace : Place?
+  var direction : Direction?
   
   @IBOutlet var mapView: PrunnerMapView!
   @IBOutlet var distanceTextField: UITextField!
@@ -37,23 +39,50 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.camera = camera
     
     
-    //Placeを取得してmapに表示させる
+    //Placeを取得する
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let request = GMPlaceRequest.NearBySearch()
-    request.queryParameters = [
+    let placeRequest = GMPlaceRequest.NearBySearch()
+    placeRequest.queryParameters = [
       "key": appDelegate.apiKey as AnyObject,
       "location": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
       "radius": distance as AnyObject
     ]
-    Session.send(request) { result in
+    Session.send(placeRequest) { result in
       switch result {
       case .success(let response):
         let places = response
-        places.forEach{(place) in
-          let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
-          let marker = GMSMarker(position: position)
-          marker.title = place.name
-          marker.map = self.mapView
+        if places.count == 0 {
+          return
+        }
+        let sortedPlaces = response.sorted(by: { (place1: Place, place2: Place) -> Bool in
+          let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
+          let d1 = self.calcCoordinatesDistance(lc1: lc1, lc2: camera.target)
+          let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
+          let d2 = self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target)
+          return d1 > d2
+        })
+        self.selectedPlace = sortedPlaces[0]
+        
+        //ある距離からある距離までのルートを取得
+        let directionRequest = GMDirectionRequest()
+        directionRequest.queryParameters = [
+          "origin": String.init(format: "%f,%f", self.mapView.camera.target.latitude, self.mapView.camera.target.longitude) as AnyObject,
+          "destination": String.init(format: "%f,%f", (self.selectedPlace?.geometry.location.lat)!, (self.selectedPlace?.geometry.location.lng)!) as AnyObject,
+          "key": appDelegate.apiKey as AnyObject
+        ]
+        Session.send(directionRequest) { result in
+          switch result {
+          case .success(let response):
+            self.direction = response
+            
+            // print
+            print(self.selectedPlace!)
+            print(self.direction!)
+            
+            
+          case .failure(let error):
+            print("error: \(error)")
+          }
         }
       case .failure(let error):
         print("error: \(error)")
@@ -77,25 +106,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.isMyLocationEnabled = true
     
     self.view.addSubview(mapView!)
-    
-    /*
-    //ある距離からある距離までのルートを取得
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var request = GMDirectionRequest()
-    request.queryParameters = [
-      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-      "key": appDelegate.apiKey as AnyObject
-    ]
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        let direction = response
-        print(direction)
-      case .failure(let error):
-        print("error: \(error)")
-      }
-    }*/
   }
 
   override func didReceiveMemoryWarning() {
@@ -120,6 +130,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     let camera = GMSCameraPosition.camera(withLatitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude, zoom: mapView.camera.zoom)
     mapView.camera = camera
+  }
+  
+  func calcCoordinatesDistance(lc1: CLLocationCoordinate2D, lc2: CLLocationCoordinate2D) -> CLLocationDistance {
+    let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
+    let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
+    return l1.distance(from: l2)
   }
 }
 
