@@ -13,7 +13,6 @@
 		45AD07D81DDE949C00BC97BD /* InputDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AD07D71DDE949C00BC97BD /* InputDistanceViewController.swift */; };
 		45AD07DA1DDE95A900BC97BD /* PrunnerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AD07D91DDE95A900BC97BD /* PrunnerMapViewController.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
-		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
 		9B01631C1DC7F2480086445E /* Prunner4iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B01631A1DC7F2480086445E /* Prunner4iOS.xcdatamodeld */; };
 		9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B01631D1DC7F2480086445E /* Assets.xcassets */; };
@@ -69,7 +68,6 @@
 		7A191E32D602F162FE778F61 /* Pods-Prunner4iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9B0163101DC7F2480086445E /* Prunner4iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prunner4iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0163131DC7F2480086445E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B0163151DC7F2480086445E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B0163181DC7F2480086445E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B01631B1DC7F2480086445E /* Prunner4iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Prunner4iOS.xcdatamodel; sourceTree = "<group>"; };
 		9B01631D1DC7F2480086445E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				9B5E25A81DC93D34006FD296 /* Views */,
 				9B5E25A71DC93D29006FD296 /* Controllers */,
 				9B0163131DC7F2480086445E /* AppDelegate.swift */,
-				9B0163151DC7F2480086445E /* ViewController.swift */,
 				9B0163171DC7F2480086445E /* Main.storyboard */,
 				9B01631D1DC7F2480086445E /* Assets.xcassets */,
 				9B01631F1DC7F2480086445E /* LaunchScreen.storyboard */,
@@ -591,7 +588,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B12B12F1DDB17FB00E7977F /* GMBaseRequest.swift in Sources */,
-				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
 				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,

@@ -25,7 +25,7 @@ class PrunnerMapViewController: UIViewController, CLLocationManagerDelegate {
     var distance: NSString = ""
     
     @IBOutlet weak var mapView: PrunnerMapView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,7 +44,9 @@ class PrunnerMapViewController: UIViewController, CLLocationManagerDelegate {
         
         // mapの設定
         // TODO:
-        //  なぜかMakerが表示されない
+        //  Makerが表示されない
+        //  おそらくSessionが終了する前にviewDidLoadが終了している
+        //  直列実行するように変更する必要がある
         setMapView(from: distance)
     }
 
@@ -71,11 +73,12 @@ class PrunnerMapViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .success(let response):
                 let places = response
-                places.forEach{(place) in
-                    let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
+                places.forEach{ [weak self] (place) in
+                    let position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
                     let marker = GMSMarker(position: position)
                     marker.title = place.name
-                    marker.map = self.mapView
+                    print(place.name)
+                    marker.map = self?.mapView
                 }
             case .failure(let error):
                 print("error: \(error)")
