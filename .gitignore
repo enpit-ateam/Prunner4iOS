@@ -6,6 +6,7 @@ xcdebugger
 !*.xcodeproj/project.pbxproj
 Pods
 Podfile.lock
+GoogleMaps.plist
 
 # IDE and editor specific files #
 #################################
