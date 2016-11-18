@@ -79,6 +79,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             print(self.selectedPlace!)
             print(self.direction!)
             
+            // マーカーの描画
+            let start = self.mapView.camera.target
+            let distination = CLLocationCoordinate2DMake((self.selectedPlace?.geometry.location.lat)!, (self.selectedPlace?.geometry.location.lng)!)
+            let startMarker = GMSMarker(position: start)
+            startMarker.title = "現在地"
+            startMarker.map = self.mapView
+            let distinationMarker = GMSMarker(position: distination)
+            distinationMarker.title = self.selectedPlace?.name
+            distinationMarker.map = self.mapView
+            
+            // ルートの描画
+            let path = GMSMutablePath()
+            let route = self.direction!.routes[0]
+            for leg in route.legs {
+              for step in leg.steps {
+                path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+              }
+              let last = leg.steps[leg.steps.count-1]
+              path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
+            }
+            let polyline = GMSPolyline(path: path)
+            polyline.strokeColor = UIColor.blue
+            polyline.strokeWidth = 5.0
+            polyline.map = self.mapView
             
           case .failure(let error):
             print("error: \(error)")
