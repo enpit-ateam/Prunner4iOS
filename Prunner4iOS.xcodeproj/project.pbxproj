@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */; };
+		45AD07D41DDE837400BC97BD /* InputDistanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AD07D31DDE837400BC97BD /* InputDistanceView.xib */; };
+		45AD07D61DDE88C200BC97BD /* InputDistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AD07D51DDE88C200BC97BD /* InputDistanceView.swift */; };
+		45AD07D81DDE949C00BC97BD /* InputDistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AD07D71DDE949C00BC97BD /* InputDistanceViewController.swift */; };
+		45AD07DA1DDE95A900BC97BD /* PrunnerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AD07D91DDE95A900BC97BD /* PrunnerMapViewController.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
 		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45AD07D31DDE837400BC97BD /* InputDistanceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputDistanceView.xib; path = Views/InputDistanceView/InputDistanceView.xib; sourceTree = "<group>"; };
+		45AD07D51DDE88C200BC97BD /* InputDistanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDistanceView.swift; sourceTree = "<group>"; };
+		45AD07D71DDE949C00BC97BD /* InputDistanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputDistanceViewController.swift; path = Controllers/InputDistanceViewController.swift; sourceTree = "<group>"; };
+		45AD07D91DDE95A900BC97BD /* PrunnerMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrunnerMapViewController.swift; sourceTree = "<group>"; };
 		54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFFC1B43EC51F28736EA46C /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BEDE487837E69A04EB5B27 /* Pods-Prunner4iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45AD07D21DDE831100BC97BD /* InputDistanceView */ = {
+			isa = PBXGroup;
+			children = (
+				45AD07D31DDE837400BC97BD /* InputDistanceView.xib */,
+				45AD07D51DDE88C200BC97BD /* InputDistanceView.swift */,
+			);
+			name = InputDistanceView;
+			sourceTree = "<group>";
+		};
 		6B1561CD1358D68C2B1B0966 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +273,8 @@
 		9B5E25A71DC93D29006FD296 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				45AD07D71DDE949C00BC97BD /* InputDistanceViewController.swift */,
+				45AD07D91DDE95A900BC97BD /* PrunnerMapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -263,6 +282,7 @@
 		9B5E25A81DC93D34006FD296 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				45AD07D21DDE831100BC97BD /* InputDistanceView */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 			);
 			name = Views;
@@ -406,6 +426,7 @@
 				9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */,
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
+				45AD07D41DDE837400BC97BD /* InputDistanceView.xib in Resources */,
 				9B0163191DC7F2480086445E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,13 +598,16 @@
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
 				9B12B1351DDC3A0200E7977F /* Place.swift in Sources */,
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,
+				45AD07D61DDE88C200BC97BD /* InputDistanceView.swift in Sources */,
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
+				45AD07DA1DDE95A900BC97BD /* PrunnerMapViewController.swift in Sources */,
 				9B12B1271DDB061800E7977F /* Direction.swift in Sources */,
 				9B01631C1DC7F2480086445E /* Prunner4iOS.xcdatamodeld in Sources */,
 				9B12B1251DDB061800E7977F /* TextValue.swift in Sources */,
 				9B12B1231DDB061800E7977F /* Leg.swift in Sources */,
+				45AD07D81DDE949C00BC97BD /* InputDistanceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
