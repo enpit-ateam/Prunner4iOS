@@ -73,12 +73,12 @@ class PrunnerMapViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .success(let response):
                 let places = response
-                places.forEach{ [weak self] (place) in
+                places.forEach{ (place) in
                     let position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
                     let marker = GMSMarker(position: position)
                     marker.title = place.name
                     print(place.name)
-                    marker.map = self?.mapView
+                    marker.map = self.mapView
                 }
             case .failure(let error):
                 print("error: \(error)")
