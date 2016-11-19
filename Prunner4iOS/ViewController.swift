@@ -57,13 +57,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           
           //lat, lngからdistanceを求める
           //もっとも求めている距離になりそうなplace順にソートする このタスクについて
-          places.sorted {(place1 : Place, place2 : Place) -> Bool in
-            let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
-            let d1 = self.calcCoordinatesDistance(lc1: lc1, lc2: camera.target)
-            let  lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
-            let d2 = self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target)
-            return d1 > d2
-          }
+        }
+        places.sorted {(place1 : Place, place2 : Place) -> Bool in
+          let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
+          let d1 = self.calcCoordinatesDistance(lc1: lc1, lc2: camera.target)
+          let  lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
+          let d2 = self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target)
+          return d1 > d2
         }
       case .failure(let error):
         print("error: \(error)")
