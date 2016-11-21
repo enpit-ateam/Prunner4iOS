@@ -54,6 +54,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let marker = GMSMarker(position: position)
           marker.title = place.name
           marker.map = self.mapView
+          
+          //lat, lngからdistanceを求める
+          //もっとも求めている距離になりそうなplace順にソートする このタスクについて
+        }
+        places.sorted {(place1 : Place, place2 : Place) -> Bool in
+          let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
+          let d1 = self.calcCoordinatesDistance(lc1: lc1, lc2: camera.target)
+          let  lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
+          let d2 = self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target)
+          return d1 > d2
         }
       case .failure(let error):
         print("error: \(error)")
@@ -120,6 +130,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     }
     let camera = GMSCameraPosition.camera(withLatitude: newLocation.coordinate.latitude, longitude: newLocation.coordinate.longitude, zoom: mapView.camera.zoom)
     mapView.camera = camera
+  }
+  
+  private func calcCoordinatesDistance(lc1: CLLocationCoordinate2D, lc2: CLLocationCoordinate2D) -> CLLocationDistance {
+    let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
+    let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
+    return l1.distance(from: l2)
+  }
+
+  private func drawRoute(place: Place){
+     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+     var request = GMDirectionRequest()
+     request.queryParameters = [
+     "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+     "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
+     "key": appDelegate.apiKey as AnyObject
+     ]
+     Session.send(request) { result in
+       switch result {
+       case .success(let response):
+         let direction = response
+         print(direction)
+       case .failure(let error):
+         print("error: \(error)")
+     }
+    }
   }
 }
 
