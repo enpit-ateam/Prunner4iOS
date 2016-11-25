@@ -29,46 +29,61 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.clear()
     
     let distanceText = distanceTextField.text
-    let distance = NSString(string: distanceText!)
-    
-    let zoom = 20 - log2(distance.doubleValue/10)
-    print(zoom)
-    let camera = GMSCameraPosition.camera(withLatitude: mapView.camera.target.latitude, longitude: mapView.camera.target.longitude, zoom: Float(zoom))
+    let distance = NSString(string: distanceText!).doubleValue
+    let currentLat = mapView.camera.target.latitude
+    let currentLng = mapView.camera.target.longitude
+    let zoom = 20 - log2(distance/10)
+    let camera = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLng, zoom: Float(zoom))
     mapView.camera = camera
     
-    
-    //Placeを取得してmapに表示させる
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let request = GMPlaceRequest.NearBySearch()
-    request.queryParameters = [
-      "key": appDelegate.apiKey as AnyObject,
-      "location": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-      "radius": distance as AnyObject
-    ]
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        let places = response
-        places.forEach{(place) in
-          let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
-          let marker = GMSMarker(position: position)
-          marker.title = place.name
-          marker.map = self.mapView
-          
-          //lat, lngからdistanceを求める
-          //もっとも求めている距離になりそうなplace順にソートする このタスクについて
-        }
-        places.sorted {(place1 : Place, place2 : Place) -> Bool in
-          let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
-          let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: camera.target) - distance.doubleValue)
-          let  lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
-          let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target) - distance.doubleValue)
-          return d1 > d2
-        }
-      case .failure(let error):
-        print("error: \(error)")
-      }
+    //-- データ取得処理ここから
+    var places: [Place]
+    // placeの取得
+    if let p = getPlaces(in: distance, latitude: currentLat, longitude: currentLng){
+      places = p
+    } else {
+      print("can't find any places in your location")
+      return
     }
+    // placeのマッチング
+    let bestPlace = pickBestPlace(places: places, distance: distance)
+    
+    // ルートの取得
+    let direction: Direction
+    if let d = getDirection(place: bestPlace) {
+      direction = d
+    } else {
+      print("can't find any direction")
+      return
+    }
+    
+    
+    //-- 描画処理ここから
+    // マーカーの描画
+    let start = self.mapView.camera.target
+    let distination = CLLocationCoordinate2DMake(bestPlace.geometry.location.lat, bestPlace.geometry.location.lng)
+    let startMarker = GMSMarker(position: start)
+    startMarker.title = "現在地"
+    startMarker.map = self.mapView
+    let distinationMarker = GMSMarker(position: distination)
+    distinationMarker.title = bestPlace.name
+    distinationMarker.map = self.mapView
+    
+    // ルートの描画
+    let path = GMSMutablePath()
+    let route = direction.routes[0]
+    for leg in route.legs {
+      for step in leg.steps {
+        path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+      }
+      let last = leg.steps[leg.steps.count-1]
+      path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
+    }
+    let polyline = GMSPolyline(path: path)
+    polyline.strokeColor = UIColor.blue
+    polyline.strokeWidth = 5.0
+    polyline.map = self.mapView
+    
   }
   
   override func viewDidLoad() {
@@ -87,25 +102,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.isMyLocationEnabled = true
     
     self.view.addSubview(mapView!)
-    
-    /*
-    //ある距離からある距離までのルートを取得
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var request = GMDirectionRequest()
-    request.queryParameters = [
-      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-      "key": appDelegate.apiKey as AnyObject
-    ]
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        let direction = response
-        print(direction)
-      case .failure(let error):
-        print("error: \(error)")
-      }
-    }*/
   }
 
   override func didReceiveMemoryWarning() {
