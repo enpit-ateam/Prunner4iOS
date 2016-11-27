@@ -150,9 +150,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     Session.send(request) { result in
       switch result {
       case .success(let response):
-       let direction = response
+        let direction = response
       case .failure(let error):
-       print("error: \(error)")
+        print("error: \(error)")
       }
     }
   }
