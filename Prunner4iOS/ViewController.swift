@@ -54,9 +54,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let marker = GMSMarker(position: position)
           marker.title = place.name
           marker.map = self.mapView
-          
-          //lat, lngからdistanceを求める
-          //もっとも求めている距離になりそうなplace順にソートする このタスクについて
         }
         places.sorted {(place1 : Place, place2 : Place) -> Bool in
           let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
