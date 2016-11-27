@@ -16,7 +16,7 @@ import SwiftyJSON
 import APIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
-
+  
   var locationManager: CLLocationManager?
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
@@ -88,32 +88,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.isMyLocationEnabled = true
     
     self.view.addSubview(mapView!)
-    
-    /*
-    //ある距離からある距離までのルートを取得
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var request = GMDirectionRequest()
-    request.queryParameters = [
-      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-      "key": appDelegate.apiKey as AnyObject
-    ]
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        let direction = response
-        print(direction)
-      case .failure(let error):
-        print("error: \(error)")
-      }
-    }*/
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .notDetermined:
@@ -138,14 +119,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
     return l1.distance(from: l2)
   }
-
+  
   private func drawRoute(place: Place){
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var request = GMDirectionRequest()
     request.queryParameters = [
-    "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-    "destination": String.init(format: "%f,%f", place.geometry.location.lat, place.geometry.location.lng) as AnyObject,
-    "key": appDelegate.apiKey as AnyObject
+      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+      "destination": String.init(format: "%f,%f", place.geometry.location.lat, place.geometry.location.lng) as AnyObject,
+      "key": appDelegate.apiKey as AnyObject
     ]
     Session.send(request) { result in
       switch result {
