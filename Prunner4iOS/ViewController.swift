@@ -50,10 +50,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       case .success(let response):
         let places = response
         places.forEach{(place) in
-          let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
-          let marker = GMSMarker(position: position)
-          marker.title = place.name
-          marker.map = self.mapView
         }
         places.sorted {(place1 : Place, place2 : Place) -> Bool in
           let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
@@ -62,7 +58,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target) - distance.doubleValue)
           return d1 > d2
         }
-        self.drawRoute(place: places[0])
+        
+        let place = places[0]
+        let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
+        let marker = GMSMarker(position: position)
+        marker.title = place.name
+        marker.map = self.mapView
+        
+        self.drawRoute(place: place)
       case .failure(let error):
         print("error: \(error)")
       }
