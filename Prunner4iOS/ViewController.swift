@@ -65,7 +65,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target) - distance.doubleValue)
           return d1 > d2
         }
-        self.drawRoute(places[0])
+        self.drawRoute(place: places[0])
       case .failure(let error):
         print("error: \(error)")
       }
@@ -151,6 +151,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       switch result {
       case .success(let response):
         let direction = response
+        let route = direction.routes[0]
+        let path  = GMSMutablePath()
+        route.legs.forEach({ leg in
+          leg.steps.forEach({ step in
+            path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+          })
+          let lastLeg = leg.steps[leg.steps.count - 1]
+          path.add(CLLocationCoordinate2DMake(lastLeg.endLocation.lat, lastLeg.endLocation.lng))
+        })
+        let routeLine = GMSPolyline(path: path)
+        routeLine.map = self.mapView
       case .failure(let error):
         print("error: \(error)")
       }
