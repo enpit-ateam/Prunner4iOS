@@ -65,6 +65,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target) - distance.doubleValue)
           return d1 > d2
         }
+        self.drawRoute(places[0])
       case .failure(let error):
         print("error: \(error)")
       }
@@ -139,21 +140,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
   }
 
   private func drawRoute(place: Place){
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     var request = GMDirectionRequest()
-     request.queryParameters = [
-     "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-     "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-     "key": appDelegate.apiKey as AnyObject
-     ]
-     Session.send(request) { result in
-       switch result {
-       case .success(let response):
-         let direction = response
-         print(direction)
-       case .failure(let error):
-         print("error: \(error)")
-     }
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var request = GMDirectionRequest()
+    request.queryParameters = [
+    "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+    "destination": String.init(format: "%f,%f", place.geometry.location.lat, place.geometry.location.lng) as AnyObject,
+    "key": appDelegate.apiKey as AnyObject
+    ]
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+       let direction = response
+      case .failure(let error):
+       print("error: \(error)")
+      }
     }
   }
 }
