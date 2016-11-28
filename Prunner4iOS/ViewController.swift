@@ -89,12 +89,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     
     self.view.addSubview(mapView!)
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .notDetermined:
@@ -119,7 +119,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
     return l1.distance(from: l2)
   }
-  
+
   private func drawRoute(place: Place){
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var request = GMDirectionRequest()
