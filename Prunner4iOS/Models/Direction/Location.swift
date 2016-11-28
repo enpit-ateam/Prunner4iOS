@@ -16,6 +16,11 @@ public class Location: Mappable {
   required public init?(map: Map) {
   }
   
+  init(lat: Double, lng: Double) {
+    self.lat = lat
+    self.lng = lng
+  }
+  
   public func mapping(map: Map) {
     self.lat <- map["lat"]
     self.lng <- map["lng"]

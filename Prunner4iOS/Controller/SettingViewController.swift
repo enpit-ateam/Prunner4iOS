@@ -10,6 +10,9 @@ import UIKit
 
 class SettingViewController: UIViewController {
   
+  var currentLocation: Location?
+  var distance: Double?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     

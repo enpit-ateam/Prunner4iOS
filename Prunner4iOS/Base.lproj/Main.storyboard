@@ -82,7 +82,6 @@
         <!--TOP-->
         <scene sceneID="BUX-Tg-XZf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CNN-iU-ij6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Top" title="TOP" id="nJ8-5o-gM9" customClass="TopViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="293-dx-g0E"/>
@@ -114,7 +113,8 @@
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="z0h-GL-dTQ" kind="show" id="UbW-9I-i3O"/>
+                                    <action selector="tappedButton:" destination="nJ8-5o-gM9" eventType="touchUpInside" id="wpV-fM-qUA"/>
+                                    <segue destination="z0h-GL-dTQ" kind="show" identifier="SETUP" id="UbW-9I-i3O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,9 +131,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="InputDistanceTextField" destination="5uk-A7-n3e" id="O73-Hc-oFa"/>
+                        <outlet property="inputDistanceTextField" destination="5uk-A7-n3e" id="OrD-Ol-CMR"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNN-iU-ij6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1656.8" y="-335.98200899550227"/>
         </scene>
@@ -158,22 +159,30 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXc-dJ-a5L">
                                 <rect key="frame" x="140" y="559" width="95" height="72"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="4WL-aE-0FK"/>
-                                    <constraint firstAttribute="height" constant="72" id="NeU-D9-IM4"/>
+                                    <constraint firstAttribute="height" constant="72" id="FlH-La-Lkk"/>
+                                    <constraint firstAttribute="width" constant="95" id="Hmf-P8-eUe"/>
                                 </constraints>
                                 <state key="normal" title="Run"/>
                                 <connections>
-                                    <segue destination="DRb-8s-kFB" kind="show" id="DH3-S4-R9j"/>
+                                    <segue destination="DRb-8s-kFB" kind="show" identifier="RUN" id="DH3-S4-R9j"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fL-9t-aGq" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="375" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="centerX" secondItem="aXc-dJ-a5L" secondAttribute="centerX" id="CLb-io-V91"/>
-                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="leading" secondItem="ifo-mH-2TZ" secondAttribute="leading" id="FcM-DM-o2E"/>
-                            <constraint firstItem="QfT-Hl-UJ9" firstAttribute="top" secondItem="aXc-dJ-a5L" secondAttribute="bottom" constant="36" id="hnF-TH-rWa"/>
-                            <constraint firstAttribute="trailing" secondItem="5Qi-tq-nMV" secondAttribute="trailing" id="p0B-yr-giY"/>
-                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="top" secondItem="ifo-mH-2TZ" secondAttribute="top" id="zzV-AL-mvq"/>
+                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="leading" secondItem="ifo-mH-2TZ" secondAttribute="leading" id="0B4-so-TRR"/>
+                            <constraint firstItem="9fL-9t-aGq" firstAttribute="centerX" secondItem="aXc-dJ-a5L" secondAttribute="centerX" id="8fj-Zk-rDI"/>
+                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="top" secondItem="ifo-mH-2TZ" secondAttribute="top" id="Dv3-Se-msj"/>
+                            <constraint firstItem="QfT-Hl-UJ9" firstAttribute="top" secondItem="aXc-dJ-a5L" secondAttribute="bottom" constant="36" id="HjX-mO-pm6"/>
+                            <constraint firstItem="9fL-9t-aGq" firstAttribute="top" secondItem="5Qi-tq-nMV" secondAttribute="bottom" id="ab7-nk-LAi"/>
+                            <constraint firstItem="aXc-dJ-a5L" firstAttribute="top" secondItem="9fL-9t-aGq" secondAttribute="bottom" constant="8" symbolic="YES" id="lP1-Pf-avt"/>
+                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="leading" secondItem="9fL-9t-aGq" secondAttribute="leading" id="sRY-jV-fJD"/>
+                            <constraint firstAttribute="trailing" secondItem="5Qi-tq-nMV" secondAttribute="trailing" id="vgo-4Q-J3k"/>
+                            <constraint firstItem="5Qi-tq-nMV" firstAttribute="trailing" secondItem="9fL-9t-aGq" secondAttribute="trailing" id="w9u-xX-paP"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -181,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="-818.39999999999998" y="-336.88155922038982"/>
         </scene>
-        <!--Done-->
+        <!--DONE-->
         <scene sceneID="BLi-3T-Raj">
             <objects>
-                <viewController title="Done" id="LdJ-gp-dpb" customClass="DoneViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DONE" id="LdJ-gp-dpb" customClass="DoneViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YwY-Tp-Lkb"/>
                         <viewControllerLayoutGuide type="bottom" id="CsR-6r-sH7"/>
@@ -207,7 +216,7 @@
                                 </constraints>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <segue destination="nJ8-5o-gM9" kind="show" id="FQ1-tW-5xN"/>
+                                    <segue destination="nJ8-5o-gM9" kind="show" identifier="TOP" id="FQ1-tW-5xN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -251,17 +260,25 @@
                                 </constraints>
                                 <state key="normal" title="Done"/>
                                 <connections>
-                                    <segue destination="LdJ-gp-dpb" kind="show" id="YXd-2m-aI6"/>
+                                    <segue destination="LdJ-gp-dpb" kind="show" identifier="DONE" id="YXd-2m-aI6"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZF-6V-Bty" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="375" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UZF-6V-Bty" firstAttribute="leading" secondItem="17o-6v-w6u" secondAttribute="leading" id="1eE-Yp-TZF"/>
                             <constraint firstItem="17o-6v-w6u" firstAttribute="top" secondItem="Wea-nc-d7J" secondAttribute="top" id="20N-oa-Ws8"/>
+                            <constraint firstItem="UZF-6V-Bty" firstAttribute="trailing" secondItem="17o-6v-w6u" secondAttribute="trailing" id="GTf-sU-lWf"/>
                             <constraint firstItem="17o-6v-w6u" firstAttribute="centerX" secondItem="la6-8C-A7T" secondAttribute="centerX" id="Vrt-xM-EWF"/>
                             <constraint firstItem="xPI-kE-Wza" firstAttribute="top" secondItem="la6-8C-A7T" secondAttribute="bottom" constant="36" id="Z2b-S1-y3R"/>
                             <constraint firstAttribute="trailing" secondItem="17o-6v-w6u" secondAttribute="trailing" id="Zdq-Vb-tVQ"/>
+                            <constraint firstItem="la6-8C-A7T" firstAttribute="top" secondItem="UZF-6V-Bty" secondAttribute="bottom" constant="8" symbolic="YES" id="fwC-kv-ggx"/>
                             <constraint firstItem="17o-6v-w6u" firstAttribute="leading" secondItem="Wea-nc-d7J" secondAttribute="leading" id="rul-Fw-Riy"/>
+                            <constraint firstItem="UZF-6V-Bty" firstAttribute="top" secondItem="17o-6v-w6u" secondAttribute="bottom" id="tfa-rQ-vTc"/>
                         </constraints>
                     </view>
                 </viewController>
