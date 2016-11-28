@@ -16,7 +16,7 @@ import SwiftyJSON
 import APIKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
-
+  
   var locationManager: CLLocationManager?
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
@@ -50,13 +50,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       case .success(let response):
         let places = response
         places.forEach{(place) in
-          let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
-          let marker = GMSMarker(position: position)
-          marker.title = place.name
-          marker.map = self.mapView
-          
-          //lat, lngからdistanceを求める
-          //もっとも求めている距離になりそうなplace順にソートする このタスクについて
         }
         places.sorted {(place1 : Place, place2 : Place) -> Bool in
           let  lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
@@ -65,6 +58,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: camera.target) - distance.doubleValue)
           return d1 > d2
         }
+        
+        let aptPlace = places[0]
+        let position = CLLocationCoordinate2DMake((aptPlace.geometry.location.lat)!, (aptPlace.geometry.location.lng)!)
+        let marker = GMSMarker(position: position)
+        marker.title = aptPlace.name
+        marker.map = self.mapView
+        
+        self.drawRoute(place: aptPlace)
       case .failure(let error):
         print("error: \(error)")
       }
@@ -87,25 +88,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.isMyLocationEnabled = true
     
     self.view.addSubview(mapView!)
-    
-    /*
-    //ある距離からある距離までのルートを取得
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var request = GMDirectionRequest()
-    request.queryParameters = [
-      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-      "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-      "key": appDelegate.apiKey as AnyObject
-    ]
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        let direction = response
-        print(direction)
-      case .failure(let error):
-        print("error: \(error)")
-      }
-    }*/
   }
 
   override func didReceiveMemoryWarning() {
@@ -139,21 +121,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
   }
 
   private func drawRoute(place: Place){
-     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-     var request = GMDirectionRequest()
-     request.queryParameters = [
-     "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
-     "destination": String.init(format: "%f,%f", mapView.camera.target.latitude+1.0, mapView.camera.target.longitude+1.0) as AnyObject,
-     "key": appDelegate.apiKey as AnyObject
-     ]
-     Session.send(request) { result in
-       switch result {
-       case .success(let response):
-         let direction = response
-         print(direction)
-       case .failure(let error):
-         print("error: \(error)")
-     }
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var request = GMDirectionRequest()
+    request.queryParameters = [
+      "origin": String.init(format: "%f,%f", mapView.camera.target.latitude, mapView.camera.target.longitude) as AnyObject,
+      "destination": String.init(format: "%f,%f", place.geometry.location.lat, place.geometry.location.lng) as AnyObject,
+      "key": appDelegate.apiKey as AnyObject
+    ]
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+        let direction = response
+        let route = direction.routes[0]
+        let path  = GMSMutablePath()
+        route.legs.forEach({ leg in
+          leg.steps.forEach({ step in
+            path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+          })
+          let lastLeg = leg.steps[leg.steps.count - 1]
+          path.add(CLLocationCoordinate2DMake(lastLeg.endLocation.lat, lastLeg.endLocation.lng))
+        })
+        let routeLine = GMSPolyline(path: path)
+        routeLine.map = self.mapView
+      case .failure(let error):
+        print("error: \(error)")
+      }
     }
   }
 }
