@@ -7,16 +7,35 @@
 //
 
 import UIKit
+import CoreFoundation
+import GoogleMaps
+import GooglePlacePicker
+import CoreLocation
+import SwiftyJSON
+
+import APIKit
 
 class SettingViewController: UIViewController {
   
-  var currentLocation: Location?
-  var distance: Double?
+  // TopSceneから受ける変数
+  var current: Location!
+  var distance: Double!
+  
+  // GoogleMap
+  var placePicker: GMSPlacePicker?
+  var placeClient: GMSPlacesClient?
+  
+  @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    placeClient = GMSPlacesClient()
+    
+    let zoom = 20 - log2(distance/10)
+    let camera = GMSCameraPosition.camera(withLatitude: current.lat, longitude: current.lng, zoom: Float(zoom))
+    mapView.camera = camera
   }
   
   override func didReceiveMemoryWarning() {

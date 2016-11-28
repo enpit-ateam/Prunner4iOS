@@ -39,7 +39,6 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     // 位置情報が取れていないときの動作
     // 例：アラートを出す
     if currentLocation == nil {
-      
       return
     }
     // TODO:
@@ -49,7 +48,6 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     } else if Int(inputDistanceTextField.text!) == nil {
       return
     }
-    
     let distance: Double = NSString(string: inputDistanceTextField.text!).doubleValue
     performSegue(withIdentifier: "SETUP", sender: distance)
   }
@@ -57,8 +55,8 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "SETUP" {
       let vc = segue.destination as! SettingViewController
-      vc.currentLocation = currentLocation
-      vc.distance = sender as? Double
+      vc.current = currentLocation
+      vc.distance = sender as! Double
     }
   }
   
