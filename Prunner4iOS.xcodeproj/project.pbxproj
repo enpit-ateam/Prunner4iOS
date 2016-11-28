@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */; };
+		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
+		4578F5791DEBE6C700F433E3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5781DEBE6C700F433E3 /* SettingViewController.swift */; };
+		4578F57B1DEBE6D600F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F57A1DEBE6D600F433E3 /* RunViewController.swift */; };
+		4578F57D1DEBE6E200F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F57C1DEBE6E200F433E3 /* DoneViewController.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
 		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
+		4578F5781DEBE6C700F433E3 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = Controller/SettingViewController.swift; sourceTree = "<group>"; };
+		4578F57A1DEBE6D600F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunViewController.swift; sourceTree = "<group>"; };
+		4578F57C1DEBE6E200F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 		54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFFC1B43EC51F28736EA46C /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BEDE487837E69A04EB5B27 /* Pods-Prunner4iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +264,10 @@
 		9B5E25A71DC93D29006FD296 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4578F5761DEBE6AF00F433E3 /* TopViewController.swift */,
+				4578F5781DEBE6C700F433E3 /* SettingViewController.swift */,
+				4578F57A1DEBE6D600F433E3 /* RunViewController.swift */,
+				4578F57C1DEBE6E200F433E3 /* DoneViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -573,10 +585,14 @@
 				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
+				4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */,
+				4578F5791DEBE6C700F433E3 /* SettingViewController.swift in Sources */,
 				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,
+				4578F57D1DEBE6E200F433E3 /* DoneViewController.swift in Sources */,
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
 				9B12B1351DDC3A0200E7977F /* Place.swift in Sources */,
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,
+				4578F57B1DEBE6D600F433E3 /* RunViewController.swift in Sources */,
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
