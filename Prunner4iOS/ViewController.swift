@@ -36,54 +36,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     let camera = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLng, zoom: Float(zoom))
     mapView.camera = camera
     
-    //-- データ取得処理ここから
-    var places: [Place]
-    // placeの取得
-    if let p = getPlaces(in: distance, latitude: currentLat, longitude: currentLng){
-      places = p
-    } else {
-      print("can't find any places in your location")
-      return
-    }
-    // placeのマッチング
-    let bestPlace = pickBestPlace(places: places, distance: distance)
     
-    // ルートの取得
-    let direction: Direction
-    if let d = getDirection(place: bestPlace) {
-      direction = d
-    } else {
-      print("can't find any direction")
-      return
-    }
-    
-    
-    //-- 描画処理ここから
-    // マーカーの描画
-    let start = self.mapView.camera.target
-    let distination = CLLocationCoordinate2DMake(bestPlace.geometry.location.lat, bestPlace.geometry.location.lng)
-    let startMarker = GMSMarker(position: start)
-    startMarker.title = "現在地"
-    startMarker.map = self.mapView
-    let distinationMarker = GMSMarker(position: distination)
-    distinationMarker.title = bestPlace.name
-    distinationMarker.map = self.mapView
-    
-    // ルートの描画
-    let path = GMSMutablePath()
-    let route = direction.routes[0]
-    for leg in route.legs {
-      for step in leg.steps {
-        path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+    getPlaces(distance: distance, latitude: currentLat, longitude: currentLng) { places in
+      let bestPlace = self.pickBestPlace(places: places!, distance: distance)
+      if places == nil {
+        return
       }
-      let last = leg.steps[leg.steps.count-1]
-      path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
+      
+      self.getDirection(place: bestPlace) { direction in
+        if direction == nil {
+          return
+        }
+        
+        // マーカーの描画
+        let start = self.mapView.camera.target
+        let distination = CLLocationCoordinate2DMake(bestPlace.geometry.location.lat, bestPlace.geometry.location.lng)
+        let startMarker = GMSMarker(position: start)
+        startMarker.title = "現在地"
+        startMarker.map = self.mapView
+        let distinationMarker = GMSMarker(position: distination)
+        distinationMarker.title = bestPlace.name
+        distinationMarker.map = self.mapView
+        
+        // ルートの描画
+        let path = GMSMutablePath()
+        let route = direction?.routes[0]
+        for leg in (route?.legs)! {
+          for step in leg.steps {
+            path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
+          }
+          let last = leg.steps[leg.steps.count-1]
+          path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
+        }
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeColor = UIColor.blue
+        polyline.strokeWidth = 5.0
+        polyline.map = self.mapView
+        
+      }
     }
-    let polyline = GMSPolyline(path: path)
-    polyline.strokeColor = UIColor.blue
-    polyline.strokeWidth = 5.0
-    polyline.map = self.mapView
-    
   }
   
   override func viewDidLoad() {
@@ -128,7 +119,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     mapView.camera = camera
   }
   
-  private func getPlaces(in distance: Double, latitude: Double, longitude: Double) -> [Place]? {
+  private func getPlaces(distance: Double, latitude: Double, longitude: Double, _ callback: @escaping ([Place]?) -> Void) {
     // 指定されたLat,LngからのPlaceリストを返す
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMPlaceRequest.NearBySearch()
@@ -139,12 +130,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       "radius": String.init(format: "%f", distance) as AnyObject
     ]
     
-    // GCDを使って同期処理を実装したいけど、なんかむりっぽい
-    // http://qiita.com/kazuhirox/items/9ecb25bc238ad2d47ff0
-    
-    // ロックの取得
-    var keepAlive = true
-    
     Session.send(request) { result in
       switch result {
       case .success(let response):
@@ -153,15 +138,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       case .failure(let error):
         print("error: \(error)")
       }
-      keepAlive = false
+      callback(places)
     }
-    
-    let runLoop = RunLoop.current
-    while keepAlive &&
-      runLoop.run(mode: RunLoopMode.defaultRunLoopMode, before: NSDate(timeIntervalSinceNow: 0.1) as Date) {
-        // ロックが解除されるまで待つ
-    }
-    return places
   }
   
   private func pickBestPlace(places: [Place], distance: Double) -> Place {
@@ -177,13 +155,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
   }
 
   private func calcCoordinatesDistance(lc1: CLLocationCoordinate2D, lc2: CLLocationCoordinate2D) -> CLLocationDistance {
-    // ふたりの距離の概算
     let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
     let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
     return l1.distance(from: l2)
   }
   
-  private func getDirection(place: Place) -> Direction? {
+  private func getDirection(place: Place, _ callback: @escaping (Direction?) -> Void) {
     // ルートの取得
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMDirectionRequest()
@@ -192,10 +169,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       "destination": String.init(format: "%f,%f", place.geometry.location.lat, place.geometry.location.lng) as AnyObject,
       "key": appDelegate.apiKey as AnyObject
     ]
-    
-    // ロックの取得
-    var keepAlive = true
-    
     var direction: Direction?
     Session.send(request) { result in
       switch result {
@@ -205,16 +178,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
       case .failure(let error):
         print("error: \(error)")
       }
-      
-      keepAlive = false
+      callback(direction)
     }
-    
-    let runLoop = RunLoop.current
-    while keepAlive &&
-      runLoop.run(mode: RunLoopMode.defaultRunLoopMode, before: NSDate(timeIntervalSinceNow: 0.1) as Date) {
-        // ロックが解除されるまで待つ
-    }
-    return direction
   }
 }
 
