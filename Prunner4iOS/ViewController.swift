@@ -59,13 +59,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
           return d1 > d2
         }
         
-        let place = places[0]
-        let  position = CLLocationCoordinate2DMake((place.geometry.location.lat)!, (place.geometry.location.lng)!)
+        let aptPlace = places[0]
+        let position = CLLocationCoordinate2DMake((aptPlace.geometry.location.lat)!, (aptPlace.geometry.location.lng)!)
         let marker = GMSMarker(position: position)
-        marker.title = place.name
+        marker.title = aptPlace.name
         marker.map = self.mapView
         
-        self.drawRoute(place: place)
+        self.drawRoute(place: aptPlace)
       case .failure(let error):
         print("error: \(error)")
       }
