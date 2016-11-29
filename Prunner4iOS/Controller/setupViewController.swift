@@ -25,6 +25,10 @@ class SetupViewController: UIViewController {
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
   
+  // member変数
+  var target: Place! = nil
+  var direction: Direction! = nil
+  
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
@@ -43,23 +47,25 @@ class SetupViewController: UIViewController {
         // エラー処理
         return
       }
-      let bestPlace = self.pickBestPlace(places: places, distance: self.distance)
+      self.target = self.pickBestPlace(places: places, distance: self.distance)
+      let targetLocation = self.target.geometry.location!
       
-      self.getDirection(current: self.current, target: bestPlace.geometry.location) { direction in
+      self.getDirection(current: self.current, target: targetLocation) { direction in
         if direction == nil {
           // TODO:
           // エラー処理
           return
         }
+        self.direction = direction
         
         // マーカーの描画
         let start = self.mapView.camera.target
-        let distination = CLLocationCoordinate2DMake(bestPlace.geometry.location.lat, bestPlace.geometry.location.lng)
+        let distination = CLLocationCoordinate2DMake(targetLocation.lat, targetLocation.lng)
         let startMarker = GMSMarker(position: start)
         startMarker.title = "現在地"
         startMarker.map = self.mapView
         let distinationMarker = GMSMarker(position: distination)
-        distinationMarker.title = bestPlace.name
+        distinationMarker.title = self.target.name
         distinationMarker.map = self.mapView
         
         // ルートの描画
@@ -149,6 +155,22 @@ class SetupViewController: UIViewController {
   }
   
   
+  @IBAction func runButtonTapped(_ sender: Any) {
+    if direction == nil {
+      return
+    }
+    performSegue(withIdentifier: "RUN", sender: nil)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "RUN" {
+      let vc = segue.destination as! RunViewController
+      vc.current = current
+      vc.distance = distance
+      vc.target = target
+      vc.direction = direction
+    }
+  }
   /*
    // MARK: - Navigation
    

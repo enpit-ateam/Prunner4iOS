@@ -10,10 +10,16 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
+  var runTime: Int?
+  
+  @IBOutlet weak var runTimeLabel: UILabel!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    print(runTime!)
+    runTimeLabel.text = String(runTime!)
   }
   
   override func didReceiveMemoryWarning() {
@@ -21,6 +27,15 @@ class DoneViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  @IBAction func doneButtonTapped(_ sender: Any) {
+    performSegue(withIdentifier: "TOP", sender: nil)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "TOP" {
+      _ = segue.destination as! TopViewController
+    }
+  }
   
   /*
    // MARK: - Navigation
