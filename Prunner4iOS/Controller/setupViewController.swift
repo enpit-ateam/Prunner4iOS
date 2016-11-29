@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SettingViewController: UIViewController {
+class SetupViewController: UIViewController {
   
   // TopSceneから受ける変数
   var current: Location!

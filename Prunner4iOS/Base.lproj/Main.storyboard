@@ -141,7 +141,7 @@
         <!--SETUP-->
         <scene sceneID="j7X-WM-6Td">
             <objects>
-                <viewController title="SETUP" id="z0h-GL-dTQ" customClass="SettingViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SETUP" id="z0h-GL-dTQ" customClass="SetupViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FYI-RI-STJ"/>
                         <viewControllerLayoutGuide type="bottom" id="QfT-Hl-UJ9"/>

@@ -54,7 +54,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "SETUP" {
-      let vc = segue.destination as! SettingViewController
+      let vc = segue.destination as! SetupViewController
       vc.current = currentLocation
       vc.distance = sender as! Double
     }
