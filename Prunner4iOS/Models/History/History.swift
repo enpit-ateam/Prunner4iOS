@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+public struct History {
+  public var date: Date!
+  public var route: Route!
+  public var distance: Double!
+  public var time: Int!
+  
+  public init?(
+    date: Date!,
+    route: Route!,
+    distance: Double!,
+    time: Int!
+  ) {
+    self.date = date;
+    self.route = route;
+    self.distance = distance;
+    self.time = time;
+  }
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nJ8-5o-gM9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nJ8-5o-gM9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -116,6 +116,14 @@
                                     <action selector="tappedButton:" destination="nJ8-5o-gM9" eventType="touchUpInside" id="wpV-fM-qUA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffW-rL-mpZ">
+                                <rect key="frame" x="172" y="594" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="History"/>
+                                <connections>
+                                    <segue destination="4Nw-3X-FH4" kind="show" id="p0C-0F-4sg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -194,6 +202,33 @@
             </objects>
             <point key="canvasLocation" x="-818.39999999999998" y="-336.88155922038982"/>
         </scene>
+        <!--History View Controller-->
+        <scene sceneID="4c3-2q-oZk">
+            <objects>
+                <viewController id="4Nw-3X-FH4" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dwl-gF-iKN"/>
+                        <viewControllerLayoutGuide type="bottom" id="eLV-5g-X5q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7SN-1J-I9i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="りれき！！！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdi-Bf-Mom">
+                                <rect key="frame" x="86" y="198" width="234" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H59-bC-tzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1658.4000000000001" y="445.72713643178412"/>
+        </scene>
         <!--DONE-->
         <scene sceneID="BLi-3T-Raj">
             <objects>
@@ -249,7 +284,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CsR-6r-sH7" firstAttribute="top" secondItem="ItL-RJ-NI5" secondAttribute="bottom" constant="117" id="0G7-Qh-mh1"/>
+                            <constraint firstItem="CsR-6r-sH7" firstAttribute="top" secondItem="ItL-RJ-NI5" secondAttribute="bottom" constant="117" id="3x9-NS-72n"/>
                             <constraint firstItem="bSt-iL-dek" firstAttribute="top" secondItem="F7f-Au-Equ" secondAttribute="top" id="8GG-vy-fCk"/>
                             <constraint firstItem="bSt-iL-dek" firstAttribute="centerX" secondItem="ItL-RJ-NI5" secondAttribute="centerX" id="Ajy-UA-VID"/>
                             <constraint firstItem="bSt-iL-dek" firstAttribute="leading" secondItem="F7f-Au-Equ" secondAttribute="leading" id="Gtk-Qr-8d6"/>
