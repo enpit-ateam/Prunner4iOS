@@ -17,18 +17,13 @@ import APIKit
 
 class SetupViewController: UIViewController {
   
-  // TopSceneから受ける変数
-  var current: Location!
-  var distance: Double!
+  var userState = UserState.sharedInstance
+  var mapState = MapState.sharedInstance
   
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
-  
-  // member変数
-  var target: Place! = nil
-  var direction: Direction! = nil
-  
+
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
@@ -37,26 +32,25 @@ class SetupViewController: UIViewController {
     // Do any additional setup after loading the view.
     placeClient = GMSPlacesClient()
     
-    let zoom = 20 - log2(distance/10)
-    let camera = GMSCameraPosition.camera(withLatitude: current.lat, longitude: current.lng, zoom: Float(zoom))
-    mapView.camera = camera
+    mapState.setCamera(user: userState)
+    mapView.camera = mapState.camera!
     
-    getPlaces(distance: distance, location: current) { places in
+    getPlaces(distance: userState.distance!, location: userState.current!) { places in
       if places == nil || places.count == 0 {
         // TODO:
         // エラー処理
         return
       }
-      self.target = self.pickBestPlace(places: places, distance: self.distance)
-      let targetLocation = self.target.geometry.location!
+      self.mapState.distination = self.pickBestPlace(places: places, distance: self.userState.distance!)
+      let targetLocation = (self.mapState.distination?.geometry.location)!
       
-      self.getDirection(current: self.current, target: targetLocation) { direction in
+      self.getDirection(current: self.userState.current!, target: targetLocation) { direction in
         if direction == nil {
           // TODO:
           // エラー処理
           return
         }
-        self.direction = direction
+        self.mapState.direction = direction
         
         // マーカーの描画
         let start = self.mapView.camera.target
@@ -65,7 +59,7 @@ class SetupViewController: UIViewController {
         startMarker.title = "現在地"
         startMarker.map = self.mapView
         let distinationMarker = GMSMarker(position: distination)
-        distinationMarker.title = self.target.name
+        distinationMarker.title = self.mapState.distination?.name
         distinationMarker.map = self.mapView
         
         // ルートの描画
@@ -156,7 +150,7 @@ class SetupViewController: UIViewController {
   
   
   @IBAction func runButtonTapped(_ sender: Any) {
-    if direction == nil {
+    if !mapState.isReady() {
       return
     }
     performSegue(withIdentifier: "RUN", sender: nil)
@@ -164,11 +158,7 @@ class SetupViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "RUN" {
-      let vc = segue.destination as! RunViewController
-      vc.current = current
-      vc.distance = distance
-      vc.target = target
-      vc.direction = direction
+      let _ = segue.destination as! RunViewController
     }
   }
   /*

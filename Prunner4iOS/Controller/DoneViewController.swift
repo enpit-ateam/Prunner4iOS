@@ -10,7 +10,7 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
-  var runTime: Int?
+  var userState = UserState.sharedInstance
   
   @IBOutlet weak var runTimeLabel: UILabel!
   
@@ -18,8 +18,7 @@ class DoneViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    print(runTime!)
-    runTimeLabel.text = String(runTime!)
+    runTimeLabel.text = userState.putRunTimeResult()
   }
   
   override func didReceiveMemoryWarning() {

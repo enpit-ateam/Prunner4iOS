@@ -14,11 +14,8 @@ import CoreLocation
 
 class RunViewController: UIViewController {
   
-  // member変数
-  var current: Location!
-  var target: Place!
-  var direction: Direction!
-  var distance: Double!
+  var userState = UserState.sharedInstance
+  var mapState = MapState.sharedInstance
   
   // 時間測定用
   var startTime: Date?
@@ -35,12 +32,11 @@ class RunViewController: UIViewController {
     // Do any additional setup after loading the view.
     startTime = Date()
     placeClient = GMSPlacesClient()
-    
-    let zoom = 20 - log2(distance/10)
-    let camera = GMSCameraPosition.camera(withLatitude: current.lat, longitude: current.lng, zoom: Float(zoom))
-    mapView.camera = camera
+    mapView.camera = mapState.camera!
     
     // マーカーの描画
+    let target = self.mapState.distination!
+    let direction = self.mapState.direction!
     let start = self.mapView.camera.target
     let distination = CLLocationCoordinate2DMake(target.geometry.location.lat, target.geometry.location.lng)
     let startMarker = GMSMarker(position: start)
@@ -52,8 +48,8 @@ class RunViewController: UIViewController {
     
     // ルートの描画
     let path = GMSMutablePath()
-    let route = direction?.routes[0]
-    for leg in (route?.legs)! {
+    let route = direction.routes[0]
+    for leg in (route.legs) {
       for step in leg.steps {
         path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
       }
@@ -72,18 +68,13 @@ class RunViewController: UIViewController {
   }
   
   @IBAction func doneButtonTapped(_ sender: Any) {
-    var runTime: Int?
-    if let start = startTime {
-      let end = Date()
-      runTime = Int(end.timeIntervalSince(start))
-    }
-    performSegue(withIdentifier: "DONE", sender: runTime)
+    userState.setRunTime(start: startTime, end: Date())
+    performSegue(withIdentifier: "DONE", sender: nil)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "DONE" {
-      let vc = segue.destination as! DoneViewController
-      vc.runTime = sender as? Int
+      let _ = segue.destination as! DoneViewController
     }
   }
   

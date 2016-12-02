@@ -12,6 +12,8 @@
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
 		4578F5851DED967F00F433E3 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5821DED967F00F433E3 /* SetupViewController.swift */; };
+		4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58B1DF13BCB00F433E3 /* MapState.swift */; };
+		4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58D1DF13DAA00F433E3 /* UserState.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
 		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
 		4578F5821DED967F00F433E3 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupViewController.swift; path = Controller/SetupViewController.swift; sourceTree = "<group>"; };
+		4578F58B1DF13BCB00F433E3 /* MapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapState.swift; path = Models/State/MapState.swift; sourceTree = "<group>"; };
+		4578F58D1DF13DAA00F433E3 /* UserState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserState.swift; path = Models/State/UserState.swift; sourceTree = "<group>"; };
 		54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFFC1B43EC51F28736EA46C /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BEDE487837E69A04EB5B27 /* Pods-Prunner4iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4578F58A1DF13BAE00F433E3 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				4578F58B1DF13BCB00F433E3 /* MapState.swift */,
+				4578F58D1DF13DAA00F433E3 /* UserState.swift */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
 		6B1561CD1358D68C2B1B0966 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +296,7 @@
 		9B5E25A91DC93D3D006FD296 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4578F58A1DF13BAE00F433E3 /* State */,
 				9B12B1331DDC39EC00E7977F /* Place */,
 				9B52A4111DD2E604000B4BF6 /* Directions */,
 			);
@@ -585,6 +599,7 @@
 				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
+				4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */,
 				4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */,
 				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
@@ -592,6 +607,7 @@
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
+				4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
 				9B12B1271DDB061800E7977F /* Direction.swift in Sources */,
