@@ -41,10 +41,12 @@ class SetupViewController: UIViewController {
         // エラー処理
         return
       }
-      self.mapState.distination = self.pickBestPlace(places: places, distance: self.userState.distance!)
-      let targetLocation = (self.mapState.distination?.geometry.location)!
+      self.mapState.candidates = places
+      self.mapState.setDistinateFromCandidates(for: self.userState)
       
-      self.getDirection(current: self.userState.current!, target: targetLocation) { direction in
+      let location = self.mapState.distination!.geometry.location!
+      let current = self.userState.current!
+      self.getDirection(current: current, target: location) { direction in
         if direction == nil {
           // TODO:
           // エラー処理
@@ -52,30 +54,14 @@ class SetupViewController: UIViewController {
         }
         self.mapState.direction = direction
         
-        // マーカーの描画
-        let start = self.mapView.camera.target
-        let distination = CLLocationCoordinate2DMake(targetLocation.lat, targetLocation.lng)
-        let startMarker = GMSMarker(position: start)
-        startMarker.title = "現在地"
-        startMarker.map = self.mapView
-        let distinationMarker = GMSMarker(position: distination)
-        distinationMarker.title = self.mapState.distination?.name
-        distinationMarker.map = self.mapView
+        // 描画
+        let GMSStartMarker = self.mapState.getGMSStartMarker(current)!
+        let GMSEndMarker = self.mapState.getGMSEndMarker()!
+        let GMSDirection = self.mapState.getGMSPolyline()!
         
-        // ルートの描画
-        let path = GMSMutablePath()
-        let route = direction?.routes[0]
-        for leg in (route?.legs)! {
-          for step in leg.steps {
-            path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
-          }
-          let last = leg.steps[leg.steps.count-1]
-          path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
-        }
-        let polyline = GMSPolyline(path: path)
-        polyline.strokeColor = UIColor.blue
-        polyline.strokeWidth = 5.0
-        polyline.map = self.mapView
+        GMSStartMarker.map = self.mapView
+        GMSEndMarker.map = self.mapView
+        GMSDirection.map = self.mapView
       }
     }
   }
@@ -86,7 +72,7 @@ class SetupViewController: UIViewController {
   }
   
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
-    // 指定されたLat,LngからのPlaceリストを返す
+    // Placeのリストを返す
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMPlaceRequest.NearBySearch()
     
@@ -129,25 +115,6 @@ class SetupViewController: UIViewController {
       callback(direction)
     }
   }
-  
-  private func pickBestPlace(places: [Place], distance: Double) -> Place {
-    // 一番Distanceに近いPlaceを返す
-    let sortedPlaces = places.sorted {(place1 : Place, place2 : Place) -> Bool in
-      let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
-      let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: self.mapView.camera.target) - distance)
-      let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
-      let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: self.mapView.camera.target) - distance)
-      return d1 < d2
-    }
-    return sortedPlaces[0]
-  }
-  
-  private func calcCoordinatesDistance(lc1: CLLocationCoordinate2D, lc2: CLLocationCoordinate2D) -> CLLocationDistance {
-    let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
-    let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
-    return l1.distance(from: l2)
-  }
-  
   
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {

@@ -34,32 +34,15 @@ class RunViewController: UIViewController {
     placeClient = GMSPlacesClient()
     mapView.camera = mapState.camera!
     
-    // マーカーの描画
-    let target = self.mapState.distination!
-    let direction = self.mapState.direction!
-    let start = self.mapView.camera.target
-    let distination = CLLocationCoordinate2DMake(target.geometry.location.lat, target.geometry.location.lng)
-    let startMarker = GMSMarker(position: start)
-    startMarker.title = "現在地"
-    startMarker.map = self.mapView
-    let distinationMarker = GMSMarker(position: distination)
-    distinationMarker.title = target.name
-    distinationMarker.map = self.mapView
-    
-    // ルートの描画
-    let path = GMSMutablePath()
-    let route = direction.routes[0]
-    for leg in (route.legs) {
-      for step in leg.steps {
-        path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
-      }
-      let last = leg.steps[leg.steps.count-1]
-      path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
-    }
-    let polyline = GMSPolyline(path: path)
-    polyline.strokeColor = UIColor.blue
-    polyline.strokeWidth = 5.0
-    polyline.map = self.mapView
+    // 描画
+    let current = userState.current!
+    let GMSStartMarker = mapState.getGMSStartMarker(current)!
+    let GMSEndMarker = mapState.getGMSEndMarker()!
+    let GMSDirection = mapState.getGMSPolyline()!
+
+    GMSStartMarker.map = self.mapView
+    GMSEndMarker.map = self.mapView
+    GMSDirection.map = self.mapView
   }
   
   override func didReceiveMemoryWarning() {
