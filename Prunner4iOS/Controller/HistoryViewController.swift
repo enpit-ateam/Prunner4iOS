@@ -10,22 +10,34 @@ import UIKit
 import CoreLocation
 import Foundation.NSDateFormatter
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
+  @IBOutlet weak var tableView: UITableView!
   var history_table: Histories = []
-  
+    
   override func viewDidLoad() {
     //ToDo:実装 HistoryService から データを読み込み、ボタンを生成
     history_table = HistoryService.getHistories()
-    let index: Int = 0;
+
+    tableView.delegate = self
+    tableView.dataSource = self
+
+  }
+  
+  //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
+  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for:indexPath) as UITableViewCell
     
-    history_table.forEach({ history in
-      let button = self.makeButton(history: history, index: index);
-      //ボタンをタップした時に実行するメソッドを指定
-      //button.addTarget(self, action: "tapped:", forControlEvents:.TouchUpInside)
-      //viewにボタンを追加する
-      self.view.addSubview(button)
-    })
+    cell.textLabel?.text = makeCellText(history: history_table[indexPath.row])
+    return cell
+  }
+  
+  //データの個数を返すメソッド
+  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
+    return history_table.count
+  }
+  
+  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
   }
   
   override func didReceiveMemoryWarning() {
@@ -33,21 +45,13 @@ class HistoryViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  private func makeButton(history:History, index:Int) -> UIButton{
+  private func makeCellText(history:History) -> String{
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd HH:mm Z"
+    formatter.dateFormat = "yyyy/MM/dd HH:mm"
     
-    let button_text:String = formatter.string(from: history.date);
-    let button = UIButton()
+    let dateText:String = formatter.string(from: history.date)
+    let cellText:String = dateText
     
-    button.setTitle(button_text, for: .normal)
-    button.frame = CGRect(x: 0, y: 0, width: 414, height: 50) //ハードコーディングはやめる
-    
-    button.tag = 1
-    button.layer.position = CGPoint(x: 207, y:100) //ハードコーディングはやめる
-    button.layer.borderWidth = 1
-    
-    button.backgroundColor = UIColor.red
-    return button;
+    return cellText
   }
 }

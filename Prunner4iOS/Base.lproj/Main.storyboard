@@ -121,7 +121,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="History"/>
                                 <connections>
-                                    <segue destination="4Nw-3X-FH4" kind="show" id="p0C-0F-4sg"/>
+                                    <segue destination="fqJ-66-qBb" kind="show" id="rFE-Sb-upy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -203,29 +203,44 @@
             <point key="canvasLocation" x="-818.39999999999998" y="-336.88155922038982"/>
         </scene>
         <!--History View Controller-->
-        <scene sceneID="4c3-2q-oZk">
+        <scene sceneID="duC-xj-21o">
             <objects>
-                <viewController id="4Nw-3X-FH4" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fqJ-66-qBb" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dwl-gF-iKN"/>
-                        <viewControllerLayoutGuide type="bottom" id="eLV-5g-X5q"/>
+                        <viewControllerLayoutGuide type="top" id="vQ5-ko-USb"/>
+                        <viewControllerLayoutGuide type="bottom" id="ehz-Eo-Ukg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7SN-1J-I9i">
+                    <view key="view" contentMode="scaleToFill" id="6Nz-4t-5hS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="りれき！！！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdi-Bf-Mom">
-                                <rect key="frame" x="86" y="198" width="234" height="88"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ee8-VH-Wwa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="Yks-D3-BMk">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yks-D3-BMk" id="bvM-Hf-sF3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fqJ-66-qBb" id="Vuq-c9-EFT"/>
+                                    <outlet property="delegate" destination="fqJ-66-qBb" id="jO6-Ld-kjc"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ee8-VH-Wwa" id="tia-cU-ip2"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H59-bC-tzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U4d-Nf-ZTp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1658.4000000000001" y="445.72713643178412"/>
         </scene>

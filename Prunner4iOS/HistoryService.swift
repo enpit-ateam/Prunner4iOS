@@ -13,9 +13,13 @@ class HistoryService {
   class func getHistories() -> Histories{
     return [
       History(date: Date(),
-      route: nil,
-      distance: 114.5141919,
-      time: 10000
-    )]
+              route: nil,
+              distance: 114.5141919,
+              time: 10000),
+      History(date: Date(),
+              route: nil,
+              distance: 314.159265,
+              time: 10000)
+    ]
   }
 }
