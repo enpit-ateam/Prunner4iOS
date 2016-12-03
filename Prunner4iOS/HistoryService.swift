@@ -9,23 +9,13 @@
 import Foundation
 
 class HistoryService {
-  var histories: [History];
-  private var index:Int = 0;
-  
-  init?() {
-    self.histories = []
-  }
-  
-  func addHistory(history : History){
-    self.histories.append(history);
-  }
-  
-  func next() -> History? {
-    guard index <= self.histories.count else {
-      return nil;
-    }
-    let ans:History = self.histories[index];
-    index += 1
-    return ans
+  //Historiesの入手と管理
+  class func getHistories() -> Histories{
+    return [
+      History(date: Date(),
+      route: nil,
+      distance: 114.5141919,
+      time: 10000
+    )]
   }
 }

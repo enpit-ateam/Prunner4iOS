@@ -39,6 +39,7 @@
 		CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */; };
 		CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C63C1DF1650800CD9A77 /* History.swift */; };
 		CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */; };
+		CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6431DF2ADF700CD9A77 /* Histories.swift */; };
 		E773F1B235227E2413D9E20E /* Pods_Prunner4iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = Controller/HistoryViewController.swift; sourceTree = "<group>"; };
 		CEC4C63C1DF1650800CD9A77 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = Models/History/History.swift; sourceTree = "<group>"; };
 		CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
+		CEC4C6431DF2ADF700CD9A77 /* Histories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Histories.swift; path = Models/History/Histories.swift; sourceTree = "<group>"; };
 		FA2B4E3E101A2951DCDCDC33 /* Pods-Prunner4iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC4C63C1DF1650800CD9A77 /* History.swift */,
+				CEC4C6431DF2ADF700CD9A77 /* Histories.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
+				CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */,
 				9B12B1271DDB061800E7977F /* Direction.swift in Sources */,
 				4578F5851DED967F00F433E3 /* SetupViewController.swift in Sources */,
 				9B01631C1DC7F2480086445E /* Prunner4iOS.xcdatamodeld in Sources */,

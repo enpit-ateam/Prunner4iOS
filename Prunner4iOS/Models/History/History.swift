@@ -14,9 +14,10 @@ public struct History {
   public var distance: Double!
   public var time: Int!
   
-  public init?(
+  //for debug remove '?'
+  public init(
     date: Date!,
-    route: Route!,
+    route: Route?, //for debug add '?'
     distance: Double!,
     time: Int!
   ) {
