@@ -14,14 +14,28 @@ class HistoryService {
   private static var histories: Histories = []
   
   class func getHistories() -> Histories{
-    guard let hs = userDefaults.object(forKey: "History") as! Histories? else {
+    userDefaults.register(defaults: ["DataStore": "default"])
+    let storedData:Data? = userDefaults.object(forKey: "History") as! Data?
+    guard storedData != nil else{
       return [
         History(date: Date(),
-                route: nil,
+                //route: nil,
+          distance: 114.5141919,
+          time: 10000),
+        History(date: Date(),
+                //route: nil,
+          distance: 314.159265,
+          time: 10000)
+      ]
+    }
+    guard let hs = NSKeyedUnarchiver.unarchiveObject(with: storedData as! Data!) as! Histories? else {
+      return [
+        History(date: Date(),
+                //route: nil,
                 distance: 114.5141919,
                 time: 10000),
         History(date: Date(),
-                route: nil,
+                //route: nil,
                 distance: 314.159265,
                 time: 10000)
       ]
@@ -31,15 +45,15 @@ class HistoryService {
   }
   
   class func addHistories(history: History){
-    guard var hs = userDefaults.object(forKey: "History") as! Histories? else {
-      return
-    }
-    hs.append(history)
-    histories = hs
+    userDefaults.register(defaults: ["DataStore": "default"])
+    histories = self.getHistories()
+    histories.append(history)
     saveHistories();
   }
   
   private class func saveHistories(){
-    userDefaults.set(histories, forKey: "History")
+    userDefaults.register(defaults: ["DataStore": "default"])
+    userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: histories), forKey: "History")
+    userDefaults.synchronize()
   }
 }

@@ -8,4 +8,4 @@
 
 import Foundation
 
-typealias Histories = [History]
+typealias Histories = Array<History>
