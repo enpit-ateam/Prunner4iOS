@@ -50,7 +50,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     formatter.dateFormat = "yyyy/MM/dd HH:mm"
     
     let dateText:String = formatter.string(from: history.date)
-    let cellText:String = dateText
+    let distanceText:String = history.distance.description
+    let cellText:String = String(format: "%@     %@", arguments: [dateText, distanceText]) //ここのデザインは暫定
     
     return cellText
   }
