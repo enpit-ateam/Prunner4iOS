@@ -9,17 +9,37 @@
 import Foundation
 
 class HistoryService {
-  //Historiesの入手と管理
+  private static let userDefaults = UserDefaults.standard
+  
+  private static var histories: Histories = []
+  
   class func getHistories() -> Histories{
-    return [
-      History(date: Date(),
-              route: nil,
-              distance: 114.5141919,
-              time: 10000),
-      History(date: Date(),
-              route: nil,
-              distance: 314.159265,
-              time: 10000)
-    ]
+    guard let hs = userDefaults.object(forKey: "History") as! Histories? else {
+      return [
+        History(date: Date(),
+                route: nil,
+                distance: 114.5141919,
+                time: 10000),
+        History(date: Date(),
+                route: nil,
+                distance: 314.159265,
+                time: 10000)
+      ]
+    }
+    histories = hs
+    return histories
+  }
+  
+  class func addHistories(history: History){
+    guard var hs = userDefaults.object(forKey: "History") as! Histories? else {
+      return
+    }
+    hs.append(history)
+    histories = hs
+    saveHistories();
+  }
+  
+  private class func saveHistories(){
+    userDefaults.set(histories, forKey: "History")
   }
 }
