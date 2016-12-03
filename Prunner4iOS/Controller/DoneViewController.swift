@@ -28,6 +28,17 @@ class DoneViewController: UIViewController {
   }
   
   @IBAction func doneButtonTapped(_ sender: Any) {
+    var rt: Int = 0
+    if runTime != nil {
+      rt = runTime!
+    }
+    
+    HistoryService.addHistories(history:
+      History(date: Date(),
+              //route: nil,
+              distance: 114.5141919,
+              time: rt)
+    )
     performSegue(withIdentifier: "TOP", sender: nil)
   }
   
