@@ -11,6 +11,7 @@ import UIKit
 class DoneViewController: UIViewController {
   
   var runTime: Int?
+  var route: Route?
   
   @IBOutlet weak var runTimeLabel: UILabel!
   
@@ -35,7 +36,7 @@ class DoneViewController: UIViewController {
     
     HistoryService.addHistories(history:
       History(date: Date(),
-              //route: nil,
+              route: route,
               distance: 114.5141919,
               time: rt)
     )

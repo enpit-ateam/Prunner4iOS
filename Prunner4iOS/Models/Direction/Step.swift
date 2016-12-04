@@ -30,7 +30,7 @@ public class Step: NSObject, NSCoding, Mappable {
     duration: Duration!,
     endLocation: Location!,
     startLocation: Location!
-    ){
+  ){
     self.distance = distance
     self.duration = duration
     self.endLocation = endLocation
@@ -55,6 +55,6 @@ public class Step: NSObject, NSCoding, Mappable {
     aCoder.encode(distance, forKey: "distance")
     aCoder.encode(duration, forKey: "duration")
     aCoder.encode(endLocation, forKey: "endLocation")
-    aCoder.encode(startLocation, forKey: "duration")
+    aCoder.encode(startLocation, forKey: "startLocation")
   }
 }

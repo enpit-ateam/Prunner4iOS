@@ -27,6 +27,8 @@ class RunViewController: UIViewController {
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
   
+  var route: Route!
+  
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
@@ -52,8 +54,8 @@ class RunViewController: UIViewController {
     
     // ルートの描画
     let path = GMSMutablePath()
-    let route = direction?.routes[0]
-    for leg in (route?.legs)! {
+    self.route = direction?.routes[0]
+    for leg in (self.route?.legs)! {
       for step in leg.steps {
         path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
       }
@@ -84,6 +86,7 @@ class RunViewController: UIViewController {
     if segue.identifier == "DONE" {
       let vc = segue.destination as! DoneViewController
       vc.runTime = sender as? Int
+      vc.route = route
     }
   }
   

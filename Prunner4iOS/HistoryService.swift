@@ -14,16 +14,17 @@ class HistoryService {
   private static var histories: Histories = []
   private static var forTestHistories: Histories = [
     History(date: Date(),
-            //route: nil,
+      route: nil,
       distance: 114.5141919,
       time: 10000),
     History(date: Date(),
-            //route: nil,
+      route: nil,
       distance: 314.159265,
       time: 10000)
   ]
   
   class func getHistories() -> Histories{
+    print("aaa")
     userDefaults.register(defaults: ["DataStore": "default"])
     let storedData:Data? = userDefaults.object(forKey: "History") as! Data?
     guard storedData != nil else{

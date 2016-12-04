@@ -61,7 +61,7 @@ public class Leg: NSObject, NSCoding, Mappable {
     aCoder.encode(distance, forKey: "distance")
     aCoder.encode(duration, forKey: "duration")
     aCoder.encode(endLocation, forKey: "endLocation")
-    aCoder.encode(startLocation, forKey: "duration")
+    aCoder.encode(startLocation, forKey: "startLocation")
     aCoder.encode(steps, forKey: "steps")
   }
 
