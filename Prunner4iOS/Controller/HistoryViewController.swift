@@ -14,7 +14,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
   
   @IBOutlet weak var tableView: UITableView!
   var history_table: Histories = []
-    
+  
   override func viewDidLoad() {
     //ToDo:実装 HistoryService から データを読み込み、ボタンを生成
     history_table = HistoryService.getHistories()
@@ -38,6 +38,20 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
   }
   
   func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+    let storyboard: UIStoryboard = self.storyboard!
+    let nextView = storyboard.instantiateViewController(withIdentifier: "DETAIL") as! DetailViewController
+    nextView.history = history_table[indexPath.row]
+    self.present(nextView, animated: true, completion: nil)
+
+    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "DETAIL" {
+      let vc = segue.destination as! DetailViewController
+      let index = sender as? IndexPath
+      vc.history = history_table[index!.row]
+    }
   }
   
   override func didReceiveMemoryWarning() {

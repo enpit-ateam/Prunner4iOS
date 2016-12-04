@@ -36,6 +36,7 @@
 		9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BCBFF7B1DC8098B0039679A /* GoogleMaps.plist */; };
 		9BCBFF7E1DC91D6A0039679A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */; };
 		B7E8AE4BEC3F05FB34BE29E9 /* Pods_Prunner4iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */; };
+		CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */; };
 		CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */; };
 		CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C63C1DF1650800CD9A77 /* History.swift */; };
 		CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */; };
@@ -102,6 +103,7 @@
 		9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Controller/DetailViewController.swift; sourceTree = "<group>"; };
 		CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = Controller/HistoryViewController.swift; sourceTree = "<group>"; };
 		CEC4C63C1DF1650800CD9A77 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = Models/History/History.swift; sourceTree = "<group>"; };
 		CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				4578F5821DED967F00F433E3 /* SetupViewController.swift */,
 				4578F5761DEBE6AF00F433E3 /* TopViewController.swift */,
 				CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */,
+				CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
+				CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
 				CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */,
 				9B12B1271DDB061800E7977F /* Direction.swift in Sources */,
