@@ -9,13 +9,29 @@
 import Foundation
 import ObjectMapper
 
-public struct Route: Mappable {
+public class Route: NSObject, NSCoding, Mappable {
   public var legs: [Leg] = []
   
-  public init?(map: Map) {
+  public required init?(map: Map) {
   }
   
-  public mutating func mapping(map: Map) {
+  public func mapping(map: Map) {
     self.legs <- map["legs"]
+  }
+  
+  public required init?(legs: Array<Leg>){
+    self.legs = legs
+  }
+  
+  required convenience public init?(coder aDecoder: NSCoder) {
+    let legs = aDecoder.decodeObject(forKey: "legs") as! Array<Leg>
+    
+    self.init(
+      legs: legs
+    )
+  }
+  
+  public func encode(with aCoder: NSCoder) {
+    aCoder.encode(legs, forKey: "legs")
   }
 }
