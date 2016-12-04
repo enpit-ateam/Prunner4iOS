@@ -24,7 +24,6 @@ class HistoryService {
   ]
   
   class func getHistories() -> Histories{
-    print("aaa")
     userDefaults.register(defaults: ["DataStore": "default"])
     let storedData:Data? = userDefaults.object(forKey: "History") as! Data?
     guard storedData != nil else{

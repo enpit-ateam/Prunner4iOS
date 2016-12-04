@@ -38,7 +38,6 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     // TODO:
     // 位置情報が取れていないときの動作
     // 例：アラートを出す
-    print("called")
     if currentLocation == nil {
       return
     }
