@@ -12,6 +12,7 @@ class DoneViewController: UIViewController {
   
   var runTime: Int?
   var route: Route?
+  var distance: Double!
   
   @IBOutlet weak var runTimeLabel: UILabel!
   
@@ -37,7 +38,7 @@ class DoneViewController: UIViewController {
     HistoryService.addHistories(history:
       History(date: Date(),
               route: route,
-              distance: 114.5141919,
+              distance: distance,
               time: rt)
     )
     performSegue(withIdentifier: "TOP", sender: nil)

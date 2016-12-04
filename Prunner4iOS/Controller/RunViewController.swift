@@ -87,6 +87,7 @@ class RunViewController: UIViewController {
       let vc = segue.destination as! DoneViewController
       vc.runTime = sender as? Int
       vc.route = route
+      vc.distance = distance
     }
   }
   
