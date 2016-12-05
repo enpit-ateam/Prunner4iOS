@@ -53,11 +53,14 @@ class SetupViewController: UIViewController {
           return
         }
         self.mapState.direction = direction
+        let distination = self.mapState.distination!
+        let route = self.mapState.getRoute()!
         
         // 描画
-        let GMSStartMarker = self.mapState.getGMSStartMarker(current)!
-        let GMSEndMarker = self.mapState.getGMSEndMarker()!
-        let GMSDirection = self.mapState.getGMSPolyline()!
+        let drawing = MapDrawing()
+        let GMSStartMarker = drawing.getGMSStartMarker(current)!
+        let GMSEndMarker = drawing.getGMSEndMarker(distination)!
+        let GMSDirection = drawing.getGMSPolyline(route)!
         
         GMSStartMarker.map = self.mapView
         GMSEndMarker.map = self.mapView
@@ -120,6 +123,7 @@ class SetupViewController: UIViewController {
     if !mapState.isReady() {
       return
     }
+    userState.route = mapState.getRoute()
     performSegue(withIdentifier: "RUN", sender: nil)
   }
   
