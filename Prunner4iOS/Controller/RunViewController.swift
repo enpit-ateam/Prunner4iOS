@@ -14,8 +14,8 @@ import CoreLocation
 
 class RunViewController: UIViewController {
   
-  var userState = UserState.sharedInstance
-  var mapState = MapState.sharedInstance
+  let userState = UserState.sharedInstance
+  let mapState = MapState.sharedInstance
   
   // 時間測定用
   var startTime: Date?
@@ -23,9 +23,7 @@ class RunViewController: UIViewController {
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
-  
-  var route: Route?
-  
+ 
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
@@ -36,13 +34,16 @@ class RunViewController: UIViewController {
     placeClient = GMSPlacesClient()
     mapView.camera = mapState.camera!
     
-    // 描画
     let current = userState.current!
-    let GMSStartMarker = mapState.getGMSStartMarker(current)!
-    let GMSEndMarker = mapState.getGMSEndMarker()!
-    let GMSDirection = mapState.getGMSPolyline()!
-    userState.setSelectedRoute(selectedRoute: mapState.getRoute())
-
+    let route = userState.route!
+    let distination = mapState.distination!
+    
+    // 描画
+    let drawing = MapDrawing()
+    let GMSStartMarker = drawing.getGMSStartMarker(current)!
+    let GMSEndMarker = drawing.getGMSEndMarker(distination)!
+    let GMSDirection = drawing.getGMSPolyline(route)!
+    
     GMSStartMarker.map = self.mapView
     GMSEndMarker.map = self.mapView
     GMSDirection.map = self.mapView

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */; };
+		45451D151DF54DC300143A39 /* MapDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D141DF54DC300143A39 /* MapDrawing.swift */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45451D141DF54DC300143A39 /* MapDrawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDrawing.swift; path = Models/Drawing/MapDrawing.swift; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45451D131DF54DA400143A39 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				45451D141DF54DC300143A39 /* MapDrawing.swift */,
+			);
+			name = Drawing;
+			sourceTree = "<group>";
+		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +319,7 @@
 		9B5E25A91DC93D3D006FD296 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				45451D131DF54DA400143A39 /* Drawing */,
 				CEC4C6391DF164CE00CD9A77 /* History */,
 				4578F58A1DF13BAE00F433E3 /* State */,
 				9B12B1331DDC39EC00E7977F /* Place */,
@@ -651,6 +662,7 @@
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
 				4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
+				45451D151DF54DC300143A39 /* MapDrawing.swift in Sources */,
 				CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
 				CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */,

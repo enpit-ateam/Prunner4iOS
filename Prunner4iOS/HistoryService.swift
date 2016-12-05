@@ -17,10 +17,6 @@ class HistoryService {
       route: nil,
       distance: 114.5141919,
       time: 10000),
-    History(date: Date(),
-      route: nil,
-      distance: 314.159265,
-      time: 10000)
   ]
   
   class func getHistories() -> Histories{
@@ -29,7 +25,7 @@ class HistoryService {
     guard storedData != nil else{
       return forTestHistories
     }
-    guard let hs = NSKeyedUnarchiver.unarchiveObject(with: storedData as! Data!) as! Histories? else {
+    guard let hs = NSKeyedUnarchiver.unarchiveObject(with: storedData as Data!) as! Histories? else {
       return forTestHistories
     }
     histories = hs

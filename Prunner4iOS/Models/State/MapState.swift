@@ -17,7 +17,6 @@ class MapState {
   public var camera: GMSCameraPosition?
   public var zoom: Float?
   public var candidates: [Place]?
-  public var route: Route!
   
   public func setCamera(user: UserState) {
     let current: Location = user.current!
@@ -73,6 +72,8 @@ class MapState {
   
   public func getGMSStartMarker(_ current: Location) -> GMSMarker! {
     // set marker
+    // TODO:
+    //  現在地マーカーのデザイン
     let title = "現在地"
     
     let pos = CLLocationCoordinate2DMake(current.lat, current.lng)
@@ -84,6 +85,7 @@ class MapState {
   public func getGMSEndMarker() -> GMSMarker! {
     // set marker
     // TODO:
+    //  マーカーのデザイン
     
     if self.distination?.geometry.location == nil {
       print("No Distination")
@@ -100,6 +102,8 @@ class MapState {
   
   public func getGMSPolyline() -> GMSPolyline! {
     // set polyline
+    // TODO:
+    //  ルートのデザイン
     let strokeColor = UIColor.blue
     let strokeWidth = 5.0
     
@@ -107,11 +111,14 @@ class MapState {
       print("Empty Direction!")
       return nil
     }
-    let direction = self.direction!
     
-    let path = GMSMutablePath()
     let route = getRoute()
-    for leg in (route.legs) {
+    if route == nil {
+      print("Empty Route")
+      return nil
+    }
+    let path = GMSMutablePath()
+    for leg in ((route!).legs) {
       for step in leg.steps {
         path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
       }
@@ -126,8 +133,8 @@ class MapState {
     return polyline
   }
   
-  public func getRoute() -> Route {
-    return (direction?.routes[0])!
+  public func getRoute() -> Route? {
+    return direction?.routes[0]
   }
   
   private init() {}

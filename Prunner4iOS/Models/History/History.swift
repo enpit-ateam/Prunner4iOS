@@ -9,29 +9,28 @@
 import Foundation
 
 public class History: NSObject, NSCoding {
-  public var date: Date!
+  public var date: Date?
   public var route: Route?
-  public var distance: Double!
-  public var time: Int!
+  public var distance: Double?
+  public var time: Int?
   
-  //for debug remove '?'
   public init(
-    date: Date!,
-    route: Route?, //for debug add '?'
-    distance: Double!,
-    time: Int!
+    date: Date?,
+    route: Route?,
+    distance: Double?,
+    time: Int?
   ) {
-    self.date = date;
-    self.route = route;
-    self.distance = distance;
-    self.time = time;
+    self.date = date
+    self.route = route
+    self.distance = distance
+    self.time = time
   }
   
   required convenience public init(coder aDecoder: NSCoder) {
-    let date     = aDecoder.decodeObject(forKey: "date") as! Date!
+    let date     = aDecoder.decodeObject(forKey: "date") as! Date?
     let route    = aDecoder.decodeObject(forKey: "route") as! Route?
-    let distance = aDecoder.decodeObject(forKey: "distance") as! Double!
-    let time     = aDecoder.decodeObject(forKey: "time") as! Int!
+    let distance = aDecoder.decodeObject(forKey: "distance") as! Double?
+    let time     = aDecoder.decodeObject(forKey: "time") as! Int?
     
     self.init(
       date: date,
@@ -45,6 +44,14 @@ public class History: NSObject, NSCoding {
     aCoder.encode(route, forKey: "route")
     aCoder.encode(distance, forKey: "distance")
     aCoder.encode(time, forKey: "time")
+  }
+  
+  public func runStart() -> Location? {
+    return route?.legs[0].startLocation
+  }
+  
+  public func runEnd() -> Location? {
+    return route?.legs.last?.endLocation
   }
 
 }

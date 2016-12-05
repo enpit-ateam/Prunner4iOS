@@ -13,7 +13,7 @@ class UserState {
   public var current: Location?
   public var distance: Double?
   public var runTime: Int?
-  public var selectedRoute: Route!
+  public var route: Route?
   
   public func isReady() -> Bool {
     if current == nil {
@@ -43,15 +43,7 @@ class UserState {
   public func putRunTimeResult() -> String {
     return String(runTime!)
   }
-  
-  public func setSelectedRoute(selectedRoute: Route) {
-    self.selectedRoute = selectedRoute
-  }
-  
-  public func putSelectedRoute() -> Route? {
-    return selectedRoute
-  }
-  
+
   private init() {}
   static let sharedInstance = UserState()
 }
