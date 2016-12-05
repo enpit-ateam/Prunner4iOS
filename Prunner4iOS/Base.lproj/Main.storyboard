@@ -91,12 +91,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBZ-lI-18W">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Prunner" id="AsT-4F-uI2"/>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="set distance..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5uk-A7-n3e" userLabel="Distance Text Field">
                                 <rect key="frame" x="87" y="178" width="201" height="30"/>
                                 <nil key="textColor"/>
@@ -106,8 +100,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1g3-qM-Fzp">
                                 <rect key="frame" x="143" y="393" width="88" height="91"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="imH-Eb-lKH"/>
-                                    <constraint firstAttribute="height" constant="91" id="nHC-9R-pNj"/>
+                                    <constraint firstAttribute="width" constant="88" id="GEl-x3-buj"/>
+                                    <constraint firstAttribute="height" constant="91" id="d80-Oy-qQ3"/>
                                 </constraints>
                                 <state key="normal" title="Run">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -116,17 +110,24 @@
                                     <action selector="tappedButton:" destination="nJ8-5o-gM9" eventType="touchUpInside" id="wpV-fM-qUA"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBZ-lI-18W">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.90260392427444458" green="0.29252588748931885" blue="0.17879751324653625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem title="Prunner" id="AsT-4F-uI2"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5uk-A7-n3e" firstAttribute="leading" secondItem="Z55-jy-1He" secondAttribute="leadingMargin" constant="71" id="2ly-Qf-UL5"/>
-                            <constraint firstItem="lBZ-lI-18W" firstAttribute="top" secondItem="Z55-jy-1He" secondAttribute="top" id="9AI-fY-Lyd"/>
-                            <constraint firstItem="lBZ-lI-18W" firstAttribute="centerX" secondItem="5uk-A7-n3e" secondAttribute="centerX" id="Dzq-TA-7Nq"/>
-                            <constraint firstAttribute="trailing" secondItem="lBZ-lI-18W" secondAttribute="trailing" id="Ncy-N1-FQp"/>
-                            <constraint firstItem="lBZ-lI-18W" firstAttribute="leading" secondItem="Z55-jy-1He" secondAttribute="leading" id="Pqy-CV-xu4"/>
-                            <constraint firstItem="caR-ZG-t10" firstAttribute="top" secondItem="1g3-qM-Fzp" secondAttribute="bottom" constant="183" id="QZb-Ju-OrB"/>
-                            <constraint firstItem="5uk-A7-n3e" firstAttribute="top" secondItem="Z55-jy-1He" secondAttribute="top" constant="178" id="arj-Bv-d38"/>
-                            <constraint firstItem="5uk-A7-n3e" firstAttribute="centerX" secondItem="1g3-qM-Fzp" secondAttribute="centerX" id="ndK-B2-Gru"/>
+                            <constraint firstItem="5uk-A7-n3e" firstAttribute="leading" secondItem="Z55-jy-1He" secondAttribute="leadingMargin" constant="71" id="76g-Mx-vry"/>
+                            <constraint firstItem="lBZ-lI-18W" firstAttribute="leading" secondItem="Z55-jy-1He" secondAttribute="leading" id="CTv-lZ-MkK"/>
+                            <constraint firstItem="5uk-A7-n3e" firstAttribute="top" secondItem="Z55-jy-1He" secondAttribute="top" constant="178" id="Gcr-Ih-hjL"/>
+                            <constraint firstItem="lBZ-lI-18W" firstAttribute="centerX" secondItem="5uk-A7-n3e" secondAttribute="centerX" id="d3P-Hx-aAy"/>
+                            <constraint firstItem="caR-ZG-t10" firstAttribute="top" secondItem="1g3-qM-Fzp" secondAttribute="bottom" constant="183" id="l4U-HJ-oqd"/>
+                            <constraint firstItem="5uk-A7-n3e" firstAttribute="centerX" secondItem="1g3-qM-Fzp" secondAttribute="centerX" id="odM-2z-nD6"/>
+                            <constraint firstItem="lBZ-lI-18W" firstAttribute="top" secondItem="293-dx-g0E" secondAttribute="bottom" id="p6c-VF-3x0"/>
+                            <constraint firstAttribute="trailing" secondItem="lBZ-lI-18W" secondAttribute="trailing" id="uWX-wm-edZ"/>
                         </constraints>
                     </view>
                     <connections>

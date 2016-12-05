@@ -14,6 +14,8 @@
 		4578F5851DED967F00F433E3 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5821DED967F00F433E3 /* SetupViewController.swift */; };
 		4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58B1DF13BCB00F433E3 /* MapState.swift */; };
 		4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58D1DF13DAA00F433E3 /* UserState.swift */; };
+		4578F5921DF170F300F433E3 /* TopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4578F5911DF170F300F433E3 /* TopView.xib */; };
+		4578F5961DF1796300F433E3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
 		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
@@ -67,6 +69,8 @@
 		4578F5821DED967F00F433E3 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupViewController.swift; path = Controller/SetupViewController.swift; sourceTree = "<group>"; };
 		4578F58B1DF13BCB00F433E3 /* MapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapState.swift; path = Models/State/MapState.swift; sourceTree = "<group>"; };
 		4578F58D1DF13DAA00F433E3 /* UserState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserState.swift; path = Models/State/UserState.swift; sourceTree = "<group>"; };
+		4578F5911DF170F300F433E3 /* TopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopView.xib; path = Views/TopView/TopView.xib; sourceTree = "<group>"; };
+		4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomNavigationBar.swift; path = Views/Components/CustomNavigationBar.swift; sourceTree = "<group>"; };
 		54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFFC1B43EC51F28736EA46C /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BEDE487837E69A04EB5B27 /* Pods-Prunner4iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +145,30 @@
 				4578F58D1DF13DAA00F433E3 /* UserState.swift */,
 			);
 			name = State;
+			sourceTree = "<group>";
+		};
+		4578F5901DF1698900F433E3 /* TopSceneView */ = {
+			isa = PBXGroup;
+			children = (
+				4578F5911DF170F300F433E3 /* TopView.xib */,
+			);
+			name = TopSceneView;
+			sourceTree = "<group>";
+		};
+		4578F5931DF1790100F433E3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4578F5941DF1791200F433E3 /* NavigationBar */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		4578F5941DF1791200F433E3 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */,
+			);
+			name = NavigationBar;
 			sourceTree = "<group>";
 		};
 		6B1561CD1358D68C2B1B0966 /* Pods */ = {
@@ -288,6 +316,8 @@
 		9B5E25A81DC93D34006FD296 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4578F5931DF1790100F433E3 /* Components */,
+				4578F5901DF1698900F433E3 /* TopSceneView */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 			);
 			name = Views;
@@ -432,6 +462,7 @@
 				9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */,
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
+				4578F5921DF170F300F433E3 /* TopView.xib in Resources */,
 				9B0163191DC7F2480086445E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,6 +626,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4578F5961DF1796300F433E3 /* CustomNavigationBar.swift in Sources */,
 				9B12B12F1DDB17FB00E7977F /* GMBaseRequest.swift in Sources */,
 				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
