@@ -10,9 +10,7 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
-  var runTime: Int?
-  var route: Route?
-  var distance: Double!
+  var userState = UserState.sharedInstance
   
   @IBOutlet weak var runTimeLabel: UILabel!
   
@@ -20,8 +18,7 @@ class DoneViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    print(runTime!)
-    runTimeLabel.text = String(runTime!)
+    runTimeLabel.text = userState.putRunTimeResult()
   }
   
   override func didReceiveMemoryWarning() {
@@ -30,16 +27,20 @@ class DoneViewController: UIViewController {
   }
   
   @IBAction func doneButtonTapped(_ sender: Any) {
-    var rt: Int = 0
-    if runTime != nil {
-      rt = runTime!
+    var runTime: Int!;
+    let rt = userState.runTime
+    if (rt != nil) {
+      runTime = rt!
     }
-    
+    else{
+      runTime = 0
+    }
+
     HistoryService.addHistories(history:
       History(date: Date(),
-              route: route,
-              distance: distance,
-              time: rt)
+              route: userState.selectedRoute,
+              distance: userState.distance,
+              time: runTime)
     )
     performSegue(withIdentifier: "TOP", sender: nil)
   }
