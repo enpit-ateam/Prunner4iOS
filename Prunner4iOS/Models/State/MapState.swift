@@ -72,6 +72,8 @@ class MapState {
   
   public func getGMSStartMarker(_ current: Location) -> GMSMarker! {
     // set marker
+    // TODO:
+    //  現在地マーカーのデザイン
     let title = "現在地"
     
     let pos = CLLocationCoordinate2DMake(current.lat, current.lng)
@@ -83,6 +85,7 @@ class MapState {
   public func getGMSEndMarker() -> GMSMarker! {
     // set marker
     // TODO:
+    //  マーカーのデザイン
     
     if self.distination?.geometry.location == nil {
       print("No Distination")
@@ -99,6 +102,8 @@ class MapState {
   
   public func getGMSPolyline() -> GMSPolyline! {
     // set polyline
+    // TODO:
+    //  ルートのデザイン
     let strokeColor = UIColor.blue
     let strokeWidth = 5.0
     
@@ -106,11 +111,14 @@ class MapState {
       print("Empty Direction!")
       return nil
     }
-    let direction = self.direction!
     
+    let route = getRoute()
+    if route == nil {
+      print("Empty Route")
+      return nil
+    }
     let path = GMSMutablePath()
-    let route = direction.routes[0]
-    for leg in (route.legs) {
+    for leg in ((route!).legs) {
       for step in leg.steps {
         path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
       }
@@ -123,6 +131,10 @@ class MapState {
     polyline.strokeWidth = CGFloat(strokeWidth)
     
     return polyline
+  }
+  
+  public func getRoute() -> Route? {
+    return direction?.routes[0]
   }
   
   private init() {}

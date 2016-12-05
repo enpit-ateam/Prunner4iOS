@@ -10,7 +10,7 @@ import UIKit
 
 class DoneViewController: UIViewController {
   
-  var userState = UserState.sharedInstance
+  let userState = UserState.sharedInstance
   
   @IBOutlet weak var runTimeLabel: UILabel!
   
@@ -27,6 +27,11 @@ class DoneViewController: UIViewController {
   }
   
   @IBAction func doneButtonTapped(_ sender: Any) {
+    HistoryService.addHistories(history:
+      History(date: Date(),
+              route: userState.route,
+              distance: userState.distance,
+              time: userState.runTime))
     performSegue(withIdentifier: "TOP", sender: nil)
   }
   
