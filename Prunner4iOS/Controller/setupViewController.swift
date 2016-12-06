@@ -118,7 +118,7 @@ class SetupViewController: UIViewController {
       callback(direction)
     }
   }
-  
+
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return

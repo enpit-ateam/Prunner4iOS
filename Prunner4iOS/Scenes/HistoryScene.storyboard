@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5fn-eC-MLU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--History-->
         <scene sceneID="SfM-LD-XSA">
             <objects>
-                <viewController title="Setup" id="5fn-eC-MLU" userLabel="History" sceneMemberID="viewController">
+                <viewController title="History" id="5fn-eC-MLU" userLabel="History" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KpQ-zf-zTb"/>
                         <viewControllerLayoutGuide type="bottom" id="B3c-mm-SRB"/>
@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="runRecord" id="ZpN-3H-rkj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="ZpN-3H-rkj">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZpN-3H-rkj" id="gLk-2b-es0">
@@ -45,29 +45,22 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="quA-sG-To8" userLabel="History"/>
+                    <connections>
+                        <outlet property="tableView" destination="lOZ-oh-XXz" id="w87-Yu-zfA"/>
+                        <segue destination="XTf-qa-foI" kind="show" identifier="DETAIL" id="m7Q-tQ-AEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBf-Ns-Lag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="764" y="-182.15892053973016"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fUD-6r-p9Z">
+        <!--DetailScene-->
+        <scene sceneID="2nj-tN-scI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fiy-Kw-e5R" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="aaG-wk-FrC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.90260392430000003" green="0.29252588750000003" blue="0.17879751320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5fn-eC-MLU" kind="relationship" relationship="rootViewController" id="JC3-iu-7Lf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lfv-Qq-haH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="DetailScene" id="XTf-qa-foI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZR-Ru-kEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175.19999999999999" y="-182.15892053973016"/>
+            <point key="canvasLocation" x="1442" y="-183"/>
         </scene>
     </scenes>
 </document>
