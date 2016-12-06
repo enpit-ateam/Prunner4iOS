@@ -15,7 +15,7 @@
         <!--Detail-->
         <scene sceneID="5p3-xb-K24">
             <objects>
-                <viewController title="Detail" id="C1H-co-TpG" sceneMemberID="viewController">
+                <viewController title="Detail" id="C1H-co-TpG" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kKs-aS-7aD"/>
                         <viewControllerLayoutGuide type="bottom" id="Lg2-XE-fao"/>
@@ -36,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkJ-vE-DWF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkJ-vE-DWF" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="382"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -120,6 +120,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="l31-0a-sI6"/>
+                    <connections>
+                        <outlet property="mapView" destination="FkJ-vE-DWF" id="zup-vc-sEQ"/>
+                        <outlet property="pace" destination="V2B-K0-Ylf" id="Ktd-he-hcU"/>
+                        <outlet property="runDistance" destination="Y0T-wy-xzB" id="JTN-pF-Oyn"/>
+                        <outlet property="runTime" destination="pZy-P3-KOC" id="1W9-cO-lvG"/>
+                        <outlet property="value" destination="3MP-Pe-5si" id="EPH-FA-qcx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePD-xn-7WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

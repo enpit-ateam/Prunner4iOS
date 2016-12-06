@@ -12,7 +12,7 @@
         <!--Setup-->
         <scene sceneID="GS5-e9-uIr">
             <objects>
-                <viewController title="Setup" id="rZN-Ji-82k" sceneMemberID="viewController">
+                <viewController title="Setup" id="rZN-Ji-82k" customClass="SetupViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GMZ-3A-4Me"/>
                         <viewControllerLayoutGuide type="bottom" id="Hlm-n9-XhZ"/>
@@ -41,7 +41,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="0jE-E2-1Hr" kind="show" id="xuq-7n-aDc"/>
+                                    <action selector="runButtonTapped:" destination="rZN-Ji-82k" eventType="touchUpInside" id="OC7-dV-imb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,6 +56,10 @@
                             <constraint firstItem="Hfq-a7-2cy" firstAttribute="top" secondItem="GMZ-3A-4Me" secondAttribute="bottom" constant="573" id="veP-HW-z9E"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="1zl-wb-6Qr" id="GUO-r2-IjE"/>
+                        <segue destination="0jE-E2-1Hr" kind="show" identifier="RUN" id="pEZ-TD-aAT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCg-ps-x7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

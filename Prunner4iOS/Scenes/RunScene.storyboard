@@ -12,7 +12,7 @@
         <!--Run-->
         <scene sceneID="iRW-5G-xFn">
             <objects>
-                <viewController title="Run" id="vMH-R1-iqa" userLabel="Run" sceneMemberID="viewController">
+                <viewController title="Run" id="vMH-R1-iqa" userLabel="Run" customClass="RunViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NLD-Bb-S7P"/>
                         <viewControllerLayoutGuide type="bottom" id="XVP-By-WQp"/>
@@ -40,7 +40,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="dgg-gR-CLO" kind="show" id="EkV-c4-dD7"/>
+                                    <action selector="doneButtonTapped:" destination="vMH-R1-iqa" eventType="touchUpInside" id="j6R-f1-vqo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,6 +56,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Running" id="mnL-b4-xld"/>
+                    <connections>
+                        <outlet property="mapView" destination="Igl-oF-GD4" id="Sad-z9-YZd"/>
+                        <segue destination="dgg-gR-CLO" kind="show" identifier="DONE" id="56f-Ug-qT8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W0C-2x-ddG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

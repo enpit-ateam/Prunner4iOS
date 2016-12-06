@@ -33,8 +33,8 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  @IBAction func tappedButton(_ sender: UIButton) {
+
+  @IBAction func runButtonTapped(_ sender: Any) {
     userState.setDistance(text: inputDistanceTextField.text)
     if !userState.isReady() {
       return
@@ -42,10 +42,9 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     performSegue(withIdentifier: "SETUP", sender: nil)
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "SETUP" {
-      let _ = segue.destination as! SetupViewController
-    }
+  
+  @IBAction func recordButtonTapped(_ sender: Any) {
+    performSegue(withIdentifier: "HISTORY", sender: nil)
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

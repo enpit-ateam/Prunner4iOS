@@ -16,7 +16,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
   var history_table: Histories = []
   
   override func viewDidLoad() {
-    //ToDo:実装 HistoryService から データを読み込み、ボタンを生成
+    super.viewDidLoad()
+    
+    //HistoryService から データを読み込み、ボタンを生成
     history_table = HistoryService.getHistories()
 
     tableView.delegate = self
@@ -38,12 +40,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
   }
   
   func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    let storyboard: UIStoryboard = self.storyboard!
-    let nextView = storyboard.instantiateViewController(withIdentifier: "DETAIL") as! DetailViewController
-    nextView.history = history_table[indexPath.row]
-    self.present(nextView, animated: true, completion: nil)
-
-    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
+    performSegue(withIdentifier: "DETAIL", sender: indexPath)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

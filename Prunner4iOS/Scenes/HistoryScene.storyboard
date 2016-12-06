@@ -12,7 +12,7 @@
         <!--History-->
         <scene sceneID="SfM-LD-XSA">
             <objects>
-                <viewController title="History" id="5fn-eC-MLU" userLabel="History" sceneMemberID="viewController">
+                <viewController title="History" id="5fn-eC-MLU" userLabel="History" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KpQ-zf-zTb"/>
                         <viewControllerLayoutGuide type="bottom" id="B3c-mm-SRB"/>
@@ -25,16 +25,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="runRecord" id="ZpN-3H-rkj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="ZpN-3H-rkj">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZpN-3H-rkj" id="gLk-2b-es0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="XTf-qa-foI" kind="showDetail" id="ivh-lE-UJG"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -48,6 +45,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="quA-sG-To8" userLabel="History"/>
+                    <connections>
+                        <outlet property="tableView" destination="lOZ-oh-XXz" id="w87-Yu-zfA"/>
+                        <segue destination="XTf-qa-foI" kind="show" identifier="DETAIL" id="m7Q-tQ-AEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBf-Ns-Lag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
