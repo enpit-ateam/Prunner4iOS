@@ -223,7 +223,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yks-D3-BMk" id="bvM-Hf-sF3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -400,6 +400,14 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dZ-bH-bCJ">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tweet!"/>
+                                <connections>
+                                    <action selector="tbTapped:" destination="LdJ-gp-dpb" eventType="touchDown" id="uYg-jt-wpE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -415,6 +423,7 @@
                     </view>
                     <connections>
                         <outlet property="runTimeLabel" destination="0Mn-UQ-Gb4" id="GLl-mT-2Xb"/>
+                        <outlet property="tweetButton" destination="6dZ-bH-bCJ" id="558-li-zOC"/>
                         <segue destination="nJ8-5o-gM9" kind="show" identifier="TOP" id="9lj-nu-ygj"/>
                     </connections>
                 </viewController>
