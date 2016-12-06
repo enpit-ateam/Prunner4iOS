@@ -19,6 +19,9 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    // userStateの初期化
+    userState.initialize()
+    
     // 位置情報サービスが利用できるかどうかをチェック
     if CLLocationManager.locationServicesEnabled() {
       locationManager = CLLocationManager()
