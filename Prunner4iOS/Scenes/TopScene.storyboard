@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vwn-sc-kxB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PRunner-->
+        <!--Top-->
         <scene sceneID="GPi-ot-sEI">
             <objects>
-                <viewController id="Vwn-sc-kxB" sceneMemberID="viewController">
+                <viewController title="Top" id="Vwn-sc-kxB" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wuo-kP-1qk"/>
                         <viewControllerLayoutGuide type="bottom" id="fT0-Qa-Hlc"/>
@@ -33,7 +33,7 @@
                                 <rect key="frame" x="112" y="455" width="150" height="40"/>
                                 <color key="backgroundColor" red="0.90260392430000003" green="0.044851309960000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="kwI-8W-nFX"/>
+                                    <constraint firstAttribute="height" constant="40" id="qdM-b9-op5"/>
                                 </constraints>
                                 <state key="normal" title="Run">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,11 +43,14 @@
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="eRW-hu-ddJ" kind="show" id="54g-Ve-gm2"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="走りたい距離を入力します" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gy-yd-ijr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="走りたい距離を入力します" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gy-yd-ijr" userLabel="Distance Text Field">
                                 <rect key="frame" x="72" y="221" width="230" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="VjP-OF-4cA"/>
+                                    <constraint firstAttribute="height" constant="30" id="PA2-oT-QiJ"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -60,45 +63,44 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Gnv-CZ-qcu" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="96" id="7w6-BK-4M2"/>
-                            <constraint firstItem="BsB-mY-L9f" firstAttribute="centerX" secondItem="Gnv-CZ-qcu" secondAttribute="centerX" id="9jU-pS-m1u"/>
-                            <constraint firstItem="BsB-mY-L9f" firstAttribute="top" secondItem="Wuo-kP-1qk" secondAttribute="bottom" constant="185" id="E6d-sL-xFM"/>
-                            <constraint firstAttribute="trailing" secondItem="STT-gS-RBz" secondAttribute="trailing" id="GHW-gI-czV"/>
-                            <constraint firstItem="1gy-yd-ijr" firstAttribute="top" secondItem="Wuo-kP-1qk" secondAttribute="bottom" constant="157" id="PLt-3r-kej"/>
-                            <constraint firstItem="1gy-yd-ijr" firstAttribute="centerX" secondItem="BsB-mY-L9f" secondAttribute="centerX" id="RW9-fD-nt5"/>
-                            <constraint firstItem="STT-gS-RBz" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leading" id="TNt-9P-YWg"/>
-                            <constraint firstItem="1gy-yd-ijr" firstAttribute="bottom" secondItem="BsB-mY-L9f" secondAttribute="bottom" id="U82-N2-Jkw"/>
-                            <constraint firstItem="1gy-yd-ijr" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="56" id="gDX-vG-8Ij"/>
-                            <constraint firstItem="BsB-mY-L9f" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="71" id="ldo-aZ-sQE"/>
-                            <constraint firstAttribute="bottom" secondItem="Gnv-CZ-qcu" secondAttribute="bottom" constant="172" id="nNc-Oh-krs"/>
-                            <constraint firstItem="Gnv-CZ-qcu" firstAttribute="centerX" secondItem="STT-gS-RBz" secondAttribute="centerX" id="rds-bt-aBx"/>
-                            <constraint firstItem="STT-gS-RBz" firstAttribute="bottom" secondItem="fT0-Qa-Hlc" secondAttribute="top" id="t3V-lf-wbJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Gnv-CZ-qcu" secondAttribute="bottom" constant="172" id="7Y6-6E-ZSr"/>
+                            <constraint firstItem="1gy-yd-ijr" firstAttribute="bottom" secondItem="BsB-mY-L9f" secondAttribute="bottom" id="Bjc-Yf-BCt"/>
+                            <constraint firstItem="BsB-mY-L9f" firstAttribute="top" secondItem="Wuo-kP-1qk" secondAttribute="bottom" constant="229" id="CbG-0b-QF3"/>
+                            <constraint firstAttribute="trailing" secondItem="STT-gS-RBz" secondAttribute="trailing" id="Hp5-CW-qZd"/>
+                            <constraint firstItem="1gy-yd-ijr" firstAttribute="centerX" secondItem="BsB-mY-L9f" secondAttribute="centerX" id="JDf-gR-drS"/>
+                            <constraint firstItem="STT-gS-RBz" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leading" id="JFb-VB-SKv"/>
+                            <constraint firstItem="Gnv-CZ-qcu" firstAttribute="centerX" secondItem="STT-gS-RBz" secondAttribute="centerX" id="MuX-Pr-6IR"/>
+                            <constraint firstItem="STT-gS-RBz" firstAttribute="bottom" secondItem="fT0-Qa-Hlc" secondAttribute="top" id="Pp6-ig-BDr"/>
+                            <constraint firstItem="1gy-yd-ijr" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="56" id="Wkh-sU-iGI"/>
+                            <constraint firstItem="BsB-mY-L9f" firstAttribute="centerX" secondItem="Gnv-CZ-qcu" secondAttribute="centerX" id="mJM-7S-a5I"/>
+                            <constraint firstItem="1gy-yd-ijr" firstAttribute="top" secondItem="Wuo-kP-1qk" secondAttribute="bottom" constant="201" id="qMz-aV-Li3"/>
+                            <constraint firstItem="Gnv-CZ-qcu" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="96" id="yNM-rs-f1j"/>
+                            <constraint firstItem="BsB-mY-L9f" firstAttribute="leading" secondItem="uOz-pa-rTL" secondAttribute="leadingMargin" constant="71" id="ycS-7m-Sde"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="PRunner" id="OLk-N0-VC2"/>
+                    <connections>
+                        <segue destination="MNK-4l-bve" kind="show" id="pCb-rR-CZU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yG6-1M-fOB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="-182.15892053973016"/>
+            <point key="canvasLocation" x="23" y="-248"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hje-rH-UKp">
+        <!--SetupScene-->
+        <scene sceneID="2rk-Fx-PQ3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qVi-dc-EOF" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="14E-qp-Ynw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.90260392430000003" green="0.29252588750000003" blue="0.17879751320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Vwn-sc-kxB" kind="relationship" relationship="rootViewController" id="E6L-ib-ihT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ova-uv-ZIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SetupScene" id="eRW-hu-ddJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sjD-te-pax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175.19999999999999" y="-182.15892053973016"/>
+            <point key="canvasLocation" x="662" y="-270"/>
+        </scene>
+        <!--HistoryScene-->
+        <scene sceneID="gta-Kv-gmd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HistoryScene" id="MNK-4l-bve" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDN-35-oqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="655" y="-24"/>
         </scene>
     </scenes>
 </document>
