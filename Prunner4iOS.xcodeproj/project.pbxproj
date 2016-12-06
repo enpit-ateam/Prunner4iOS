@@ -9,14 +9,19 @@
 /* Begin PBXBuildFile section */
 		0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */; };
 		45451D151DF54DC300143A39 /* MapDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D141DF54DC300143A39 /* MapDrawing.swift */; };
+		45451D1C1DF571EE00143A39 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D1B1DF571EE00143A39 /* CustomButton.swift */; };
+		45451D2F1DF6959600143A39 /* RunScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D2C1DF6959600143A39 /* RunScene.storyboard */; };
+		45451D301DF6959600143A39 /* SetupScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D2D1DF6959600143A39 /* SetupScene.storyboard */; };
+		45451D311DF6959600143A39 /* TopScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D2E1DF6959600143A39 /* TopScene.storyboard */; };
+		45451D331DF695B300143A39 /* DoneScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D321DF695B300143A39 /* DoneScene.storyboard */; };
+		45451D351DF6994E00143A39 /* HistoryScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D341DF6994E00143A39 /* HistoryScene.storyboard */; };
+		45451D371DF69B8400143A39 /* DetailScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D361DF69B8400143A39 /* DetailScene.storyboard */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
 		4578F5851DED967F00F433E3 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5821DED967F00F433E3 /* SetupViewController.swift */; };
 		4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58B1DF13BCB00F433E3 /* MapState.swift */; };
 		4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F58D1DF13DAA00F433E3 /* UserState.swift */; };
-		4578F5921DF170F300F433E3 /* TopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4578F5911DF170F300F433E3 /* TopView.xib */; };
-		4578F5961DF1796300F433E3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */; };
 		9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163131DC7F2480086445E /* AppDelegate.swift */; };
 		9B0163161DC7F2480086445E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0163151DC7F2480086445E /* ViewController.swift */; };
 		9B0163191DC7F2480086445E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B0163171DC7F2480086445E /* Main.storyboard */; };
@@ -70,14 +75,19 @@
 		075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45451D141DF54DC300143A39 /* MapDrawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapDrawing.swift; path = Models/Drawing/MapDrawing.swift; sourceTree = "<group>"; };
+		45451D1B1DF571EE00143A39 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = Views/Components/Button/CustomButton.swift; sourceTree = "<group>"; };
+		45451D2C1DF6959600143A39 /* RunScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RunScene.storyboard; path = Scenes/RunScene.storyboard; sourceTree = "<group>"; };
+		45451D2D1DF6959600143A39 /* SetupScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SetupScene.storyboard; path = Scenes/SetupScene.storyboard; sourceTree = "<group>"; };
+		45451D2E1DF6959600143A39 /* TopScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TopScene.storyboard; path = Scenes/TopScene.storyboard; sourceTree = "<group>"; };
+		45451D321DF695B300143A39 /* DoneScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DoneScene.storyboard; path = Scenes/DoneScene.storyboard; sourceTree = "<group>"; };
+		45451D341DF6994E00143A39 /* HistoryScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HistoryScene.storyboard; sourceTree = "<group>"; };
+		45451D361DF69B8400143A39 /* DetailScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailScene.storyboard; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
 		4578F5821DED967F00F433E3 /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetupViewController.swift; path = Controller/SetupViewController.swift; sourceTree = "<group>"; };
 		4578F58B1DF13BCB00F433E3 /* MapState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapState.swift; path = Models/State/MapState.swift; sourceTree = "<group>"; };
 		4578F58D1DF13DAA00F433E3 /* UserState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserState.swift; path = Models/State/UserState.swift; sourceTree = "<group>"; };
-		4578F5911DF170F300F433E3 /* TopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopView.xib; path = Views/TopView/TopView.xib; sourceTree = "<group>"; };
-		4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomNavigationBar.swift; path = Views/Components/CustomNavigationBar.swift; sourceTree = "<group>"; };
 		54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6FFFC1B43EC51F28736EA46C /* Pods-Prunner4iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSUITests/Pods-Prunner4iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BEDE487837E69A04EB5B27 /* Pods-Prunner4iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +168,27 @@
 			name = Drawing;
 			sourceTree = "<group>";
 		};
+		45451D1A1DF571D300143A39 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				45451D1B1DF571EE00143A39 /* CustomButton.swift */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
+		45451D2B1DF6955C00143A39 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				45451D2C1DF6959600143A39 /* RunScene.storyboard */,
+				45451D2D1DF6959600143A39 /* SetupScene.storyboard */,
+				45451D2E1DF6959600143A39 /* TopScene.storyboard */,
+				45451D321DF695B300143A39 /* DoneScene.storyboard */,
+				45451D341DF6994E00143A39 /* HistoryScene.storyboard */,
+				45451D361DF69B8400143A39 /* DetailScene.storyboard */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,28 +198,12 @@
 			name = State;
 			sourceTree = "<group>";
 		};
-		4578F5901DF1698900F433E3 /* TopSceneView */ = {
-			isa = PBXGroup;
-			children = (
-				4578F5911DF170F300F433E3 /* TopView.xib */,
-			);
-			name = TopSceneView;
-			sourceTree = "<group>";
-		};
 		4578F5931DF1790100F433E3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4578F5941DF1791200F433E3 /* NavigationBar */,
+				45451D1A1DF571D300143A39 /* Button */,
 			);
 			name = Components;
-			sourceTree = "<group>";
-		};
-		4578F5941DF1791200F433E3 /* NavigationBar */ = {
-			isa = PBXGroup;
-			children = (
-				4578F5951DF1796300F433E3 /* CustomNavigationBar.swift */,
-			);
-			name = NavigationBar;
 			sourceTree = "<group>";
 		};
 		6B1561CD1358D68C2B1B0966 /* Pods */ = {
@@ -240,6 +255,7 @@
 		9B0163121DC7F2480086445E /* Prunner4iOS */ = {
 			isa = PBXGroup;
 			children = (
+				45451D2B1DF6955C00143A39 /* Scenes */,
 				CEC4C63E1DF16A8700CD9A77 /* Helper */,
 				9B12B1291DDB16EC00E7977F /* Components */,
 				9B5E25A91DC93D3D006FD296 /* Models */,
@@ -340,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				4578F5931DF1790100F433E3 /* Components */,
-				4578F5901DF1698900F433E3 /* TopSceneView */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 			);
 			name = Views;
@@ -509,10 +524,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B5E25B01DC93E75006FD296 /* PrunnerMapView.xib in Resources */,
+				45451D371DF69B8400143A39 /* DetailScene.storyboard in Resources */,
+				45451D301DF6959600143A39 /* SetupScene.storyboard in Resources */,
+				45451D2F1DF6959600143A39 /* RunScene.storyboard in Resources */,
+				45451D311DF6959600143A39 /* TopScene.storyboard in Resources */,
+				45451D351DF6994E00143A39 /* HistoryScene.storyboard in Resources */,
+				45451D331DF695B300143A39 /* DoneScene.storyboard in Resources */,
 				9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */,
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
-				4578F5921DF170F300F433E3 /* TopView.xib in Resources */,
 				9B0163191DC7F2480086445E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,11 +696,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4578F5961DF1796300F433E3 /* CustomNavigationBar.swift in Sources */,
 				9B12B12F1DDB17FB00E7977F /* GMBaseRequest.swift in Sources */,
 				9B0163161DC7F2480086445E /* ViewController.swift in Sources */,
 				9B0163141DC7F2480086445E /* AppDelegate.swift in Sources */,
 				CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */,
+				45451D1C1DF571EE00143A39 /* CustomButton.swift in Sources */,
 				CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
 				4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */,

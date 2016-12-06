@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Done-->
+        <scene sceneID="C1S-gd-CFF">
+            <objects>
+                <viewController id="5SS-pg-kty" userLabel="Done" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="phn-tC-XjS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4z-Pf-f5w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OqP-CO-SOc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUq-2E-ceL" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="112" y="570" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.90260392430000003" green="0.044851309960000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="TOPへ戻る">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHF-Jh-66s" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="112" y="498" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.66768245409274618" blue="0.020916230592085489" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ecl-jZ-JVg"/>
+                                </constraints>
+                                <state key="normal" title="記録する">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mHF-Jh-66s" firstAttribute="centerX" secondItem="OqP-CO-SOc" secondAttribute="centerX" id="IhW-1W-0yK"/>
+                            <constraint firstItem="mHF-Jh-66s" firstAttribute="leading" secondItem="oUq-2E-ceL" secondAttribute="leading" id="LkO-5s-5nd"/>
+                            <constraint firstItem="Z4z-Pf-f5w" firstAttribute="top" secondItem="oUq-2E-ceL" secondAttribute="bottom" constant="57" id="RnP-1y-veS"/>
+                            <constraint firstItem="oUq-2E-ceL" firstAttribute="top" secondItem="mHF-Jh-66s" secondAttribute="bottom" constant="32" id="ZCK-tt-LnK"/>
+                            <constraint firstItem="mHF-Jh-66s" firstAttribute="top" secondItem="phn-tC-XjS" secondAttribute="bottom" constant="434" id="eAM-X8-fok"/>
+                            <constraint firstItem="mHF-Jh-66s" firstAttribute="leading" secondItem="OqP-CO-SOc" secondAttribute="leadingMargin" constant="96" id="fdr-i2-JZ4"/>
+                            <constraint firstItem="mHF-Jh-66s" firstAttribute="trailing" secondItem="oUq-2E-ceL" secondAttribute="trailing" id="zsZ-ma-ni8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Done" id="U3k-ib-cii"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nl-uN-wNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="-183"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v2f-ce-Krf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SPc-CN-ShU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ril-jH-AWP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.90260392430000003" green="0.29252588750000003" blue="0.17879751320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5SS-pg-kty" kind="relationship" relationship="rootViewController" id="7vd-Uw-ZPC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nrx-zR-85R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175.19999999999999" y="-182.15892053973016"/>
+        </scene>
+    </scenes>
+</document>
