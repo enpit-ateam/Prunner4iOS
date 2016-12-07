@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SetupViewController: UIViewController {
+class SetupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -23,11 +23,19 @@ class SetupViewController: UIViewController {
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
+  
+  var GMSStartMarker: GMSMarker!
+  var GMSEndMarker: GMSMarker!
+  var GMSDirection: GMSPolyline!
 
+  @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    tableView.delegate = self
+    tableView.dataSource = self
     
     // Do any additional setup after loading the view.
     placeClient = GMSPlacesClient()
@@ -41,7 +49,7 @@ class SetupViewController: UIViewController {
         // エラー処理
         return
       }
-      self.mapState.candidates = places
+      self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
       self.mapState.setDistinateFromCandidates(for: self.userState)
       
       let location = self.mapState.distination!.geometry.location!
@@ -58,13 +66,15 @@ class SetupViewController: UIViewController {
         
         // 描画
         let drawing = MapDrawing()
-        let GMSStartMarker = drawing.getGMSStartMarker(current)!
-        let GMSEndMarker = drawing.getGMSEndMarker(distination)!
-        let GMSDirection = drawing.getGMSPolyline(route)!
+        self.GMSStartMarker = drawing.getGMSStartMarker(current)!
+        self.GMSEndMarker = drawing.getGMSEndMarker(distination)!
+        self.GMSDirection = drawing.getGMSPolyline(route)!
         
-        GMSStartMarker.map = self.mapView
-        GMSEndMarker.map = self.mapView
-        GMSDirection.map = self.mapView
+        self.GMSStartMarker.map = self.mapView
+        self.GMSEndMarker.map = self.mapView
+        self.GMSDirection.map = self.mapView
+        
+        self.tableView.reloadData()
       }
     }
   }
@@ -72,6 +82,73 @@ class SetupViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+
+  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+    guard let places = self.mapState.candidates else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
+      
+      cell.textLabel?.text = "TMP"
+      return cell
+    }
+    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
+    
+    cell.textLabel?.text = self.mapState.candidates?[indexPath.row].name
+    return cell
+  }
+  
+  //データの個数を返すメソッド
+  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
+    guard let places = self.mapState.candidates else {
+      return 0
+    }
+    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
+    guard let count = self.mapState.candidates?.count else {
+      return 0
+    }
+    return count
+  }
+  
+  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+    guard let places = self.mapState.candidates else {
+      return
+    }
+    
+    guard let location = self.mapState.candidates?[indexPath.row].geometry.location! else{
+      return
+    }
+    
+    self.mapState.distination = self.mapState.candidates?[indexPath.row]
+    
+    let current = self.userState.current!
+    self.getDirection(current: current, target: location) { direction in
+      if direction == nil {
+        // TODO:
+        // エラー処理
+        return
+      }
+      self.mapState.direction = direction
+      let distination = self.mapState.distination!
+      let route = self.mapState.getRoute()!
+      
+      // 描画
+      self.GMSStartMarker.map = nil
+      self.GMSEndMarker.map = nil
+      self.GMSDirection.map = nil
+      
+      let drawing = MapDrawing()
+      self.GMSStartMarker = drawing.getGMSStartMarker(current)!
+      self.GMSEndMarker = drawing.getGMSEndMarker(distination)!
+      self.GMSDirection = drawing.getGMSPolyline(route)!
+      
+      self.GMSStartMarker.map = self.mapView
+      self.GMSEndMarker.map = self.mapView
+      self.GMSDirection.map = self.mapView
+      
+      self.tableView.reloadData()
+    }
   }
   
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
@@ -118,7 +195,7 @@ class SetupViewController: UIViewController {
       callback(direction)
     }
   }
-  
+
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return

@@ -20,6 +20,10 @@ class DoneViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    
+    // run sceneに戻ってほしくないのでNavigation Backを消す
+    self.navigationItem.hidesBackButton = true
+
     runTimeLabel.text = userState.putRunTimeResult()
   }
   
@@ -27,8 +31,8 @@ class DoneViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  @IBAction func doneButtonTapped(_ sender: Any) {
+
+  @IBAction func recordButtonTapped(_ sender: Any) {
     HistoryService.addHistories(history:
       History(date: Date(),
               route: userState.route,
@@ -37,15 +41,13 @@ class DoneViewController: UIViewController {
     performSegue(withIdentifier: "TOP", sender: nil)
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "TOP" {
-      _ = segue.destination as! TopViewController
-    }
+  @IBAction func returnButtonTapped(_ sender: Any) {
+    performSegue(withIdentifier: "TOP", sender: nil)
   }
   
   @IBAction func tbTapped(_ sender: Any) {
     // Twitterの投稿ダイアログを作って
-    var cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
     cv?.setInitialText("てすとてきすと")
     self.present(cv!, animated: true, completion:nil )
   }

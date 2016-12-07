@@ -34,7 +34,7 @@ class MapDrawing {
     let marker = createGMSMarker(location: current, title: title)
     return marker
   }
-  
+
   public func getGMSStartMarker(withLocation location: Location, title: String) -> GMSMarker! {
     // set marker
     // TODO:
