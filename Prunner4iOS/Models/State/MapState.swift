@@ -70,6 +70,25 @@ class MapState {
     return l1.distance(from: l2)
   }
   
+  public func sortPlaces(places: [Place], user: UserState) -> [Place] {
+    if user.distance == nil && user.current == nil {
+      return places
+    }
+    // 一番Distanceに近いPlaceを返す
+    let current: Location = user.current!
+    let distance = user.distance!
+    let sortedPlaces = places.sorted {(place1 : Place, place2 : Place) -> Bool in
+      let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
+      let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
+      let lc = CLLocationCoordinate2DMake(current.lat, current.lng)
+      let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: lc) - distance)
+      let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: lc) - distance)
+      return d1 < d2
+    }
+    
+    return sortedPlaces
+  }
+  
   public func getGMSStartMarker(_ current: Location) -> GMSMarker! {
     // set marker
     // TODO:
@@ -133,8 +152,8 @@ class MapState {
     return polyline
   }
   
-  public func getRoute() -> Route? {
-    return direction?.routes[0]
+  public func getRoute(index : Int = 0) -> Route? {
+    return direction?.routes[index]
   }
   
   private init() {}
