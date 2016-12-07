@@ -86,7 +86,7 @@ class MapState {
       return d1 < d2
     }
     
-    return places
+    return sortedPlaces
   }
   
   public func getGMSStartMarker(_ current: Location) -> GMSMarker! {

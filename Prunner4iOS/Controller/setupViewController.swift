@@ -85,6 +85,14 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   }
 
   func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+    guard let places = self.mapState.candidates else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
+      
+      cell.textLabel?.text = "TMP"
+      return cell
+    }
+    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
     
     cell.textLabel?.text = self.mapState.candidates?[indexPath.row].name
@@ -93,6 +101,10 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   
   //データの個数を返すメソッド
   func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
+    guard let places = self.mapState.candidates else {
+      return 0
+    }
+    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
     guard let count = self.mapState.candidates?.count else {
       return 0
     }
@@ -100,6 +112,10 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   }
   
   func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+    guard let places = self.mapState.candidates else {
+      return
+    }
+    
     guard let location = self.mapState.candidates?[indexPath.row].geometry.location! else{
       return
     }
