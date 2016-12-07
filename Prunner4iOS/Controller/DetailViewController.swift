@@ -13,6 +13,7 @@ import CoreFoundation
 import GoogleMaps
 import GooglePlacePicker
 import CoreLocation
+import Social
 
 class DetailViewController: UIViewController {
   
@@ -20,6 +21,7 @@ class DetailViewController: UIViewController {
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
   
+  @IBOutlet weak var twButton: CustomButton!
   var history: History!
   
   @IBOutlet weak var runDistance: UILabel!
@@ -56,6 +58,11 @@ class DetailViewController: UIViewController {
       pace.text         = (distance / Double(time)).description
       value.text        = "Good!"
     }
+  }
+  @IBAction func twTapped(_ sender: Any) {
+    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+    cv?.setInitialText("てすとてきすと")
+    self.present(cv!, animated: true, completion:nil )
   }
   
   override func didReceiveMemoryWarning() {
