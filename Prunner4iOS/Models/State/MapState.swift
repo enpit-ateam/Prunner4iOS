@@ -133,8 +133,8 @@ class MapState {
     return polyline
   }
   
-  public func getRoute() -> Route? {
-    return direction?.routes[0]
+  public func getRoute(index : Int = 0) -> Route? {
+    return direction?.routes[index]
   }
   
   private init() {}
