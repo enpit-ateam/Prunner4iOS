@@ -103,7 +103,9 @@ class SetupViewController: UIViewController {
     let request = GMDirectionRequest()
     request.queryParameters = [
       "origin": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
-      "destination": String.init(format: "%f,%f", target.lat, target.lng) as AnyObject,
+      "destination": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
+      "waypoints": "optimize:true|" + String.init(format: "%f,%f", target.lat, target.lng) as AnyObject,
+      "travelMode": "walking" as AnyObject,
       "key": appDelegate.apiKey as AnyObject
     ]
     var direction: Direction!
