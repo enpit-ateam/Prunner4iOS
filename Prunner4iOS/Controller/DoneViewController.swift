@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import Social
 
 class DoneViewController: UIViewController {
   
   let userState = UserState.sharedInstance
   
   @IBOutlet weak var runTimeLabel: UILabel!
-  @IBOutlet weak var tweetButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,13 +41,6 @@ class DoneViewController: UIViewController {
   
   @IBAction func returnButtonTapped(_ sender: Any) {
     performSegue(withIdentifier: "TOP", sender: nil)
-  }
-  
-  @IBAction func tbTapped(_ sender: Any) {
-    // Twitterの投稿ダイアログを作って
-    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-    cv?.setInitialText("てすとてきすと")
-    self.present(cv!, animated: true, completion:nil )
   }
   
   /*
