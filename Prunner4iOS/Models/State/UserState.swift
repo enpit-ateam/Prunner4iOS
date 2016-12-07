@@ -43,6 +43,13 @@ class UserState {
   public func putRunTimeResult() -> String {
     return String(runTime!)
   }
+  
+  public func initialize() {
+    current = nil
+    distance = nil
+    runTime = nil
+    route = nil
+  }
 
   private init() {}
   static let sharedInstance = UserState()

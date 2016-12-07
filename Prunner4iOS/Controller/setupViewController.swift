@@ -49,7 +49,7 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
         // エラー処理
         return
       }
-      self.mapState.candidates = places
+      self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
       self.mapState.setDistinateFromCandidates(for: self.userState)
       
       let location = self.mapState.distination!.geometry.location!
@@ -179,7 +179,7 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       callback(direction)
     }
   }
-  
+
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return
