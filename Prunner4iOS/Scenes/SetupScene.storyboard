@@ -26,7 +26,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hfq-a7-2cy" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
-                                <rect key="frame" x="153" y="593" width="70" height="40"/>
+                                <rect key="frame" x="153" y="592" width="70" height="40"/>
                                 <color key="backgroundColor" red="0.90260392430000003" green="0.044851309960000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="PMe-Pb-dAX"/>
@@ -51,9 +51,8 @@
                             <constraint firstItem="1zl-wb-6Qr" firstAttribute="bottom" secondItem="Hlm-n9-XhZ" secondAttribute="top" id="74Y-WG-oPh"/>
                             <constraint firstItem="1zl-wb-6Qr" firstAttribute="centerX" secondItem="Hfq-a7-2cy" secondAttribute="centerX" id="KdN-UB-QGh"/>
                             <constraint firstItem="1zl-wb-6Qr" firstAttribute="leading" secondItem="hFo-mj-Irj" secondAttribute="leading" id="OFE-dB-Aa0"/>
-                            <constraint firstItem="Hlm-n9-XhZ" firstAttribute="top" secondItem="Hfq-a7-2cy" secondAttribute="bottom" constant="34" id="Obn-3c-6s3"/>
+                            <constraint firstItem="Hlm-n9-XhZ" firstAttribute="top" secondItem="Hfq-a7-2cy" secondAttribute="bottom" constant="35" id="Obn-3c-6s3"/>
                             <constraint firstAttribute="trailing" secondItem="1zl-wb-6Qr" secondAttribute="trailing" id="gEH-I2-nax"/>
-                            <constraint firstItem="Hfq-a7-2cy" firstAttribute="top" secondItem="GMZ-3A-4Me" secondAttribute="bottom" constant="573" id="veP-HW-z9E"/>
                         </constraints>
                     </view>
                     <connections>

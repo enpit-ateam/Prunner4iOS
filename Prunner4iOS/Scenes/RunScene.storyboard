@@ -26,10 +26,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljT-tz-dfh" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
-                                <rect key="frame" x="153" y="578" width="70" height="40"/>
+                                <rect key="frame" x="153" y="592" width="70" height="40"/>
                                 <color key="backgroundColor" red="0.90260392430000003" green="0.044851309960000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="KiJ-md-B6B"/>
+                                    <constraint firstAttribute="height" constant="40" id="kN1-nf-1IR"/>
                                 </constraints>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,9 +48,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Igl-oF-GD4" firstAttribute="leading" secondItem="uLF-Hn-Dd6" secondAttribute="leading" id="7JW-uO-O20"/>
-                            <constraint firstItem="ljT-tz-dfh" firstAttribute="top" secondItem="NLD-Bb-S7P" secondAttribute="bottom" constant="558" id="VHR-Bx-xAh"/>
                             <constraint firstItem="Igl-oF-GD4" firstAttribute="top" secondItem="uLF-Hn-Dd6" secondAttribute="top" id="nsO-QP-oCL"/>
-                            <constraint firstItem="XVP-By-WQp" firstAttribute="top" secondItem="ljT-tz-dfh" secondAttribute="bottom" constant="49" id="q9d-l1-QOA"/>
+                            <constraint firstItem="XVP-By-WQp" firstAttribute="top" secondItem="ljT-tz-dfh" secondAttribute="bottom" constant="35" id="q9d-l1-QOA"/>
                             <constraint firstAttribute="trailing" secondItem="Igl-oF-GD4" secondAttribute="trailing" id="rMD-fx-enQ"/>
                             <constraint firstItem="Igl-oF-GD4" firstAttribute="centerX" secondItem="ljT-tz-dfh" secondAttribute="centerX" id="rwr-G8-1Da"/>
                             <constraint firstItem="Igl-oF-GD4" firstAttribute="bottom" secondItem="XVP-By-WQp" secondAttribute="top" id="thW-mt-vZX"/>
