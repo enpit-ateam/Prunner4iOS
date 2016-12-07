@@ -53,16 +53,10 @@ class RunViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
   @IBAction func doneButtonTapped(_ sender: Any) {
     userState.setRunTime(start: startTime, end: Date())
     performSegue(withIdentifier: "DONE", sender: nil)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "DONE" {
-      let _ = segue.destination as! DoneViewController
-    }
   }
   
   /*
