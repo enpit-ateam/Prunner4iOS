@@ -40,7 +40,17 @@ class MapState {
   public func calcDirectionDistance() -> Double {
     // TODO:
     // self.directionから距離を計算して返す関数の作成
-    return 0.0
+    let currentDirection : Direction = self.direction!
+    let currentRoutes : Route = currentDirection.routes[0]
+    var sumDistance = 0
+    let currentLegs : [Leg] = currentRoutes.legs
+    let LegsLength = currentLegs.count
+    for i in 0..<LegsLength {
+        sumDistance += currentLegs[i].distance.value
+    }
+    let doubleSum = Double(sumDistance)
+    return doubleSum
+    //できたかな？
   }
   
   public func setDistinateFromCandidates(for user: UserState) {
