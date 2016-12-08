@@ -134,6 +134,7 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     if self.mapState.moveWaypoint(from: selected, to: tappedPosition) {
       drawMapView()
     }
+    self.mapState.selectedWaypoint = nil
   }
   
   func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
