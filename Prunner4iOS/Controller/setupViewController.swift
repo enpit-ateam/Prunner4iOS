@@ -214,7 +214,7 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
       GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
       GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
-
+      GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
       self.tableView.reloadData()
     }
   }

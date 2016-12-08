@@ -56,6 +56,28 @@ class GMSUtil {
     designEndMarker(marker: marker)
   }
   
+  public static func replaceWaypointMarkers(_ markers: inout [GMSMarker?], mapView: GMSMapView!, waypoints: [Location]) {
+    // TODO:
+    // waypointすべてを取り替えるので効率が悪い
+    // 変わりがないwaypointのmarkerは変更しないようにしたい
+    
+    // reset markers
+    for marker in markers {
+      if marker == nil {
+        continue
+      }
+      marker!.map = nil
+    }
+    // set markers with waypoints
+    var _markers: [GMSMarker?] = []
+    for waypoint in waypoints {
+      let _marker = createGMSMarker(mapView: mapView, location: waypoint)
+      designWaypointMarker(marker: _marker)
+      _markers.append(_marker)
+    }
+    markers = _markers
+  }
+  
   public static func setPolyline(_ polyline: inout GMSPolyline!, mapView: GMSMapView!, route: Route) {
     let path = GMSMutablePath()
     for leg in route.legs {
@@ -69,6 +91,13 @@ class GMSUtil {
     reset(polyline: polyline)
     polyline = createGMSPolyline(mapView: mapView, path: path)
     designPolyline(polyline: polyline)
+  }
+  
+  private static func createGMSMarker(mapView: GMSMapView!, location: Location) -> GMSMarker! {
+    let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
+    let marker = GMSMarker(position: pos)
+    marker.map = mapView
+    return marker
   }
   
   private static func createGMSMarker(mapView: GMSMapView!, location: Location, title: String) -> GMSMarker! {
@@ -107,6 +136,13 @@ class GMSUtil {
     if marker == nil {
       return
     }
+  }
+  
+  private static func designWaypointMarker(marker: GMSMarker!) {
+    if marker == nil {
+      return
+    }
+    marker.icon = GMSMarker.markerImage(with: UIColor.black)
   }
   
   private static func designPolyline(polyline: GMSPolyline!) {
