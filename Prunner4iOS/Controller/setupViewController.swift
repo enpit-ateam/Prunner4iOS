@@ -207,45 +207,14 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
         return
       }
       self.mapState.direction = direction
-      let distination = self.mapState.distination!
       let route = self.mapState.getRoute()!
       
-      // 描画
-      // TODO: refactor
-      if self.startMarker != nil {
-        self.startMarker.map = nil
-      }
-      if self.endMarker != nil {
-        self.endMarker.map = nil
-      }
-      if self.polyline != nil {
-        self.polyline.map = nil
-      }
-      for waypointMarker in self.waypointMarkers {
-        if waypointMarker == nil {
-          continue
-        }
-        waypointMarker!.map = nil
-      }
-      
-      let drawing = MapDrawing()
-      self.startMarker = drawing.getGMSStartMarker(current)!
-      self.endMarker = drawing.getGMSEndMarker(distination)!
-      var _waypointMarkers: [GMSMarker?] = []
-      for waypoint in self.mapState.waypoints {
-        let _waypointMarker = drawing.getGMSStartMarker(waypoint)
-        _waypointMarkers.append(_waypointMarker)
-      }
-      self.waypointMarkers = _waypointMarkers
-      self.polyline = drawing.getGMSPolyline(route)!
-      
-      self.startMarker.map = self.mapView
-      self.endMarker.map = self.mapView
-      self.polyline.map = self.mapView
-      for waypointMarker in self.waypointMarkers {
-        waypointMarker!.map = self.mapView
-      }
-      
+      // マップの描画
+      self.mapView.camera = self.mapState.camera!
+      GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
+      GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
+      GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
+
       self.tableView.reloadData()
     }
   }

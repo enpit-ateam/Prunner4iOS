@@ -100,69 +100,6 @@ class MapState {
     return sortedPlaces
   }
   
-  public func getGMSStartMarker(_ current: Location) -> GMSMarker! {
-    // set marker
-    // TODO:
-    //  現在地マーカーのデザイン
-    let title = "現在地"
-    
-    let pos = CLLocationCoordinate2DMake(current.lat, current.lng)
-    let marker = GMSMarker(position: pos)
-    marker.title = title
-    return marker
-  }
-  
-  public func getGMSEndMarker() -> GMSMarker! {
-    // set marker
-    // TODO:
-    //  マーカーのデザイン
-    
-    if self.distination?.geometry.location == nil {
-      print("No Distination")
-      return nil
-    }
-    let distination = self.distination!
-    let location = distination.geometry.location!
-    let title = distination.name
-    let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
-    let marker = GMSMarker(position: pos)
-    marker.title = title
-    return marker
-  }
-  
-  public func getGMSPolyline() -> GMSPolyline! {
-    // set polyline
-    // TODO:
-    //  ルートのデザイン
-    let strokeColor = UIColor.blue
-    let strokeWidth = 5.0
-    
-    if self.direction == nil {
-      print("Empty Direction!")
-      return nil
-    }
-    
-    let route = getRoute()
-    if route == nil {
-      print("Empty Route")
-      return nil
-    }
-    let path = GMSMutablePath()
-    for leg in ((route!).legs) {
-      for step in leg.steps {
-        path.add(CLLocationCoordinate2DMake(step.startLocation.lat, step.startLocation.lng))
-      }
-      let last = leg.steps[leg.steps.count-1]
-      path.add(CLLocationCoordinate2DMake(last.endLocation.lat, last.endLocation.lng))
-    }
-    
-    let polyline = GMSPolyline(path: path)
-    polyline.strokeColor = strokeColor
-    polyline.strokeWidth = CGFloat(strokeWidth)
-    
-    return polyline
-  }
-  
   public func getRoute(index : Int = 0) -> Route? {
     return direction?.routes[index]
   }
