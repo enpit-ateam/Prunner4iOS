@@ -116,54 +116,6 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     drawMapView()
   }
   
-  private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
-    // Placeのリストを返す
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let request = GMPlaceRequest.NearBySearch()
-    
-    request.queryParameters = [
-      "key": appDelegate.apiKey as AnyObject,
-      "location": String.init(format: "%f,%f", location.lat, location.lng) as AnyObject,
-      "radius": String.init(format: "%f", distance) as AnyObject
-    ]
-    var places: [Place]!
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        print(response)
-        places = response
-      case .failure(let error):
-        print("error: \(error)")
-      }
-      callback(places)
-    }
-  }
-  
-  private func getDirection(current: Location, target: Location, _ callback: @escaping (Direction!) -> Void) {
-    // ルートの取得
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let request = GMDirectionRequest()
-    
-    request.queryParameters = [
-      "origin": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
-      "destination": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
-      "waypoints": generateWaypointsRequest(target: target, waypoints: self.mapState.waypoints) as AnyObject,
-      "travelMode": "walking" as AnyObject,
-      "key": appDelegate.apiKey as AnyObject
-    ]
-    var direction: Direction!
-    Session.send(request) { result in
-      switch result {
-      case .success(let response):
-        print(response)
-        direction = response
-      case .failure(let error):
-        print("error: \(error)")
-      }
-      callback(direction)
-    }
-  }
-
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return
@@ -218,6 +170,55 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       self.tableView.reloadData()
     }
   }
+  
+  private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
+    // Placeのリストを返す
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let request = GMPlaceRequest.NearBySearch()
+    
+    request.queryParameters = [
+      "key": appDelegate.apiKey as AnyObject,
+      "location": String.init(format: "%f,%f", location.lat, location.lng) as AnyObject,
+      "radius": String.init(format: "%f", distance) as AnyObject
+    ]
+    var places: [Place]!
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+        print(response)
+        places = response
+      case .failure(let error):
+        print("error: \(error)")
+      }
+      callback(places)
+    }
+  }
+  
+  private func getDirection(current: Location, target: Location, _ callback: @escaping (Direction!) -> Void) {
+    // ルートの取得
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let request = GMDirectionRequest()
+    
+    request.queryParameters = [
+      "origin": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
+      "destination": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
+      "waypoints": generateWaypointsRequest(target: target, waypoints: self.mapState.waypoints) as AnyObject,
+      "travelMode": "walking" as AnyObject,
+      "key": appDelegate.apiKey as AnyObject
+    ]
+    var direction: Direction!
+    Session.send(request) { result in
+      switch result {
+      case .success(let response):
+        print(response)
+        direction = response
+      case .failure(let error):
+        print("error: \(error)")
+      }
+      callback(direction)
+    }
+  }
+
   
   /*
    // MARK: - Navigation
