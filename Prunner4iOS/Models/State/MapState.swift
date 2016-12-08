@@ -17,6 +17,7 @@ class MapState {
   public var camera: GMSCameraPosition?
   public var zoom: Float?
   public var candidates: [Place]?
+  public var waypoints: [Location] = []
   
   public func setCamera(user: UserState) {
     let current: Location = user.current!

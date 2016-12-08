@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SetupViewController: UIViewController {
+class SetupViewController: UIViewController, GMSMapViewDelegate {
   
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -23,6 +23,10 @@ class SetupViewController: UIViewController {
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
+  var startMarker: GMSMarker!
+  var endMarker: GMSMarker!
+  var waypointMarkers: [GMSMarker?] = []
+  var polyline: GMSPolyline!
 
   @IBOutlet weak var mapView: PrunnerMapView!
   
@@ -30,6 +34,8 @@ class SetupViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    mapView.delegate = self
+    
     placeClient = GMSPlacesClient()
     
     mapState.setCamera(user: userState)
@@ -43,35 +49,64 @@ class SetupViewController: UIViewController {
       }
       self.mapState.candidates = places
       self.mapState.setDistinateFromCandidates(for: self.userState)
-      
-      let location = self.mapState.distination!.geometry.location!
-      let current = self.userState.current!
-      self.getDirection(current: current, target: location) { direction in
-        if direction == nil {
-          // TODO:
-          // エラー処理
-          return
-        }
-        self.mapState.direction = direction
-        let distination = self.mapState.distination!
-        let route = self.mapState.getRoute()!
-        
-        // 描画
-        let drawing = MapDrawing()
-        let GMSStartMarker = drawing.getGMSStartMarker(current)!
-        let GMSEndMarker = drawing.getGMSEndMarker(distination)!
-        let GMSDirection = drawing.getGMSPolyline(route)!
-        
-        GMSStartMarker.map = self.mapView
-        GMSEndMarker.map = self.mapView
-        GMSDirection.map = self.mapView
-      }
+      self.generateDirection()
     }
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  public func generateDirection() {
+    let location = self.mapState.distination!.geometry.location!
+    let current = self.userState.current!
+    self.getDirection(current: current, target: location) { direction in
+      if direction == nil {
+        // TODO:
+        // エラー処理
+        return
+      }
+      self.mapState.direction = direction
+      let distination = self.mapState.distination!
+      let route = self.mapState.getRoute()!
+      
+      // 描画
+      // TODO: refactor
+      if self.startMarker != nil {
+        self.startMarker.map = nil
+      }
+      if self.endMarker != nil {
+        self.endMarker.map = nil
+      }
+      if self.polyline != nil {
+        self.polyline.map = nil
+      }
+      for waypointMarker in self.waypointMarkers {
+        if waypointMarker == nil {
+          continue
+        }
+        waypointMarker!.map = nil
+      }
+      
+      let drawing = MapDrawing()
+      self.startMarker = drawing.getGMSStartMarker(current)!
+      self.endMarker = drawing.getGMSEndMarker(distination)!
+      var _waypointMarkers: [GMSMarker?] = []
+      for waypoint in self.mapState.waypoints {
+        let _waypointMarker = drawing.getGMSStartMarker(waypoint)
+        _waypointMarkers.append(_waypointMarker)
+      }
+      self.waypointMarkers = _waypointMarkers
+      self.polyline = drawing.getGMSPolyline(route)!
+      
+      self.startMarker.map = self.mapView
+      self.endMarker.map = self.mapView
+      self.polyline.map = self.mapView
+      for waypointMarker in self.waypointMarkers {
+        waypointMarker!.map = self.mapView
+      }
+    }
   }
   
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
@@ -101,10 +136,11 @@ class SetupViewController: UIViewController {
     // ルートの取得
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMDirectionRequest()
+    
     request.queryParameters = [
       "origin": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
       "destination": String.init(format: "%f,%f", current.lat, current.lng) as AnyObject,
-      "waypoints": "optimize:true|" + String.init(format: "%f,%f", target.lat, target.lng) as AnyObject,
+      "waypoints": generateWaypointsRequest(target: target, waypoints: self.mapState.waypoints) as AnyObject,
       "travelMode": "walking" as AnyObject,
       "key": appDelegate.apiKey as AnyObject
     ]
@@ -134,6 +170,35 @@ class SetupViewController: UIViewController {
       let _ = segue.destination as! RunViewController
     }
   }
+  
+  public func generateWaypointsRequest(target: Location, waypoints: [Location]?) -> String {
+    var request: String = ""
+    // optimize:trueでwaypointsの最適化を行う
+    request += "optimize:false"
+    
+    // add target to waypoint request
+    request = request + "|" + String.init(format: "%f,%f", target.lat, target.lng)
+    
+    if waypoints == nil {
+      return request
+    }
+    // add waypoints to waypoint request
+    for waypoint in waypoints! {
+      request = request + "|" + String.init(format: "%f,%f", waypoint.lat, waypoint.lng)
+    }
+    
+    return request
+  }
+  
+  // MARK: GMSMapViewDelegate
+  
+  func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    let location = Location(lat: coordinate.latitude, lng: coordinate.longitude)
+    self.mapState.waypoints.append(location)
+
+    generateDirection()
+  }
+  
   /*
    // MARK: - Navigation
    
