@@ -105,12 +105,22 @@ class MapState {
     return direction?.routes[index]
   }
   
-  public func moveWaypoint(from: Location, to: Location) {
+  public func moveWaypoint(from: Location, to: Location) -> Bool {
     let index = waypoints.index(of: from)
     if let i = index {
       self.waypoints[i] = to
+      return true
     }
-    return
+    return false
+  }
+  
+  public func removeWaypoint(location: Location) -> Bool {
+    let index = waypoints.index(of: location)
+    if let i = index {
+      self.waypoints.remove(at: i)
+      return true
+    }
+    return false
   }
   
   private init() {}

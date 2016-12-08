@@ -97,6 +97,10 @@ class GMSUtil {
     let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
     let marker = GMSMarker(position: pos)
     marker.isDraggable = true
+    marker.isTappable = true
+    // TODO:
+    // デリートボタン的なWindowをちゃんと実装したい
+    marker.title = "delete"
     marker.map = mapView
     return marker
   }
@@ -105,6 +109,7 @@ class GMSUtil {
     let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
     let marker = GMSMarker(position: pos)
     marker.isDraggable = false
+    marker.isTappable = true
     marker.title = title
     marker.map = mapView
     return marker

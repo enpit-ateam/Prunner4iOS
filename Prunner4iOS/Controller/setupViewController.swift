@@ -131,9 +131,21 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)
     let selected: Location = self.mapState.selectedWaypoint!
-    self.mapState.moveWaypoint(from: selected, to: tappedPosition)
-    
-    drawMapView()
+    if self.mapState.moveWaypoint(from: selected, to: tappedPosition) {
+      drawMapView()
+    }
+  }
+  
+  func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
+    if marker.title != "delete" {
+      return
+    }
+    let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)
+    if let waypoint = detectTappedWaypoint(location: tappedPosition) {
+      if self.mapState.removeWaypoint(location: waypoint) {
+        drawMapView()
+      }
+    }
   }
   
   @IBAction func runButtonTapped(_ sender: Any) {
