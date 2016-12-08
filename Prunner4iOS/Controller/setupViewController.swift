@@ -116,6 +116,26 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     drawMapView()
   }
   
+  func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+    // Markerのドラッグ開始時に呼ばれる
+    // Marker.isDraggable = falseのマーカーは呼ばれない
+    // WayPointとして設定したマーカーのみ呼ばれる
+    let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)
+    self.mapState.selectedWaypoint = detectTappedWaypoint(location: tappedPosition)
+  }
+  
+  func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+    // Markerのドラッグ終了時に呼ばれる
+    if self.mapState.selectedWaypoint == nil {
+      return
+    }
+    let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)
+    let selected: Location = self.mapState.selectedWaypoint!
+    self.mapState.moveWaypoint(from: selected, to: tappedPosition)
+    
+    drawMapView()
+  }
+  
   @IBAction func runButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return
@@ -218,7 +238,30 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       callback(direction)
     }
   }
-
+  
+  private func detectTappedWaypoint(location: Location) -> Location? {
+    var nearest: Location?
+    var minDistance: Double?
+    for waypoint in self.mapState.waypoints {
+      if minDistance == nil {
+        minDistance = calcDistanceLocation(from: location, to: waypoint)
+        nearest = waypoint
+      } else if let min = minDistance {
+        let dist = calcDistanceLocation(from: location, to: waypoint)
+        if min > dist {
+          minDistance = dist
+          nearest = waypoint
+        }
+      }
+    }
+    return nearest
+  }
+  
+  private func calcDistanceLocation(from: Location, to: Location) -> Double {
+    let latDistance: Double = (from.lat - to.lat)
+    let lngDistance: Double = (from.lng - to.lng)
+    return latDistance * latDistance + lngDistance * lngDistance
+  }
   
   /*
    // MARK: - Navigation

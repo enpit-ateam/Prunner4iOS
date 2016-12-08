@@ -18,6 +18,7 @@ class MapState {
   public var zoom: Float?
   public var candidates: [Place]?
   public var waypoints: [Location] = []
+  public var selectedWaypoint: Location?
   
   public func setCamera(user: UserState) {
     let current: Location = user.current!
@@ -102,6 +103,14 @@ class MapState {
   
   public func getRoute(index : Int = 0) -> Route? {
     return direction?.routes[index]
+  }
+  
+  public func moveWaypoint(from: Location, to: Location) {
+    let index = waypoints.index(of: from)
+    if let i = index {
+      self.waypoints[i] = to
+    }
+    return
   }
   
   private init() {}

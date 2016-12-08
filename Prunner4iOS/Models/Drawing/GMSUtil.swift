@@ -96,6 +96,7 @@ class GMSUtil {
   private static func createGMSMarker(mapView: GMSMapView!, location: Location) -> GMSMarker! {
     let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
     let marker = GMSMarker(position: pos)
+    marker.isDraggable = true
     marker.map = mapView
     return marker
   }
@@ -103,6 +104,7 @@ class GMSUtil {
   private static func createGMSMarker(mapView: GMSMapView!, location: Location, title: String) -> GMSMarker! {
     let pos = CLLocationCoordinate2DMake(location.lat, location.lng)
     let marker = GMSMarker(position: pos)
+    marker.isDraggable = false
     marker.title = title
     marker.map = mapView
     return marker
