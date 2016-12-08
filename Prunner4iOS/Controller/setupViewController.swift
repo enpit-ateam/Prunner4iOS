@@ -133,7 +133,7 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   public func generateWaypointsRequest(target: Location, waypoints: [Location]?) -> String {
     var request: String = ""
     // optimize:trueでwaypointsの最適化を行う
-    request += "optimize:false"
+    request += "optimize:true"
     
     // add target to waypoint request
     request = request + "|" + String.init(format: "%f,%f", target.lat, target.lng)
