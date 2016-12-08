@@ -41,7 +41,17 @@ class MapState {
   public func calcDirectionDistance() -> Double {
     // TODO:
     // self.directionから距離を計算して返す関数の作成
-    return 0.0
+    let currentDirection : Direction = self.direction!
+    let currentRoutes : Route = currentDirection.routes[0]
+    var sumDistance = 0
+    let currentLegs : [Leg] = currentRoutes.legs
+    let LegsLength = currentLegs.count
+    for i in 0..<LegsLength {
+        sumDistance += currentLegs[i].distance.value
+    }
+    let doubleSum = Double(sumDistance)
+    return doubleSum
+    //できたかな？
   }
   
   public func setDistinateFromCandidates(for user: UserState) {
@@ -69,6 +79,25 @@ class MapState {
     let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
     let l2 = CLLocation(latitude: lc2.latitude, longitude: lc2.longitude)
     return l1.distance(from: l2)
+  }
+  
+  public func sortPlaces(places: [Place], user: UserState) -> [Place] {
+    if user.distance == nil && user.current == nil {
+      return places
+    }
+    // 一番Distanceに近いPlaceを返す
+    let current: Location = user.current!
+    let distance = user.distance!
+    let sortedPlaces = places.sorted {(place1 : Place, place2 : Place) -> Bool in
+      let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
+      let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
+      let lc = CLLocationCoordinate2DMake(current.lat, current.lng)
+      let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: lc) - distance)
+      let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: lc) - distance)
+      return d1 < d2
+    }
+    
+    return sortedPlaces
   }
   
   public func getGMSStartMarker(_ current: Location) -> GMSMarker! {
@@ -134,8 +163,8 @@ class MapState {
     return polyline
   }
   
-  public func getRoute() -> Route? {
-    return direction?.routes[0]
+  public func getRoute(index : Int = 0) -> Route? {
+    return direction?.routes[index]
   }
   
   private init() {}
