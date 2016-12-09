@@ -6,7 +6,7 @@ Prunnerとは、その日の気分で無理なく走りたいランナーに向�
 ランニングコースの作成・編集に特化しておりコースの提案・記録を行うことができます。
 
 # Example
-TODO:
+![exmaple](Docs/example.gif)
 
 # Instlation
 ```bash
