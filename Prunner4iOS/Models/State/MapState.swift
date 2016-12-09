@@ -20,6 +20,16 @@ class MapState {
   public var waypoints: [Location] = []
   public var selectedWaypoint: Location?
   
+  public func initialize() {
+    distination = nil
+    direction = nil
+    camera = nil
+    zoom = nil
+    candidates = nil
+    waypoints = []
+    selectedWaypoint = nil
+  }
+  
   public func setCamera(user: UserState) {
     let current: Location = user.current!
     let distance: Double = user.distance!

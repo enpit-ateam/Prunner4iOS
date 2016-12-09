@@ -14,13 +14,12 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
   @IBOutlet weak var inputDistanceTextField: UITextField!
   var locationManager: CLLocationManager?
   var userState = UserState.sharedInstance
+  var mapState = MapState.sharedInstance
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    // userStateの初期化
-    userState.initialize()
     
     // 位置情報サービスが利用できるかどうかをチェック
     if CLLocationManager.locationServicesEnabled() {
@@ -30,6 +29,15 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
       // 測位開始
       locationManager?.requestLocation()
     }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    // userStateの初期化
+    userState.initialize()
+    // mapStateの初期化
+    mapState.initialize()
   }
   
   override func didReceiveMemoryWarning() {
