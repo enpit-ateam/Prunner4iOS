@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vwn-sc-kxB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Top-->
+        <scene sceneID="GPi-ot-sEI">
+            <objects>
+                <viewController title="Top" id="Vwn-sc-kxB" customClass="TopViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wuo-kP-1qk"/>
+                        <viewControllerLayoutGuide type="bottom" id="fT0-Qa-Hlc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uOz-pa-rTL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnv-CZ-qcu" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="112" y="452" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.90260392430000003" green="0.044851309960000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="llv-uS-d1r"/>
+                                    <constraint firstAttribute="height" constant="40" id="yqo-vt-jgX"/>
+                                </constraints>
+                                <state key="normal" title="Run">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="runButtonTapped:" destination="Vwn-sc-kxB" eventType="touchUpInside" id="p89-Kq-fDb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z82-D7-d0U" customClass="CustomButton" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="112" y="527" width="150" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.66768245410000004" blue="0.020916230590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="0eI-AZ-FQ0"/>
+                                    <constraint firstAttribute="height" constant="40" id="dTe-NJ-Qgj"/>
+                                </constraints>
+                                <state key="normal" title="記録を見る">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recordButtonTapped:" destination="Vwn-sc-kxB" eventType="touchUpInside" id="CZd-RL-boI"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Agu-nS-Zdv">
+                                <rect key="frame" x="98" y="170" width="180" height="19"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="走りたい距離を入力します" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gy-yd-ijr" userLabel="Distance Text Field">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="17"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsB-mY-L9f" userLabel="Line View">
+                                        <rect key="frame" x="0.0" y="17" width="180" height="2"/>
+                                        <color key="backgroundColor" red="0.90260392430000003" green="0.29252588750000003" blue="0.17879751320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="36L-Vf-7V5"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="GC3-5b-j0R"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Z82-D7-d0U" firstAttribute="centerX" secondItem="uOz-pa-rTL" secondAttribute="centerX" id="2T9-8p-b85"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Agu-nS-Zdv" secondAttribute="trailing" constant="81" id="7qL-Yn-la2"/>
+                            <constraint firstItem="Agu-nS-Zdv" firstAttribute="centerX" secondItem="uOz-pa-rTL" secondAttribute="centerX" id="AFV-oM-vzV"/>
+                            <constraint firstItem="Agu-nS-Zdv" firstAttribute="top" secondItem="Wuo-kP-1qk" secondAttribute="bottom" constant="150" id="Rb9-k4-V14"/>
+                            <constraint firstItem="Z82-D7-d0U" firstAttribute="top" secondItem="Gnv-CZ-qcu" secondAttribute="bottom" constant="35" id="Ssn-eh-g2R"/>
+                            <constraint firstItem="Z82-D7-d0U" firstAttribute="leading" secondItem="Gnv-CZ-qcu" secondAttribute="leading" id="bxp-YS-f1q"/>
+                            <constraint firstItem="fT0-Qa-Hlc" firstAttribute="top" secondItem="Z82-D7-d0U" secondAttribute="bottom" constant="100" id="hQD-eT-sGQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="inputDistanceTextField" destination="1gy-yd-ijr" id="6Zo-9J-NmF"/>
+                        <segue destination="eRW-hu-ddJ" kind="show" identifier="SETUP" id="tIz-7T-ixC"/>
+                        <segue destination="MNK-4l-bve" kind="show" identifier="HISTORY" id="Hjh-Ds-qLM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yG6-1M-fOB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="21.600000000000001" y="-248.72563718140933"/>
+        </scene>
+        <!--SetupScene-->
+        <scene sceneID="2rk-Fx-PQ3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SetupScene" id="eRW-hu-ddJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sjD-te-pax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="681" y="-249"/>
+        </scene>
+        <!--HistoryScene-->
+        <scene sceneID="gta-Kv-gmd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HistoryScene" id="MNK-4l-bve" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rDN-35-oqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="-23"/>
+        </scene>
+    </scenes>
+</document>
