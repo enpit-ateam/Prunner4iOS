@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
+  var startMarker: GMSMarker!
+  var endMarker: GMSMarker!
+  var polyline: GMSPolyline!
   
   @IBOutlet weak var twButton: CustomButton!
   var history: History!
@@ -37,21 +40,16 @@ class DetailViewController: UIViewController {
     placeClient = GMSPlacesClient()
     if let route = history.route,
        let start = history.runStart(),
-       let point = history.runEnd(),
+       let end = history.runEnd(),
        let distance = history.distance,
        let time = history.time
     {
+      // マップの描画
+      mapView.camera = GMSUtil.getCamera(withLocation: start, distance: distance)
+      GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: start)
+      GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: "中継地点")
+      GMSUtil.setPolyline(&polyline, mapView: mapView, route: route)
       
-      // 描画
-      let drawing = MapDrawing()
-      mapView.camera = drawing.getCamera(withLocation: start, distance: distance)
-      let GMSStartMarker = drawing.getGMSStartMarker(withLocation: start, title: "スタート")!
-      let GMSEndMarker = drawing.getGMSEndMarker(withLocation: point, title: "中継地点")!
-      let GMSDirection = drawing.getGMSPolyline(route)!
-      
-      GMSStartMarker.map = self.mapView
-      GMSEndMarker.map = self.mapView
-      GMSDirection.map = self.mapView
       
       runTime.text      = time.description
       runDistance.text  = distance.description

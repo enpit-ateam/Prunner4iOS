@@ -23,6 +23,9 @@ class RunViewController: UIViewController {
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
+  var startMarker: GMSMarker!
+  var endMarker: GMSMarker!
+  var polyline: GMSPolyline!
  
   @IBOutlet weak var mapView: PrunnerMapView!
   
@@ -32,21 +35,12 @@ class RunViewController: UIViewController {
     // Do any additional setup after loading the view.
     startTime = Date()
     placeClient = GMSPlacesClient()
+    
+    // マップの描画
     mapView.camera = mapState.camera!
-    
-    let current = userState.current!
-    let route = userState.route!
-    let distination = mapState.distination!
-    
-    // 描画
-    let drawing = MapDrawing()
-    let GMSStartMarker = drawing.getGMSStartMarker(current)!
-    let GMSEndMarker = drawing.getGMSEndMarker(distination)!
-    let GMSDirection = drawing.getGMSPolyline(route)!
-    
-    GMSStartMarker.map = self.mapView
-    GMSEndMarker.map = self.mapView
-    GMSDirection.map = self.mapView
+    GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: userState.current!)
+    GMSUtil.setEndMarker(&endMarker, mapView: mapView, withDistination: mapState.distination!)
+    GMSUtil.setPolyline(&polyline, mapView: mapView, route: userState.route!)
   }
   
   override func didReceiveMemoryWarning() {
