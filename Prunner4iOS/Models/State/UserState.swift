@@ -45,7 +45,7 @@ class UserState {
   }
   
   public func initialize() {
-    current = nil
+    // self.current do not reset!!
     distance = nil
     runTime = nil
     route = nil
