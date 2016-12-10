@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class TopViewController: UIViewController, CLLocationManagerDelegate {
+class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var inputDistanceTextField: UITextField!
   var locationManager: CLLocationManager?
@@ -25,6 +25,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     if CLLocationManager.locationServicesEnabled() {
       locationManager = CLLocationManager()
       locationManager?.delegate = self
+      inputDistanceTextField.delegate = self
       
       // 測位開始
       locationManager?.requestLocation()
@@ -53,9 +54,22 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
     performSegue(withIdentifier: "SETUP", sender: nil)
   }
   
-  
   @IBAction func recordButtonTapped(_ sender: Any) {
     performSegue(withIdentifier: "HISTORY", sender: nil)
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    switch status {
+    case .notDetermined:
+      // 未認証ならリクエストダイアログ出す
+      locationManager?.requestWhenInUseAuthorization()
+    case .restricted, .denied:
+      break
+    case .authorizedWhenInUse:
+      break
+    default:
+      break
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -69,6 +83,17 @@ class TopViewController: UIViewController, CLLocationManagerDelegate {
   // 取得に失敗した場合
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("Failure")
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    inputDistanceTextField.resignFirstResponder()
+    return true
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if (inputDistanceTextField.isFirstResponder) {
+      inputDistanceTextField.resignFirstResponder()
+    }
   }
   
   
