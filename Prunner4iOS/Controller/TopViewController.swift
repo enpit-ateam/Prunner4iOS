@@ -58,6 +58,20 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     performSegue(withIdentifier: "HISTORY", sender: nil)
   }
   
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    switch status {
+    case .notDetermined:
+      // 未認証ならリクエストダイアログ出す
+      locationManager?.requestWhenInUseAuthorization()
+    case .restricted, .denied:
+      break
+    case .authorizedWhenInUse:
+      break
+    default:
+      break
+    }
+  }
+  
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if let location = locations.last {
       userState.current = Location(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
