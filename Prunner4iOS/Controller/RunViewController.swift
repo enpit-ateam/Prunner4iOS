@@ -47,11 +47,17 @@ class RunViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
   @IBAction func doneButtonTapped(_ sender: Any) {
     userState.setRunTime(start: startTime, end: Date())
     performSegue(withIdentifier: "DONE", sender: nil)
   }
+  
+  @IBAction func interruptButtonTapped(_ sender: Any) {
+    userState.setRunTime(start: startTime, end: Date())
+    performSegue(withIdentifier: "INTERRUPT", sender: nil)
+  }
+
   
   /*
    // MARK: - Navigation
