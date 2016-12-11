@@ -187,13 +187,6 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
-		45451D3C1DF9613F00143A39 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,7 +352,7 @@
 		9B5E25A81DC93D34006FD296 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				45451D3C1DF9613F00143A39 /* Images */,
+				CE3C4D781DFD7AF20012BB9D /* assets */,
 				4578F5931DF1790100F433E3 /* Components */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 			);
@@ -385,6 +378,13 @@
 				9B5E25B11DC93E8E006FD296 /* PrunnerMapView.swift */,
 			);
 			name = PrunnerMapView;
+			sourceTree = "<group>";
+		};
+		CE3C4D781DFD7AF20012BB9D /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = assets;
 			sourceTree = "<group>";
 		};
 		CEC4C6391DF164CE00CD9A77 /* History */ = {
