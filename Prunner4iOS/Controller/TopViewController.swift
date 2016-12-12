@@ -12,6 +12,7 @@ import CoreLocation
 class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var inputDistanceTextField: UITextField!
+  
   var locationManager: CLLocationManager?
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -20,7 +21,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    
+
     // 位置情報サービスが利用できるかどうかをチェック
     if CLLocationManager.locationServicesEnabled() {
       locationManager = CLLocationManager()
@@ -53,11 +54,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     }
     performSegue(withIdentifier: "SETUP", sender: nil)
   }
-  
-  @IBAction func recordButtonTapped(_ sender: Any) {
-    performSegue(withIdentifier: "HISTORY", sender: nil)
-  }
-  
+
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .notDetermined:
