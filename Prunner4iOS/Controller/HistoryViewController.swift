@@ -13,6 +13,7 @@ import Foundation.NSDateFormatter
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
   @IBOutlet weak var tableView: UITableView!
+  
   var history_table: Histories = []
   
   override func viewDidLoad() {
@@ -20,10 +21,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //HistoryService から データを読み込み、ボタンを生成
     history_table = HistoryService.getHistories()
-
     tableView.delegate = self
     tableView.dataSource = self
-
+    
   }
   
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
