@@ -195,7 +195,8 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       let route = self.mapState.getRoute()!
       
       // マップの描画
-      self.mapView.camera = self.mapState.camera!
+      // カメラの更新は行わない
+      // self.mapView.camera = self.mapState.camera!
       GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
       GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
       GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
