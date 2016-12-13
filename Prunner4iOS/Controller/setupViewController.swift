@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SetupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GMSMapViewDelegate {
+class SetupViewController: UIViewController, GMSMapViewDelegate {
 
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -29,14 +29,11 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   var waypointMarkers: [GMSMarker?] = []
   var polyline: GMSPolyline!
 
-  @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.delegate = self
-    tableView.dataSource = self
     mapView.delegate = self
     
     // Do any additional setup after loading the view.
@@ -61,50 +58,6 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
-  
-  // MARK: tableView delegates
-  
-  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
-    guard let places = self.mapState.candidates else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
-      
-      cell.textLabel?.text = "TMP"
-      return cell
-    }
-    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
-    
-    let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
-    
-    cell.textLabel?.text = self.mapState.candidates?[indexPath.row].name
-    return cell
-  }
-  
-  //データの個数を返すメソッド
-  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
-    guard let places = self.mapState.candidates else {
-      return 0
-    }
-    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
-    guard let count = self.mapState.candidates?.count else {
-      return 0
-    }
-    return count
-  }
-  
-  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    guard self.mapState.candidates != nil else {
-      return
-    }
-    
-    guard self.mapState.candidates?[indexPath.row].geometry.location != nil else{
-      return
-    }
-    
-    self.mapState.distination = self.mapState.candidates?[indexPath.row]
-    self.mapState.waypoints = []
-    
-    drawMapView()
   }
   
   // MARK: GMSMapViewDelegate
@@ -148,19 +101,13 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       }
     }
   }
-  
-  @IBAction func runButtonTapped(_ sender: Any) {
+
+  @IBAction func checkButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return
     }
     userState.route = mapState.getRoute()
     performSegue(withIdentifier: "RUN", sender: nil)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "RUN" {
-      let _ = segue.destination as! RunViewController
-    }
   }
   
   public func generateWaypointsRequest(target: Location, waypoints: [Location]?) -> String {
@@ -201,7 +148,6 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
       GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
       GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
-      self.tableView.reloadData()
     }
   }
   

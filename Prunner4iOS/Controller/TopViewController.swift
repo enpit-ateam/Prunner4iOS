@@ -47,14 +47,14 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func runButtonTapped(_ sender: Any) {
+  @IBAction func startButtonTapped(_ sender: Any) {
     userState.setDistance(text: inputDistanceTextField.text)
     if !userState.isReady() {
       return
     }
     performSegue(withIdentifier: "SETUP", sender: nil)
   }
-
+  
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .notDetermined:
@@ -92,7 +92,6 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
       inputDistanceTextField.resignFirstResponder()
     }
   }
-  
   
   /*
    // MARK: - Navigation
