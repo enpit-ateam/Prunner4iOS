@@ -1,0 +1,180 @@
+//
+//  Graph.swift
+//  Prunner4iOS
+//
+//  Created by USER on 2016/12/13.
+//  Copyright © 2016年 黒澤 預生. All rights reserved.
+//
+
+import UIKit
+
+@IBDesignable class Graph: UIView {
+//  @IBInspectable var counter: Int = 5
+//  @IBInspectable var outlineColor: UIColor = UIColor.green
+//  @IBInspectable var counterColor: UIColor = UIColor.orange
+  
+  public var xLabel:[String] = []// = ["10/1", "10/2", "10/3", "10/4", "10/5", "10/6", "10/7", "10/8", "10/9", "10/10", "10/11", "10/12", "10/13", "10/14", "10/15", "10/16", "10/17", "10/18", "10/19", "10/20", "10/21", "10/22", "10/23", "10/24", "10/25", "10/26", "10/27", "10/28", "10/29", "10/30", "10/31"] //Test Data
+  public var yLabel:[CGFloat] = []// = [0, 0, 4, 3, 3, 4, 4, 5, 6, 5, 4, 3, 4, 5, 6, 4, 2, 1, 1, 0, 0, 5, 6, 7, 7, 8, 7, 6, 9, 8, 8] //Test Data
+  
+  var backLineColor:UIColor = UIColor(red:0.972,  green:0.973,  blue:0.972, alpha:1)
+  
+  var xDialMergin:CGFloat = 30 //目盛り間の距離
+  var yDialMergin:CGFloat = 30 //同じ
+  let xDialSize:CGFloat = 5 //メモリのサイズ
+  let yDialSize:CGFloat = 5 //同じ
+  
+  var graph:[CGPoint] = []
+  var tappedPoint:CGPoint? = nil
+  
+  override required init(frame: CGRect) {
+    super.init(frame: frame)
+    self.backgroundColor = UIColor(red:0.972,  green:0.973,  blue:0.972, alpha:1)
+    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(Graph.panGraph(sender:)))
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Graph.tapGraph(sender:)))
+    self.addGestureRecognizer(panGesture)
+    self.addGestureRecognizer(tapGesture)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  func panGraph(sender: UIPanGestureRecognizer) {
+    self.tappedPoint = sender.location(in: self)
+    self.setNeedsDisplay()
+    print(xLabel)
+  }
+  
+  func tapGraph(sender: UITapGestureRecognizer) {
+    self.tappedPoint = sender.location(in: self)
+    self.setNeedsDisplay()
+    print(xLabel)
+  }
+  
+  override func draw(_ rect: CGRect) {
+    let alpha:CGFloat = 1.0
+
+    //ToDo ラベルの設定
+
+    //以降グラフを書くので描画範囲の設定
+    let rect_ = CGRect(
+      x: rect.minX + 30,
+      y: rect.minY + 30,
+      width: rect.width - 30 * CGFloat(2),
+      height: rect.height - 30 * CGFloat(2))
+    
+    let xInterval:CGFloat = rect_.height / CGFloat(5 + 1) //日にち分と基軸 x軸の間隔
+    let yInterval:CGFloat = rect_.width / CGFloat(yLabel.count + 1) //縦軸6本と基軸 y軸の間隔
+    
+    //基軸を書く
+    let baseLine = UIBezierPath()
+    baseLine.lineWidth = 2.0
+    baseLine.move(to: CGPoint(x: rect_.minX, y: rect_.maxY))
+    baseLine.addLine(to: CGPoint(x: rect_.minX, y: rect_.minY))
+    baseLine.stroke()
+    
+    baseLine.move(to: CGPoint(x: rect_.minX, y: rect_.maxY))
+    baseLine.addLine(to: CGPoint(x: rect_.maxX, y: rect_.maxY))
+    baseLine.stroke()
+    
+    //horizontal line
+    for dial in 1...6 {
+      let line = UIBezierPath()
+      line.lineWidth = 1.0
+      let currentPoint:CGPoint = CGPoint(x: rect_.minX, y:rect_.maxY) //左下の座標
+      line.move(to:
+        CGPoint(
+          x: currentPoint.x,
+          y: currentPoint.y - CGFloat(dial) * xInterval * alpha
+        )
+      )
+      line.addLine(to:
+        CGPoint(
+          x: currentPoint.x + xDialSize,
+          y: line.currentPoint.y
+        )
+      )
+      line.stroke()
+    }
+    
+    //vertical line
+    for dial in 1...yLabel.count{
+      let line = UIBezierPath()
+      line.lineWidth = 1.0
+      let currentPoint:CGPoint = CGPoint(x: rect_.minX, y:rect_.maxY) //左下の座標
+      line.move(to:
+        CGPoint(
+          x: currentPoint.x + CGFloat(dial) * yInterval * alpha,
+          y: currentPoint.y
+        )
+      )
+      line.addLine(to:
+        CGPoint(
+          x: line.currentPoint.x,
+          y: currentPoint.y - yDialSize
+        )
+      )
+      line.stroke()
+    }
+    
+    //描画する座標の追加
+    graph = []
+    graph.append(
+      CGPoint(
+        x:rect_.minX + CGFloat(1) * yInterval,
+        y: rect_.maxY - yLabel[0] * rect_.height / CGFloat(yLabel.max()!)
+      )
+    )
+    for index in 1..<yLabel.count {
+      graph.append(
+        CGPoint(
+          x: rect_.minX + CGFloat(index+1) * yInterval,
+          y: rect_.maxY - yLabel[index] * rect_.height / CGFloat(yLabel.max()!)
+        )
+      )
+    }
+    
+    //draw Graph
+    let line = UIBezierPath()
+    line.lineWidth = 3.0
+    line.move(to: graph[0])
+    drawSquare(center: graph[0], size:5)
+    for index in 1..<graph.count {
+      line.addLine(to: graph[index])
+      drawSquare(center: graph[index], size:5)
+    }
+    line.stroke()
+    if tappedPoint != nil{
+      let nearPoint = solveNearestPoint(selectedPoint: tappedPoint!, points:graph)
+      drawSquare(center: nearPoint, size: 10)
+    }
+  }
+  
+  public func setLabel(xLabel: [String],yLabel: [CGFloat]) {
+    self.xLabel = xLabel
+    self.yLabel = yLabel
+    self.setNeedsDisplay()
+  }
+  
+  private func drawSquare(center: CGPoint, size:CGFloat) {
+    let square:UIBezierPath =
+      UIBezierPath(
+        roundedRect: CGRect(x:center.x - size / 2, y:center.y - size / 2, width:size, height:size),
+        cornerRadius: 0
+      )
+    square.fill()
+    square.stroke()
+  }
+
+  private func solveNearestPoint(selectedPoint: CGPoint, points: [CGPoint]) -> CGPoint {
+    let nears:[CGPoint] = points.sorted(by: {
+      (p1: CGPoint, p2: CGPoint) -> Bool in
+      return calcDistance2(p1: p1, p2: selectedPoint) < calcDistance2(p1: p2, p2: selectedPoint)
+    })
+    return nears[0]
+  }
+  
+  private func calcDistance2(p1: CGPoint, p2:CGPoint) -> CGFloat {
+    return  (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)
+  }
+}

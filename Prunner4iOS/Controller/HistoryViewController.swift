@@ -10,20 +10,31 @@ import UIKit
 import CoreLocation
 import Foundation.NSDateFormatter
 
-class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var tableView: UITableView!
   
   var history_table: Histories = []
+  var graph: Graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
+  
+  var thisDay = Date()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
     
     //HistoryService から データを読み込み、ボタンを生成
     history_table = HistoryService.getHistories()
+    graph.setLabel(
+      xLabel: DayService.getMonthOfDayList(date: thisDay).map({(d:Int) -> String in d.description}),
+      yLabel: DayService.getDistanceTable(historyTable: history_table).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
+    )
+      
     tableView.delegate = self
     tableView.dataSource = self
     
+    self.view.addSubview(graph)
+    graph.setNeedsDisplay()
   }
   
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
