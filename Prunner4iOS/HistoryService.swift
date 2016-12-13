@@ -19,7 +19,7 @@ class HistoryService {
       time: 10000),
   ]
   
-  class func getHistories() -> Histories{
+  class func getHistories() -> Histories {
     userDefaults.register(defaults: ["DataStore": "default"])
     let storedData:Data? = userDefaults.object(forKey: "History") as! Data?
     guard storedData != nil else{
@@ -30,6 +30,12 @@ class HistoryService {
     }
     histories = hs
     return histories
+  }
+  
+  class func getHistories(date: Date) -> Histories {
+    let histories_ = getHistories()
+    let calendar = Calendar.current
+    return histories.filter({(h:History) -> Bool in calendar.isDate(date, equalTo: h.date!, toGranularity: .month)})
   }
   
   class func addHistories(history: History){

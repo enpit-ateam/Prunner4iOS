@@ -33,7 +33,7 @@ import UIKit
   
   override required init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = UIColor(red:0.972,  green:0.973,  blue:0.972, alpha:1)
+    self.backgroundColor = UIColor(red:228/255,  green:247/255,  blue:254/255, alpha:1)
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(Graph.panGraph(sender:)))
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Graph.tapGraph(sender:)))
     self.addGestureRecognizer(panGesture)
@@ -47,13 +47,15 @@ import UIKit
   func panGraph(sender: UIPanGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
     self.setNeedsDisplay()
-    print(xLabel)
   }
   
   func tapGraph(sender: UITapGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
     self.setNeedsDisplay()
-    print(xLabel)
+  }
+  
+  public func setSelected(day: Int){
+    self.tappedPoint = graph[day]
   }
   
   override func draw(_ rect: CGRect) {
@@ -80,6 +82,7 @@ import UIKit
       let label_value:String = String(format:"%.0f", CGFloat(h) * yLabel.max()! / CGFloat(6))
       label.text = label_value
       label.textAlignment = NSTextAlignment.right
+      label.textColor = baseLineColor
       self.addSubview(label)
       texts.append(label)
       //CGContextShowTextAtPoint(c: self, x: 0, y:rect_.height / 6 * (6 - h), string: (h * yLabel.max() / CGFloat(6)), 2)
@@ -142,14 +145,14 @@ import UIKit
     graph.append(
       CGPoint(
         x:rect_.minX + CGFloat(1) * yInterval,
-        y: rect_.maxY - yLabel[0] * rect_.height / CGFloat(yLabel.max()!)
+        y: rect_.maxY - yLabel[0] * rect_.height / CGFloat(yLabel.max()! == 0 ? 1 : yLabel.max()!)
       )
     )
     for index in 1..<yLabel.count {
       graph.append(
         CGPoint(
           x: rect_.minX + CGFloat(index+1) * yInterval,
-          y: rect_.maxY - yLabel[index] * rect_.height / CGFloat(yLabel.max()!)
+          y: rect_.maxY - yLabel[index] * rect_.height / CGFloat(yLabel.max()! == 0 ? 1 : yLabel.max()!)
         )
       )
     }
@@ -163,7 +166,7 @@ import UIKit
     for index in 1..<graph.count {
       line.addLine(to: graph[index])
       if graph[index] != tappedPoint {
-        drawSquare(center: graph[index], size:5)
+        drawSquare(center: graph[index], size:4)
       }
     }
     line.stroke()
@@ -176,6 +179,13 @@ import UIKit
   public func setLabel(xLabel: [String],yLabel: [CGFloat]) {
     self.xLabel = xLabel
     self.yLabel = yLabel
+    self.setNeedsDisplay()
+  }
+  
+  //月が違う場合の解決も
+  public func setDate(date: Date) {
+    let day = DayService.getComponent(date: date).day
+    self.tappedPoint = graph[day!]
     self.setNeedsDisplay()
   }
   

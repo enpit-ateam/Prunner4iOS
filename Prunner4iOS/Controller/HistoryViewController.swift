@@ -17,24 +17,20 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   var history_table: Histories = []
   var graph: Graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
   
-  var thisDay = Date()
+  var thisDate: Date!
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    thisDate = Date()
     graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
     
-    //HistoryService から データを読み込み、ボタンを生成
-    history_table = HistoryService.getHistories()
-    graph.setLabel(
-      xLabel: DayService.getMonthOfDayList(date: thisDay).map({(d:Int) -> String in d.description}),
-      yLabel: DayService.getDistanceTable(historyTable: history_table).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
-    )
-      
+    thisDate = changeMonth(date: thisDate, month:11)
+    self.drawGraph(graph: graph, date: thisDate)
+    
     tableView.delegate = self
     tableView.dataSource = self
     
     self.view.addSubview(graph)
-    graph.setNeedsDisplay()
   }
   
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
@@ -51,7 +47,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    performSegue(withIdentifier: "DETAIL", sender: indexPath)
+    //changeSelected(view:graph, day:history_table[indexPath])
+    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,5 +73,29 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let cellText:String = String(format: "%@     %@", arguments: [dateText, distanceText]) //ここのデザインは暫定
     
     return cellText
+  }
+  
+  private func drawGraph(graph: Graph, date: Date) {
+    history_table = HistoryService.getHistories(date: date)
+    let xLabel = DayService.getMonthOfDayList(date: date).map({(d:Int) -> String in d.description})
+    let yLabel = DayService.getDistanceTable(date: date, historyTable: history_table).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
+    graph.setLabel(
+      xLabel: xLabel,
+      yLabel: yLabel
+    )
+    graph.setNeedsDisplay()
+  }
+  
+  private func changeMonth(date: Date, month: Int) -> Date {
+    let calendar = Calendar.current
+    let date = calendar.date(byAdding: .month, value: 1, to: date)
+    return date!
+  }
+  
+  private func changeDay(date: Date, day: Int) -> Date {
+    let calendar = Calendar.current
+    let date = calendar.date(byAdding: .day, value: 1, to: date)
+    
+    return date!
   }
 }

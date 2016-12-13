@@ -8,7 +8,11 @@
 
 import Foundation
 class DayService {
-  class public func getDistanceTable(historyTable: [History]) -> [Double]{
+  class public func changeMonth(date: Date, month: Int) -> Date {
+    let calendar = Calendar.current
+    return calendar.date(bySetting: .month, value: month, of: date)!
+  }
+  class public func getDistanceTable(date: Date, historyTable: [History]) -> [Double]{
     var dayDistances:[Int: [Double]] = [0:[0]]
     for h in historyTable {
       let hDay = getComponent(date: h.date!).day!
@@ -21,7 +25,7 @@ class DayService {
     }
     
     var ansTable:[Double] = []
-    for key in 0...getMaxDay(date: historyTable[0].date!)! {
+    for key in 0...getMaxDay(date: date)! {
       if dayDistances[key] == nil || dayDistances[key]!.count == 0 {
         ansTable.append(0)
         continue
@@ -36,7 +40,7 @@ class DayService {
     if getMaxDay(date: date) == nil {
       return []
     }
-    return Array((1...getMaxDay(date: date)!))
+    return Array((0...getMaxDay(date: date)!))
   }
   
   class public func getMaxDay(date: Date) -> Int? {
@@ -59,7 +63,7 @@ class DayService {
     return false
   }
   
-  class private func getComponent(date: Date) -> DateComponents {
+  class public func getComponent(date: Date) -> DateComponents {
     let calendar = Calendar.current
     let component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
     
