@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol UIGraphViewDelegate {
+  func pointTaped(selectedDay: Int)
+}
+
 @IBDesignable class Graph: UIView {
 //  @IBInspectable var counter: Int = 5
 //  @IBInspectable var outlineColor: UIColor = UIColor.green
@@ -15,7 +19,8 @@ import UIKit
   
   public var xLabel:[String] = []// = ["10/1", "10/2", "10/3", "10/4", "10/5", "10/6", "10/7", "10/8", "10/9", "10/10", "10/11", "10/12", "10/13", "10/14", "10/15", "10/16", "10/17", "10/18", "10/19", "10/20", "10/21", "10/22", "10/23", "10/24", "10/25", "10/26", "10/27", "10/28", "10/29", "10/30", "10/31"] //Test Data
   public var yLabel:[CGFloat] = []// = [0, 0, 4, 3, 3, 4, 4, 5, 6, 5, 4, 3, 4, 5, 6, 4, 2, 1, 1, 0, 0, 5, 6, 7, 7, 8, 7, 6, 9, 8, 8] //Test Data
-  
+  var delegate: UIGraphViewDelegate!
+
   var backLineColor:UIColor = UIColor(red:0.972,  green:0.973,  blue:0.972, alpha:1)
   
   var xDialMergin:CGFloat = 30 //目盛り間の距離
@@ -46,11 +51,17 @@ import UIKit
   
   func panGraph(sender: UIPanGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
+    if delegate.pointTaped != nil {
+      delegate.pointTaped(selectedDay: graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!)
+    }
     self.setNeedsDisplay()
   }
   
   func tapGraph(sender: UITapGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
+    if delegate.pointTaped != nil {
+      delegate.pointTaped(selectedDay: graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!)
+    }
     self.setNeedsDisplay()
   }
   
@@ -151,7 +162,7 @@ import UIKit
     for index in 1..<yLabel.count {
       graph.append(
         CGPoint(
-          x: rect_.minX + CGFloat(index+1) * yInterval,
+          x: rect_.minX + CGFloat(index) * yInterval,
           y: rect_.maxY - yLabel[index] * rect_.height / CGFloat(yLabel.max()! == 0 ? 1 : yLabel.max()!)
         )
       )
@@ -162,7 +173,7 @@ import UIKit
     let line = UIBezierPath()
     line.lineWidth = 1.0
     line.move(to: graph[0])
-    drawSquare(center: graph[0], size:5)
+    //drawSquare(center: graph[0], size:5)
     for index in 1..<graph.count {
       line.addLine(to: graph[index])
       if graph[index] != tappedPoint {
