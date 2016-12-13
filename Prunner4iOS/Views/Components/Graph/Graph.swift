@@ -52,7 +52,11 @@ protocol UIGraphViewDelegate {
   func panGraph(sender: UIPanGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
     if delegate.pointTaped != nil {
-      delegate.pointTaped(selectedDay: graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!)
+      var selectedDay = graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!
+      if selectedDay == 0 {
+        selectedDay = 1
+      }
+      delegate.pointTaped(selectedDay: selectedDay)
     }
     self.setNeedsDisplay()
   }
@@ -60,7 +64,11 @@ protocol UIGraphViewDelegate {
   func tapGraph(sender: UITapGestureRecognizer) {
     self.tappedPoint = sender.location(in: self)
     if delegate.pointTaped != nil {
-      delegate.pointTaped(selectedDay: graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!)
+      var selectedDay = graph.index(of: solveNearestPoint(selectedPoint: tappedPoint!, points: graph))!
+      if selectedDay == 0 {
+        selectedDay = 1
+      }
+      delegate.pointTaped(selectedDay: selectedDay)
     }
     self.setNeedsDisplay()
   }
@@ -132,7 +140,7 @@ protocol UIGraphViewDelegate {
     }
     
     //vertical line
-    for dial in 1...yLabel.count{
+    for dial in 1..<yLabel.count{
       let line = UIBezierPath()
       line.lineWidth = 1.0
       let currentPoint:CGPoint = CGPoint(x: rect_.minX, y:rect_.maxY) //左下の座標
@@ -153,13 +161,13 @@ protocol UIGraphViewDelegate {
     
     //描画する座標の追加
     graph = []
-    graph.append(
-      CGPoint(
-        x:rect_.minX + CGFloat(1) * yInterval,
-        y: rect_.maxY - yLabel[0] * rect_.height / CGFloat(yLabel.max()! == 0 ? 1 : yLabel.max()!)
-      )
-    )
-    for index in 1..<yLabel.count {
+//    graph.append(
+//      CGPoint(
+//        x:rect_.minX + CGFloat(1) * yInterval,
+//        y: rect_.maxY - yLabel[0] * rect_.height / CGFloat(yLabel.max()! == 0 ? 1 : yLabel.max()!)
+//      )
+//    )
+    for index in 0..<yLabel.count {
       graph.append(
         CGPoint(
           x: rect_.minX + CGFloat(index) * yInterval,
@@ -181,9 +189,14 @@ protocol UIGraphViewDelegate {
       }
     }
     line.stroke()
-    if tappedPoint != nil{
+    if tappedPoint != nil && tappedPoint! != graph[0]{
       let nearPoint = solveNearestPoint(selectedPoint: tappedPoint!, points:graph)
-      drawSelectedPoint(center: nearPoint, size: 3)
+      if nearPoint != graph[0] {
+        drawSelectedPoint(center: nearPoint, size: 3)
+      }
+      else {
+        drawSelectedPoint(center: graph[1], size: 3)
+      }
     }
   }
   

@@ -17,6 +17,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   var history_table: Histories = []
   var graph: Graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
   var thisDate: Date!
+  var thisYear: Int = 2016
+  var thisMonth: Int = 12
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,7 +26,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     history_table = HistoryService.getHistories()
     
     thisDate = Date()
-    graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
+    
+    let myBoundSize: CGSize = UIScreen.main.bounds.size
+    graph = Graph(frame: CGRect(x:0, y:135.0, width:myBoundSize.width, height:200.0))
     graph.delegate = self
     
     thisDate = changeMonth(date: thisDate, month:12)
@@ -80,9 +84,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   private func drawGraph(graph: Graph, date: Date) {
-    history_table = HistoryService.getHistories(date: date)
-    var xLabel = DayService.getMonthOfDayList(date: date).map({(d:Int) -> String in d.description})
-    var yLabel = DayService.getDistanceTable(date: date, historyTable: HistoryService.getHistories()).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
+    let xLabel = DayService.getMonthOfDayList(date: date).map({(d:Int) -> String in d.description})
+    let yLabel = DayService.getDistanceTable(date: date, historyTable: HistoryService.getHistories(month: date)).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
     
     graph.setLabel(
       xLabel: xLabel,
@@ -94,20 +97,22 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   private func changeMonth(date: Date, month: Int) -> Date {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
-    components.month = month
-    return calendar.date(from: components)!
+    return calendar.date(from: DateComponents(year: components.year, month: month, day: components.day ))!
   }
   
   private func changeDay(date: Date, day: Int) -> Date {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
-    components.day = day
+    components.day = day + 1
+    components.hour = -15
     return calendar.date(from: components)!
   }
   
   public func pointTaped(selectedDay: Int) {
+    print(selectedDay)
     self.thisDate = changeDay(date: self.thisDate, day: selectedDay)
-    self.history_table = HistoryService.getHistories(date: self.thisDate)
+    self.history_table = HistoryService.getHistories(day: self.thisDate)
+    drawGraph(graph: graph, date: thisDate)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }

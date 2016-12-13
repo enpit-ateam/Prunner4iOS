@@ -32,10 +32,22 @@ class HistoryService {
     return histories
   }
   
-  class func getHistories(date: Date) -> Histories {
-    let histories_ = getHistories()
+  class func getHistories(day: Date) -> Histories {
     let calendar = Calendar.current
-    return histories_.filter({(h:History) -> Bool in calendar.isDate(date, equalTo: h.date!, toGranularity: .day)})
+    var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: day)
+    components.day = components.day!
+    let date_ = calendar.date(from: components)!
+    let histories_ = getHistories()
+    return histories_.filter({(h:History) -> Bool in calendar.isDate(date_, equalTo: h.date!, toGranularity: .day)})
+  }
+  
+  class func getHistories(month: Date) -> Histories {
+    let calendar = Calendar.current
+    var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: month)
+    components.day = components.day!
+    let date_ = calendar.date(from: components)!
+    let histories_ = getHistories()
+    return histories_.filter({(h:History) -> Bool in calendar.isDate(date_, equalTo: h.date!, toGranularity: .month)})
   }
   
   class func addHistories(history: History){
