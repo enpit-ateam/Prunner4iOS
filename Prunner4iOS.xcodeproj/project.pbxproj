@@ -19,6 +19,8 @@
 		45451D731DFEAB7900143A39 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 45451D721DFEAB7900143A39 /* Assets */; };
 		45451D7F1DFEF4A100143A39 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D7E1DFEF4A100143A39 /* History.storyboard */; };
 		45451D811DFEF4E200143A39 /* Run.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D801DFEF4E200143A39 /* Run.storyboard */; };
+		45451D841DFFBA6000143A39 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D831DFFBA6000143A39 /* TabView.swift */; };
+		45451D861DFFBA7700143A39 /* TabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D851DFFBA7700143A39 /* TabView.xib */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -87,6 +89,8 @@
 		45451D721DFEAB7900143A39 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = Views/Assets; sourceTree = "<group>"; };
 		45451D7E1DFEF4A100143A39 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = History.storyboard; path = StoryBoards/History.storyboard; sourceTree = "<group>"; };
 		45451D801DFEF4E200143A39 /* Run.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Run.storyboard; path = StoryBoards/Run.storyboard; sourceTree = "<group>"; };
+		45451D831DFFBA6000143A39 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabView.swift; path = Views/TabView/TabView.swift; sourceTree = "<group>"; };
+		45451D851DFFBA7700143A39 /* TabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabView.xib; path = Views/TabView/TabView.xib; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,15 @@
 				45451D7E1DFEF4A100143A39 /* History.storyboard */,
 			);
 			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		45451D821DFFB98600143A39 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				45451D831DFFBA6000143A39 /* TabView.swift */,
+				45451D851DFFBA7700143A39 /* TabView.xib */,
+			);
+			name = TabView;
 			sourceTree = "<group>";
 		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
@@ -371,6 +384,7 @@
 				45451D721DFEAB7900143A39 /* Assets */,
 				4578F5931DF1790100F433E3 /* Components */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
+				45451D821DFFB98600143A39 /* TabView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -551,6 +565,7 @@
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
 				45451D7F1DFEF4A100143A39 /* History.storyboard in Resources */,
 				9B0163191DC7F2480086445E /* Main.storyboard in Resources */,
+				45451D861DFFBA7700143A39 /* TabView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +746,7 @@
 				4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				45451D151DF54DC300143A39 /* GMSUtil.swift in Sources */,
+				45451D841DFFBA6000143A39 /* TabView.swift in Sources */,
 				CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
 				CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */,
