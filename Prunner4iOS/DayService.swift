@@ -20,15 +20,15 @@ class DayService {
       }
     }
     
-    var ansTable:[Double] = [0]
-    for key in 1...getMaxDay(date: historyTable[0].date!)! {
+    var ansTable:[Double] = []
+    for key in 0...getMaxDay(date: historyTable[0].date!)! {
       if dayDistances[key] == nil || dayDistances[key]!.count == 0 {
         ansTable.append(0)
         continue
       }
       ansTable.append(dayDistances[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}) / Double(dayDistances[key]!.count))
     }
-    
+
     return ansTable
   }
   

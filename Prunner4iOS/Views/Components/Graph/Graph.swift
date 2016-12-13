@@ -25,6 +25,7 @@ import UIKit
   
   var graph:[CGPoint] = []
   var tappedPoint:CGPoint? = nil
+  var texts:[UILabel] = []
   
   override required init(frame: CGRect) {
     super.init(frame: frame)
@@ -53,8 +54,9 @@ import UIKit
   
   override func draw(_ rect: CGRect) {
     let alpha:CGFloat = 1.0
-
-    //ToDo ラベルの設定
+    self.texts.forEach {
+      $0.isUserInteractionEnabled = false
+    }
 
     //以降グラフを書くので描画範囲の設定
     let rect_ = CGRect(
@@ -65,6 +67,18 @@ import UIKit
     
     let xInterval:CGFloat = rect_.height / CGFloat(5 + 1) //日にち分と基軸 x軸の間隔
     let yInterval:CGFloat = rect_.width / CGFloat(yLabel.count + 1) //縦軸6本と基軸 y軸の間隔
+    
+    //ToDo ラベルの設定
+    for h in 0..<6 {
+      let label = UILabel(frame: CGRect(x: 0, y: rect_.height / CGFloat(6) * CGFloat(6 - h), width: 30, height: 10))
+      label.font = UIFont.systemFont(ofSize: CGFloat(8))
+      let label_value:String = String(format:"%.0f", CGFloat(h) * yLabel.max()! / CGFloat(6))
+      label.text = label_value
+      label.textAlignment = NSTextAlignment.center
+      self.addSubview(label)
+      texts.append(label)
+      //CGContextShowTextAtPoint(c: self, x: 0, y:rect_.height / 6 * (6 - h), string: (h * yLabel.max() / CGFloat(6)), 2)
+    }
     
     //基軸を書く
     let baseLine = UIBezierPath()
@@ -141,12 +155,14 @@ import UIKit
     drawSquare(center: graph[0], size:5)
     for index in 1..<graph.count {
       line.addLine(to: graph[index])
-      drawSquare(center: graph[index], size:5)
+      if graph[index] != tappedPoint {
+        drawSquare(center: graph[index], size:5)
+      }
     }
     line.stroke()
     if tappedPoint != nil{
       let nearPoint = solveNearestPoint(selectedPoint: tappedPoint!, points:graph)
-      drawSquare(center: nearPoint, size: 10)
+      drawSelectedPoint(center: nearPoint, size: 4)
     }
   }
   
@@ -164,6 +180,33 @@ import UIKit
       )
     square.fill()
     square.stroke()
+  }
+  
+  private func drawSelectedPoint(center: CGPoint, size: CGFloat) {
+    let strokeColor = UIColor.orange
+    strokeColor.setStroke()
+    strokeColor.setFill()
+
+    let circle1:UIBezierPath =
+      UIBezierPath(
+        arcCenter: center,
+        radius: size,
+        startAngle: CGFloat(0),
+        endAngle: CGFloat(M_PI * 2),
+        clockwise: true
+    )
+    circle1.fill()
+    circle1.stroke()
+    
+    let circle2:UIBezierPath =
+      UIBezierPath(
+        arcCenter: center,
+        radius: size + 2,
+        startAngle: CGFloat(0),
+        endAngle: CGFloat(M_PI * 2),
+        clockwise: true
+    )
+    circle2.stroke()
   }
 
   private func solveNearestPoint(selectedPoint: CGPoint, points: [CGPoint]) -> CGPoint {
