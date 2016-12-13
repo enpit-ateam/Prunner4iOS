@@ -23,6 +23,8 @@
 		45451D861DFFBA7700143A39 /* TabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D851DFFBA7700143A39 /* TabView.xib */; };
 		45451D8D1E00130000143A39 /* DoneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D8C1E00130000143A39 /* DoneModalViewController.swift */; };
 		45451D901E00149E00143A39 /* CustomCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D8F1E00149E00143A39 /* CustomCircleView.swift */; };
+		45451D931E003B1E00143A39 /* DoneModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D921E003B1E00143A39 /* DoneModalView.xib */; };
+		45451D971E003BBF00143A39 /* DoneModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D961E003BBF00143A39 /* DoneModalView.swift */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -95,6 +97,8 @@
 		45451D851DFFBA7700143A39 /* TabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabView.xib; path = Views/TabView/TabView.xib; sourceTree = "<group>"; };
 		45451D8C1E00130000143A39 /* DoneModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneModalViewController.swift; path = Controller/DoneModalViewController.swift; sourceTree = "<group>"; };
 		45451D8F1E00149E00143A39 /* CustomCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCircleView.swift; path = Views/Components/View/CustomCircleView.swift; sourceTree = "<group>"; };
+		45451D921E003B1E00143A39 /* DoneModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoneModalView.xib; path = Views/DoneModal/DoneModalView.xib; sourceTree = "<group>"; };
+		45451D961E003BBF00143A39 /* DoneModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneModalView.swift; path = Views/DoneModal/DoneModalView.swift; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +229,15 @@
 				45451D8F1E00149E00143A39 /* CustomCircleView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		45451D911E003AEB00143A39 /* DoneModal */ = {
+			isa = PBXGroup;
+			children = (
+				45451D921E003B1E00143A39 /* DoneModalView.xib */,
+				45451D961E003BBF00143A39 /* DoneModalView.swift */,
+			);
+			name = DoneModal;
 			sourceTree = "<group>";
 		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
@@ -398,6 +411,7 @@
 				45451D721DFEAB7900143A39 /* Assets */,
 				4578F5931DF1790100F433E3 /* Components */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
+				45451D911E003AEB00143A39 /* DoneModal */,
 				45451D821DFFB98600143A39 /* TabView */,
 			);
 			name = Views;
@@ -565,6 +579,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45451D931E003B1E00143A39 /* DoneModalView.xib in Resources */,
 				9B5E25B01DC93E75006FD296 /* PrunnerMapView.xib in Resources */,
 				45451D731DFEAB7900143A39 /* Assets in Resources */,
 				45451D811DFEF4E200143A39 /* Run.storyboard in Resources */,
@@ -763,6 +778,7 @@
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				45451D151DF54DC300143A39 /* GMSUtil.swift in Sources */,
 				45451D841DFFBA6000143A39 /* TabView.swift in Sources */,
+				45451D971E003BBF00143A39 /* DoneModalView.swift in Sources */,
 				CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */,
 				9B12B12C1DDB17A700E7977F /* GMDirectionRequest.swift in Sources */,
 				CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */,

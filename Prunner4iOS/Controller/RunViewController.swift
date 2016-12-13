@@ -33,6 +33,9 @@ class RunViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    
+    // DoneModalのdelegateを実装
+    
     startTime = Date()
     placeClient = GMSPlacesClient()
     
@@ -50,7 +53,7 @@ class RunViewController: UIViewController {
   
   @IBAction func checkButtonTapped(_ sender: Any) {
     userState.setRunTime(start: startTime, end: Date())
-    //performSegue(withIdentifier: "DONE", sender: nil)
+    performSegue(withIdentifier: "DONE", sender: nil)
   }
   
   /*
@@ -62,5 +65,7 @@ class RunViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
+  
+  // MARK: back to setup
   
 }

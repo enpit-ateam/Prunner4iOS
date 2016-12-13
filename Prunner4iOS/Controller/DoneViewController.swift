@@ -12,7 +12,7 @@ class DoneViewController: UIViewController {
   
   let userState = UserState.sharedInstance
   
-  @IBOutlet weak var runTimeLabel: UILabel!
+  //@IBOutlet weak var runTimeLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,7 +22,7 @@ class DoneViewController: UIViewController {
     // run sceneに戻ってほしくないのでNavigation Backを消す
     self.navigationItem.hidesBackButton = true
 
-    runTimeLabel.text = userState.putRunTimeResult()
+    //runTimeLabel.text = userState.putRunTimeResult()
   }
   
   override func didReceiveMemoryWarning() {
@@ -38,10 +38,7 @@ class DoneViewController: UIViewController {
               time: userState.runTime))
     performSegue(withIdentifier: "TOP", sender: nil)
   }
-  
-  @IBAction func returnButtonTapped(_ sender: Any) {
-    performSegue(withIdentifier: "TOP", sender: nil)
-  }
+
   
   /*
    // MARK: - Navigation

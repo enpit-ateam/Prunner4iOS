@@ -8,7 +8,13 @@
 
 import UIKit
 
+@objc protocol ModalViewDelegate {
+  @objc optional func didSwiped()
+}
+
 class DoneModalViewController: UIViewController {
+  
+  weak var delegate: ModalViewDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,7 +36,8 @@ class DoneModalViewController: UIViewController {
   }
   
   @IBAction func LeftSwipe(_ sender: Any) {
-    performSegue(withIdentifier: "DONE", sender: nil)
+    self.delegate?.didSwiped?()
+    dismiss(animated: true, completion: nil)
   }
   
   /*

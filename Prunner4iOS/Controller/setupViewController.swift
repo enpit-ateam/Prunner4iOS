@@ -69,6 +69,12 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
     drawMapView()
   }
   
+  // MARK: Back to TOP
+  @IBAction func backButtonTapped(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
+  }
+  
+  
   func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
     // Markerのドラッグ開始時に呼ばれる
     // Marker.isDraggable = falseのマーカーは呼ばれない
@@ -232,5 +238,8 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
    // Pass the selected object to the new view controller.
    }
    */
+  
+  @IBAction func backToSetup(_ segue: UIStoryboardSegue) {}
+
   
 }
