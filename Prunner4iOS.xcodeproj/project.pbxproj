@@ -25,6 +25,8 @@
 		45451D901E00149E00143A39 /* CustomCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D8F1E00149E00143A39 /* CustomCircleView.swift */; };
 		45451D931E003B1E00143A39 /* DoneModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D921E003B1E00143A39 /* DoneModalView.xib */; };
 		45451D971E003BBF00143A39 /* DoneModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D961E003BBF00143A39 /* DoneModalView.swift */; };
+		45451D9A1E00536200143A39 /* ResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D991E00536200143A39 /* ResultView.xib */; };
+		45451D9C1E0059C300143A39 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D9B1E0059C300143A39 /* ResultView.swift */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -99,6 +101,8 @@
 		45451D8F1E00149E00143A39 /* CustomCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCircleView.swift; path = Views/Components/View/CustomCircleView.swift; sourceTree = "<group>"; };
 		45451D921E003B1E00143A39 /* DoneModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DoneModalView.xib; path = Views/DoneModal/DoneModalView.xib; sourceTree = "<group>"; };
 		45451D961E003BBF00143A39 /* DoneModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneModalView.swift; path = Views/DoneModal/DoneModalView.swift; sourceTree = "<group>"; };
+		45451D991E00536200143A39 /* ResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResultView.xib; path = Views/ResultView/ResultView.xib; sourceTree = "<group>"; };
+		45451D9B1E0059C300143A39 /* ResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultView.swift; path = Views/ResultView/ResultView.swift; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,15 @@
 				45451D961E003BBF00143A39 /* DoneModalView.swift */,
 			);
 			name = DoneModal;
+			sourceTree = "<group>";
+		};
+		45451D981E00533D00143A39 /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				45451D991E00536200143A39 /* ResultView.xib */,
+				45451D9B1E0059C300143A39 /* ResultView.swift */,
+			);
+			name = ResultView;
 			sourceTree = "<group>";
 		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
@@ -412,6 +425,7 @@
 				4578F5931DF1790100F433E3 /* Components */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 				45451D911E003AEB00143A39 /* DoneModal */,
+				45451D981E00533D00143A39 /* ResultView */,
 				45451D821DFFB98600143A39 /* TabView */,
 			);
 			name = Views;
@@ -590,6 +604,7 @@
 				45451D391DF6A25600143A39 /* HistoryScene.storyboard in Resources */,
 				45451D331DF695B300143A39 /* DoneScene.storyboard in Resources */,
 				9BCBFF7C1DC8098B0039679A /* GoogleMaps.plist in Resources */,
+				45451D9A1E00536200143A39 /* ResultView.xib in Resources */,
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
 				45451D7F1DFEF4A100143A39 /* History.storyboard in Resources */,
@@ -762,6 +777,7 @@
 				CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */,
 				45451D1C1DF571EE00143A39 /* CustomButton.swift in Sources */,
 				CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */,
+				45451D9C1E0059C300143A39 /* ResultView.swift in Sources */,
 				45451D901E00149E00143A39 /* CustomCircleView.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
 				4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */,

@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import CoreFoundation
+import GoogleMaps
+import GooglePlacePicker
+import CoreLocation
 
 class DoneViewController: UIViewController {
   
   let userState = UserState.sharedInstance
+  let mapState = MapState.sharedInstance
   
-  //@IBOutlet weak var runTimeLabel: UILabel!
+  @IBOutlet weak var mapView: PrunnerMapView!
+  @IBOutlet weak var resultView: ResultView!
+  
+  // GoogleMap
+  var placePicker: GMSPlacePicker?
+  var placeClient: GMSPlacesClient?
+  var startMarker: GMSMarker!
+  var endMarker: GMSMarker!
+  var polyline: GMSPolyline!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,7 +35,11 @@ class DoneViewController: UIViewController {
     // run sceneに戻ってほしくないのでNavigation Backを消す
     self.navigationItem.hidesBackButton = true
 
-    //runTimeLabel.text = userState.putRunTimeResult()
+    // マップの描画
+    mapView.camera = mapState.camera!
+    GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: userState.current!)
+    GMSUtil.setEndMarker(&endMarker, mapView: mapView, withDistination: mapState.distination!)
+    GMSUtil.setPolyline(&polyline, mapView: mapView, route: userState.route!)
   }
   
   override func didReceiveMemoryWarning() {
