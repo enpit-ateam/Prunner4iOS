@@ -29,10 +29,21 @@ class UserState {
   public func setDistance(text: String?) {
     if text == nil {
       return
-    } else if Int(text!) == nil {
+    } else if !isNumber(str: text!) {
       return
     }
-    distance = NSString(string: text!).doubleValue
+    var _dist = NSString(string: text!).doubleValue
+    if _dist < 100 {
+      // kmであると考えて * 1000する
+      _dist = _dist * 1000
+    }
+    distance = _dist
+  }
+  
+  private func isNumber(str: String) -> Bool {
+    let regex = try! NSRegularExpression(pattern: "^[0-9]+[.]?[0-9]*$", options: NSRegularExpression.Options())
+    let matches = regex.numberOfMatches(in: str, options: [], range: NSMakeRange(0, str.characters.count))
+    return matches > 0
   }
   
   public func calcRunTime() -> Int? {
