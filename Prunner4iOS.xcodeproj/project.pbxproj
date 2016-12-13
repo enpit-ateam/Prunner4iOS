@@ -21,6 +21,8 @@
 		45451D811DFEF4E200143A39 /* Run.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D801DFEF4E200143A39 /* Run.storyboard */; };
 		45451D841DFFBA6000143A39 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D831DFFBA6000143A39 /* TabView.swift */; };
 		45451D861DFFBA7700143A39 /* TabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D851DFFBA7700143A39 /* TabView.xib */; };
+		45451D8D1E00130000143A39 /* DoneModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D8C1E00130000143A39 /* DoneModalViewController.swift */; };
+		45451D901E00149E00143A39 /* CustomCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D8F1E00149E00143A39 /* CustomCircleView.swift */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -91,6 +93,8 @@
 		45451D801DFEF4E200143A39 /* Run.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Run.storyboard; path = StoryBoards/Run.storyboard; sourceTree = "<group>"; };
 		45451D831DFFBA6000143A39 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabView.swift; path = Views/TabView/TabView.swift; sourceTree = "<group>"; };
 		45451D851DFFBA7700143A39 /* TabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabView.xib; path = Views/TabView/TabView.xib; sourceTree = "<group>"; };
+		45451D8C1E00130000143A39 /* DoneModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneModalViewController.swift; path = Controller/DoneModalViewController.swift; sourceTree = "<group>"; };
+		45451D8F1E00149E00143A39 /* CustomCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCircleView.swift; path = Views/Components/View/CustomCircleView.swift; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,14 @@
 			name = TabView;
 			sourceTree = "<group>";
 		};
+		45451D8E1E00146F00143A39 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45451D8F1E00149E00143A39 /* CustomCircleView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		4578F58A1DF13BAE00F433E3 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +239,7 @@
 		4578F5931DF1790100F433E3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				45451D8E1E00146F00143A39 /* View */,
 				45451D1A1DF571D300143A39 /* Button */,
 			);
 			name = Components;
@@ -374,6 +387,7 @@
 				4578F5761DEBE6AF00F433E3 /* TopViewController.swift */,
 				CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */,
 				CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */,
+				45451D8C1E00130000143A39 /* DoneModalViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -733,12 +747,14 @@
 				CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */,
 				45451D1C1DF571EE00143A39 /* CustomButton.swift in Sources */,
 				CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */,
+				45451D901E00149E00143A39 /* CustomCircleView.swift in Sources */,
 				9B12B1371DDC3ABA00E7977F /* Geometry.swift in Sources */,
 				4578F58C1DF13BCB00F433E3 /* MapState.swift in Sources */,
 				4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */,
 				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
 				9B12B1351DDC3A0200E7977F /* Place.swift in Sources */,
+				45451D8D1E00130000143A39 /* DoneModalViewController.swift in Sources */,
 				CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */,
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
