@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FsN-da-lNa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WY9-y6-spw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWl-Ug-f8H">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="554" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
@@ -30,22 +30,41 @@
                                     <tabBarItem tag="2" title="History" image="BookNormal.png" selectedImage="BookSelected.png" id="cI6-bk-vni"/>
                                 </items>
                             </tabBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvC-xF-ToC">
-                                <rect key="frame" x="100" y="226" width="174" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulx-fg-vfF">
-                                <rect key="frame" x="164" y="411" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiu-NP-Wjh">
+                                <rect key="frame" x="147" y="281.5" width="80" height="80"/>
+                                <state key="normal" image="StartButton"/>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zDf-SP-QNG">
+                                <rect key="frame" x="67.5" y="166.5" width="240.5" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvC-xF-ToC">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="dxU-RL-qjW"/>
+                                            <constraint firstAttribute="height" constant="30" id="lQ9-o6-yxX"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XP9-fc-T7T">
+                                        <rect key="frame" x="210" y="0.0" width="30.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xiu-NP-Wjh" firstAttribute="centerY" secondItem="WY9-y6-spw" secondAttribute="centerY" constant="20" id="CY1-5q-Pnk"/>
+                            <constraint firstItem="zDf-SP-QNG" firstAttribute="centerX" secondItem="WY9-y6-spw" secondAttribute="centerX" id="QLl-xD-zC1"/>
+                            <constraint firstItem="xiu-NP-Wjh" firstAttribute="centerX" secondItem="WY9-y6-spw" secondAttribute="centerX" id="isi-vw-mPG"/>
+                            <constraint firstItem="zDf-SP-QNG" firstAttribute="centerY" secondItem="WY9-y6-spw" secondAttribute="centerY" constant="-120" id="pjJ-wT-5Aq"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tNZ-do-XjJ"/>
+                    <navigationItem key="navigationItem" title="Prunner" id="tNZ-do-XjJ"/>
                     <connections>
                         <outlet property="inputDistanceTextField" destination="gvC-xF-ToC" id="Mp2-8L-31G"/>
                         <segue destination="dMv-Db-fdN" kind="show" identifier="SETUP" id="1Rw-Ft-g9X">
@@ -55,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXu-pm-Nne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="-477"/>
+            <point key="canvasLocation" x="384.80000000000001" y="-477.21139430284859"/>
         </scene>
         <!--SETUP-->
         <scene sceneID="rR2-zY-Tli">
@@ -66,7 +85,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9Uu-Bc-jKL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ogd-r9-Iz8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -89,7 +108,7 @@
                         <viewControllerLayoutGuide type="bottom" id="q8f-4F-Eft"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NAx-BH-Q4C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -112,7 +131,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zBf-Iq-DBJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fcI-Dp-8jZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -128,9 +147,15 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Run" image="RunnerNormal" selectedImage="RunnerSelected" id="tuH-pW-wj8"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1ik-3q-i2B">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="1ik-3q-i2B" propertyAccessControl="localizable">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -149,5 +174,6 @@
         <image name="RunnerNormal.png" width="30" height="30"/>
         <image name="RunnerSelected" width="30" height="30"/>
         <image name="RunnerSelected.png" width="30" height="30"/>
+        <image name="StartButton" width="80" height="80"/>
     </resources>
 </document>
