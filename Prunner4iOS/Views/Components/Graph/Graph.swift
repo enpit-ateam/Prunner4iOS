@@ -27,6 +27,10 @@ import UIKit
   var tappedPoint:CGPoint? = nil
   var texts:[UILabel] = []
   
+  var baseLineColor:UIColor = UIColor(red:163/255, green: 170/255, blue:176/255, alpha: 1)
+  var lineColor:UIColor = UIColor(red:44/255, green:230/255, blue:205/255, alpha: 1)
+  var selectedPointColor:UIColor = UIColor(red:251/255, green:148/255, blue:104/255, alpha: 1)
+  
   override required init(frame: CGRect) {
     super.init(frame: frame)
     self.backgroundColor = UIColor(red:0.972,  green:0.973,  blue:0.972, alpha:1)
@@ -55,8 +59,9 @@ import UIKit
   override func draw(_ rect: CGRect) {
     let alpha:CGFloat = 1.0
     self.texts.forEach {
-      $0.isUserInteractionEnabled = false
+      $0.text = ""
     }
+    self.texts = []
 
     //以降グラフを書くので描画範囲の設定
     let rect_ = CGRect(
@@ -70,19 +75,20 @@ import UIKit
     
     //ToDo ラベルの設定
     for h in 0..<6 {
-      let label = UILabel(frame: CGRect(x: 0, y: rect_.height / CGFloat(6) * CGFloat(6 - h), width: 30, height: 10))
+      let label = UILabel(frame: CGRect(x: 0, y: rect_.height / CGFloat(6) * CGFloat(6 - h), width: 28, height: 10))
       label.font = UIFont.systemFont(ofSize: CGFloat(8))
       let label_value:String = String(format:"%.0f", CGFloat(h) * yLabel.max()! / CGFloat(6))
       label.text = label_value
-      label.textAlignment = NSTextAlignment.center
+      label.textAlignment = NSTextAlignment.right
       self.addSubview(label)
       texts.append(label)
       //CGContextShowTextAtPoint(c: self, x: 0, y:rect_.height / 6 * (6 - h), string: (h * yLabel.max() / CGFloat(6)), 2)
     }
     
     //基軸を書く
+    baseLineColor.setStroke()
     let baseLine = UIBezierPath()
-    baseLine.lineWidth = 2.0
+    baseLine.lineWidth = 1.0
     baseLine.move(to: CGPoint(x: rect_.minX, y: rect_.maxY))
     baseLine.addLine(to: CGPoint(x: rect_.minX, y: rect_.minY))
     baseLine.stroke()
@@ -149,8 +155,9 @@ import UIKit
     }
     
     //draw Graph
+    lineColor.setStroke()
     let line = UIBezierPath()
-    line.lineWidth = 3.0
+    line.lineWidth = 1.0
     line.move(to: graph[0])
     drawSquare(center: graph[0], size:5)
     for index in 1..<graph.count {
@@ -162,7 +169,7 @@ import UIKit
     line.stroke()
     if tappedPoint != nil{
       let nearPoint = solveNearestPoint(selectedPoint: tappedPoint!, points:graph)
-      drawSelectedPoint(center: nearPoint, size: 4)
+      drawSelectedPoint(center: nearPoint, size: 3)
     }
   }
   
@@ -173,6 +180,8 @@ import UIKit
   }
   
   private func drawSquare(center: CGPoint, size:CGFloat) {
+    lineColor.setStroke()
+    lineColor.setFill()
     let square:UIBezierPath =
       UIBezierPath(
         roundedRect: CGRect(x:center.x - size / 2, y:center.y - size / 2, width:size, height:size),
@@ -183,9 +192,8 @@ import UIKit
   }
   
   private func drawSelectedPoint(center: CGPoint, size: CGFloat) {
-    let strokeColor = UIColor.orange
-    strokeColor.setStroke()
-    strokeColor.setFill()
+    selectedPointColor.setStroke()
+    selectedPointColor.setFill()
 
     let circle1:UIBezierPath =
       UIBezierPath(
@@ -201,7 +209,7 @@ import UIKit
     let circle2:UIBezierPath =
       UIBezierPath(
         arcCenter: center,
-        radius: size + 2,
+        radius: size + 3,
         startAngle: CGFloat(0),
         endAngle: CGFloat(M_PI * 2),
         clockwise: true
