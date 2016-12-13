@@ -17,9 +17,6 @@ class RunViewController: UIViewController {
   let userState = UserState.sharedInstance
   let mapState = MapState.sharedInstance
   
-  // 時間測定用
-  var startTime: Date?
-  
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
@@ -35,8 +32,7 @@ class RunViewController: UIViewController {
     // Do any additional setup after loading the view.
     
     // DoneModalのdelegateを実装
-    
-    startTime = Date()
+    userState.startDate = Date()
     placeClient = GMSPlacesClient()
     
     // マップの描画
@@ -52,7 +48,7 @@ class RunViewController: UIViewController {
   }
   
   @IBAction func checkButtonTapped(_ sender: Any) {
-    userState.setRunTime(start: startTime, end: Date())
+    userState.endDate = Date()
     performSegue(withIdentifier: "DONEMODAL", sender: nil)
   }
   

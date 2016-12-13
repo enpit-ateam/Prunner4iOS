@@ -40,6 +40,9 @@ class DoneViewController: UIViewController {
     GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: userState.current!)
     GMSUtil.setEndMarker(&endMarker, mapView: mapView, withDistination: mapState.distination!)
     GMSUtil.setPolyline(&polyline, mapView: mapView, route: userState.route!)
+    
+    // ResultViewの描画
+    drawResultViewLabel()
   }
   
   override func didReceiveMemoryWarning() {
@@ -48,14 +51,41 @@ class DoneViewController: UIViewController {
   }
 
   @IBAction func recordButtonTapped(_ sender: Any) {
-    HistoryService.addHistories(history:
-      History(date: Date(),
-              route: userState.route,
-              distance: userState.distance,
-              time: userState.runTime))
+//    HistoryService.addHistories(history:
+//      History(date: Date(),
+//              route: userState.route,
+//              distance: userState.distance,
+//              time: userState.runTime))
     performSegue(withIdentifier: "TOP", sender: nil)
   }
 
+  private func drawResultViewLabel() {
+    if let result = resultView {
+      let distance: Double = mapState.calcDirectionDistance() / 1000.0
+      let time: Double = Double(userState.calcRunTime()!) / 3600.0
+      let pace: Double = distance / time
+      let startCal = getDateComponents(from: userState.startDate!)
+      let endCal = getDateComponents(from: userState.endDate!)
+      let comps = Calendar(identifier: .gregorian).dateComponents([.hour, .minute], from: startCal, to: endCal)
+      let mets: Double = 60.0 * distance
+      result.DateLabel.text = getText(from: startCal) + " ~ " + getText(from: endCal)
+      result.DistanceLabel.text = String(format: "%.3f", distance)
+      result.TimesLabel.text = String(format: "%d:%2d", comps.hour!, comps.minute!)
+      result.CalorieLabel.text = String(format: "%.0f", mets)
+      result.PaceLabel.text = String(format: "%.1f", pace)
+      result.PlaceNameLabel.text = mapState.distination?.name
+    }
+  }
+  
+  private func getText(from comp: DateComponents) -> String {
+    return String(format: "%2d/%2d %2d:%2d", comp.month!, comp.day!, comp.hour!, comp.minute!)
+  }
+  
+  public func getDateComponents(from date: Date) -> DateComponents {
+    let cal = Calendar(identifier: .gregorian)
+    let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
+    return comps
+  }
   
   /*
    // MARK: - Navigation

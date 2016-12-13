@@ -20,6 +20,14 @@ class ResultView: UIView {
   
   private var v: UIView?
   
+  // Labels
+  @IBOutlet weak var DateLabel: UILabel!
+  @IBOutlet weak var DistanceLabel: UILabel!
+  @IBOutlet weak var TimesLabel: UILabel!
+  @IBOutlet weak var CalorieLabel: UILabel!
+  @IBOutlet weak var PaceLabel: UILabel!
+  @IBOutlet weak var PlaceNameLabel: UILabel!
+  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     

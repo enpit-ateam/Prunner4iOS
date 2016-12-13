@@ -12,7 +12,8 @@ import CoreLocation
 class UserState {
   public var current: Location?
   public var distance: Double?
-  public var runTime: Int?
+  public var startDate: Date?
+  public var endDate: Date?
   public var route: Route?
   
   public func isReady() -> Bool {
@@ -34,20 +35,18 @@ class UserState {
     distance = NSString(string: text!).doubleValue
   }
   
-  public func setRunTime(start: Date?, end: Date?) {
-    if let st = start, let en = end {
-      runTime = Int(en.timeIntervalSince(st))
+  public func calcRunTime() -> Int? {
+    if let st = self.startDate, let en = self.endDate {
+      return Int(en.timeIntervalSince(st))
     }
+    return nil
   }
-  
-  public func putRunTimeResult() -> String {
-    return String(runTime!)
-  }
-  
+
   public func initialize() {
     // self.current do not reset!!
     distance = nil
-    runTime = nil
+    startDate = nil
+    endDate = nil
     route = nil
   }
 
