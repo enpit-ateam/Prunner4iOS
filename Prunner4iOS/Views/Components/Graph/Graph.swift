@@ -87,8 +87,8 @@ protocol UIGraphViewDelegate {
     let yInterval:CGFloat = rect_.width / CGFloat(yLabel.count + 1) //縦軸6本と基軸 y軸の間隔
     
     //ToDo ラベルの設定
-    for h in 0..<6 {
-      let label = UILabel(frame: CGRect(x: 0, y: rect_.height / CGFloat(6) * CGFloat(6 - h), width: 28, height: 10))
+    for h in 0...6 {
+      let label = UILabel(frame: CGRect(x: 0, y: rect_.height - rect_.height * CGFloat(h) / CGFloat(6) + rect_.minY - 5, width: 28, height: 10))
       label.font = UIFont.systemFont(ofSize: CGFloat(8))
       let label_value:String = String(format:"%.0f", CGFloat(h) * yLabel.max()! / CGFloat(6))
       label.text = label_value
