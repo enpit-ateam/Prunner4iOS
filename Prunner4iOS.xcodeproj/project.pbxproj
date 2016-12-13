@@ -27,6 +27,7 @@
 		45451D971E003BBF00143A39 /* DoneModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D961E003BBF00143A39 /* DoneModalView.swift */; };
 		45451D9A1E00536200143A39 /* ResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45451D991E00536200143A39 /* ResultView.xib */; };
 		45451D9C1E0059C300143A39 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D9B1E0059C300143A39 /* ResultView.swift */; };
+		45451D9E1E006CEC00143A39 /* CancelModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D9D1E006CEC00143A39 /* CancelModalViewController.swift */; };
 		4578F5771DEBE6AF00F433E3 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5761DEBE6AF00F433E3 /* TopViewController.swift */; };
 		4578F5831DED967F00F433E3 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5801DED967F00F433E3 /* DoneViewController.swift */; };
 		4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578F5811DED967F00F433E3 /* RunViewController.swift */; };
@@ -103,6 +104,7 @@
 		45451D961E003BBF00143A39 /* DoneModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneModalView.swift; path = Views/DoneModal/DoneModalView.swift; sourceTree = "<group>"; };
 		45451D991E00536200143A39 /* ResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResultView.xib; path = Views/ResultView/ResultView.xib; sourceTree = "<group>"; };
 		45451D9B1E0059C300143A39 /* ResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultView.swift; path = Views/ResultView/ResultView.swift; sourceTree = "<group>"; };
+		45451D9D1E006CEC00143A39 /* CancelModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CancelModalViewController.swift; path = Controller/CancelModalViewController.swift; sourceTree = "<group>"; };
 		4578F5761DEBE6AF00F433E3 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = Controller/TopViewController.swift; sourceTree = "<group>"; };
 		4578F5801DED967F00F433E3 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoneViewController.swift; path = Controller/DoneViewController.swift; sourceTree = "<group>"; };
 		4578F5811DED967F00F433E3 /* RunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RunViewController.swift; path = Controller/RunViewController.swift; sourceTree = "<group>"; };
@@ -792,6 +794,7 @@
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
 				4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
+				45451D9E1E006CEC00143A39 /* CancelModalViewController.swift in Sources */,
 				45451D151DF54DC300143A39 /* GMSUtil.swift in Sources */,
 				45451D841DFFBA6000143A39 /* TabView.swift in Sources */,
 				45451D971E003BBF00143A39 /* DoneModalView.swift in Sources */,

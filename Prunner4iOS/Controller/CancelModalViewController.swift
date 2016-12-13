@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoneModalViewController: UIViewController {
+class CancelModalViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,11 +26,6 @@ class DoneModalViewController: UIViewController {
   }
   
   @IBAction func cancelButtonTapped(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
-  }
-  
-  @IBAction func rightSwaiped(_ sender: Any) {
-    performSegue(withIdentifier: "DONE", sender: nil)
     dismiss(animated: true, completion: nil)
   }
   

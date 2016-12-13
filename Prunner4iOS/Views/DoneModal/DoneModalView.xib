@@ -11,118 +11,108 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DoneModalView" customModule="Prunner4iOS" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <visualEffectView opaque="NO" contentMode="scaleToFill" id="fU0-zK-gx3">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VzV-1o-gHy">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgX-NT-jC3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <connections>
-                            <action selector="dismissButtonTapped:" destination="-1" eventType="touchUpInside" id="PI7-5C-4pQ"/>
-                        </connections>
-                    </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu0-oH-AOn" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
-                        <rect key="frame" x="67" y="234" width="240" height="200"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnc-RJ-UlH">
-                                <rect key="frame" x="96" y="20" width="49" height="20"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
-                                <color key="textColor" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キャンセル" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY8-aw-56A">
-                                <rect key="frame" x="70" y="164" width="100" height="20"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
-                                <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3B-j0-qlO" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55" width="240" height="90"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DoneModal" translatesAutoresizingMaskIntoConstraints="NO" id="HCl-HR-ERL">
-                                        <rect key="frame" x="20" y="10" width="200" height="70"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="8hY-eO-n2y"/>
-                                            <constraint firstAttribute="height" constant="70" id="w6U-nL-eXd"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="Puh-de-U0u"/>
-                                    <constraint firstItem="HCl-HR-ERL" firstAttribute="centerX" secondItem="a3B-j0-qlO" secondAttribute="centerX" id="UJi-eM-hai"/>
-                                    <constraint firstItem="HCl-HR-ERL" firstAttribute="centerY" secondItem="a3B-j0-qlO" secondAttribute="centerY" id="aNG-lb-hRY"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="aXb-lN-SZ1" appends="YES" id="iVz-Tf-Zhm"/>
-                                </connections>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1j-nK-OgR" userLabel="Cancel Button">
-                                <rect key="frame" x="0.0" y="155" width="240" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="EMY-xT-SPI"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="CancelButtonTapped:" destination="-1" eventType="touchUpInside" id="ikx-KV-hgP"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="a3B-j0-qlO" firstAttribute="centerY" secondItem="bu0-oH-AOn" secondAttribute="centerY" id="04o-cO-HfH"/>
-                            <constraint firstAttribute="height" constant="200" id="8BL-3G-7Af"/>
-                            <constraint firstAttribute="width" constant="240" id="ND4-e8-0o3"/>
-                            <constraint firstAttribute="trailing" secondItem="a3B-j0-qlO" secondAttribute="trailing" id="Sk9-MS-Hja"/>
-                            <constraint firstItem="Hnc-RJ-UlH" firstAttribute="centerX" secondItem="bu0-oH-AOn" secondAttribute="centerX" id="UIp-cy-hPW"/>
-                            <constraint firstAttribute="trailing" secondItem="K1j-nK-OgR" secondAttribute="trailing" id="Uhg-wb-9yj"/>
-                            <constraint firstItem="Hnc-RJ-UlH" firstAttribute="top" secondItem="bu0-oH-AOn" secondAttribute="top" constant="20" id="Xfn-Ek-KZA"/>
-                            <constraint firstAttribute="bottom" secondItem="gY8-aw-56A" secondAttribute="bottom" constant="16" id="Z3j-St-Mj2"/>
-                            <constraint firstItem="gY8-aw-56A" firstAttribute="centerX" secondItem="bu0-oH-AOn" secondAttribute="centerX" id="ckL-oT-J0t"/>
-                            <constraint firstAttribute="bottom" secondItem="K1j-nK-OgR" secondAttribute="bottom" id="t8x-OV-FUh"/>
-                            <constraint firstItem="a3B-j0-qlO" firstAttribute="leading" secondItem="bu0-oH-AOn" secondAttribute="leading" id="txY-j2-ydr"/>
-                            <constraint firstItem="K1j-nK-OgR" firstAttribute="leading" secondItem="bu0-oH-AOn" secondAttribute="leading" id="vV6-BA-Qrq"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="bu0-oH-AOn" firstAttribute="centerX" secondItem="VzV-1o-gHy" secondAttribute="centerX" id="FGS-4K-MHD"/>
-                    <constraint firstItem="bu0-oH-AOn" firstAttribute="centerY" secondItem="VzV-1o-gHy" secondAttribute="centerY" id="rHW-DB-Bwa"/>
-                </constraints>
-            </view>
-            <blurEffect style="light"/>
-        </visualEffectView>
         <swipeGestureRecognizer direction="right" id="aXb-lN-SZ1">
             <connections>
                 <action selector="didSwiped:" destination="-1" id="auS-u1-z35"/>
             </connections>
         </swipeGestureRecognizer>
+        <view contentMode="scaleToFill" id="bZC-dN-ehf">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bu0-oH-AOn" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
+                    <rect key="frame" x="67.5" y="233.5" width="240" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnc-RJ-UlH">
+                            <rect key="frame" x="96" y="20" width="49" height="20"/>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                            <color key="textColor" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キャンセル" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY8-aw-56A">
+                            <rect key="frame" x="70" y="164" width="100" height="20"/>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="20"/>
+                            <color key="textColor" red="0.51764705879999995" green="0.51764705879999995" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3B-j0-qlO" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="55" width="240" height="90"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DoneModal" translatesAutoresizingMaskIntoConstraints="NO" id="HCl-HR-ERL">
+                                    <rect key="frame" x="20" y="10" width="200" height="70"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="8hY-eO-n2y"/>
+                                        <constraint firstAttribute="height" constant="70" id="w6U-nL-eXd"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="Puh-de-U0u"/>
+                                <constraint firstItem="HCl-HR-ERL" firstAttribute="centerX" secondItem="a3B-j0-qlO" secondAttribute="centerX" id="UJi-eM-hai"/>
+                                <constraint firstItem="HCl-HR-ERL" firstAttribute="centerY" secondItem="a3B-j0-qlO" secondAttribute="centerY" id="aNG-lb-hRY"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="aXb-lN-SZ1" appends="YES" id="iVz-Tf-Zhm"/>
+                            </connections>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1j-nK-OgR" userLabel="Cancel Button">
+                            <rect key="frame" x="0.0" y="155" width="240" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="EMY-xT-SPI"/>
+                            </constraints>
+                            <connections>
+                                <action selector="CancelButtonTapped:" destination="-1" eventType="touchUpInside" id="ikx-KV-hgP"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="a3B-j0-qlO" firstAttribute="centerY" secondItem="bu0-oH-AOn" secondAttribute="centerY" id="04o-cO-HfH"/>
+                        <constraint firstAttribute="height" constant="200" id="8BL-3G-7Af"/>
+                        <constraint firstAttribute="width" constant="240" id="ND4-e8-0o3"/>
+                        <constraint firstAttribute="trailing" secondItem="a3B-j0-qlO" secondAttribute="trailing" id="Sk9-MS-Hja"/>
+                        <constraint firstItem="Hnc-RJ-UlH" firstAttribute="centerX" secondItem="bu0-oH-AOn" secondAttribute="centerX" id="UIp-cy-hPW"/>
+                        <constraint firstAttribute="trailing" secondItem="K1j-nK-OgR" secondAttribute="trailing" id="Uhg-wb-9yj"/>
+                        <constraint firstItem="Hnc-RJ-UlH" firstAttribute="top" secondItem="bu0-oH-AOn" secondAttribute="top" constant="20" id="Xfn-Ek-KZA"/>
+                        <constraint firstAttribute="bottom" secondItem="gY8-aw-56A" secondAttribute="bottom" constant="16" id="Z3j-St-Mj2"/>
+                        <constraint firstItem="gY8-aw-56A" firstAttribute="centerX" secondItem="bu0-oH-AOn" secondAttribute="centerX" id="ckL-oT-J0t"/>
+                        <constraint firstAttribute="bottom" secondItem="K1j-nK-OgR" secondAttribute="bottom" id="t8x-OV-FUh"/>
+                        <constraint firstItem="a3B-j0-qlO" firstAttribute="leading" secondItem="bu0-oH-AOn" secondAttribute="leading" id="txY-j2-ydr"/>
+                        <constraint firstItem="K1j-nK-OgR" firstAttribute="leading" secondItem="bu0-oH-AOn" secondAttribute="leading" id="vV6-BA-Qrq"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="0.42745098040000001" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bu0-oH-AOn" firstAttribute="centerY" secondItem="bZC-dN-ehf" secondAttribute="centerY" id="D4q-4V-JWY"/>
+                <constraint firstItem="bu0-oH-AOn" firstAttribute="centerX" secondItem="bZC-dN-ehf" secondAttribute="centerX" id="pWr-75-Iu0"/>
+            </constraints>
+            <point key="canvasLocation" x="25" y="1"/>
+        </view>
     </objects>
     <resources>
         <image name="DoneModal" width="280" height="101"/>

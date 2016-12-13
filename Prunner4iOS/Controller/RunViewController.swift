@@ -53,7 +53,7 @@ class RunViewController: UIViewController {
   
   @IBAction func checkButtonTapped(_ sender: Any) {
     userState.setRunTime(start: startTime, end: Date())
-    performSegue(withIdentifier: "DONE", sender: nil)
+    performSegue(withIdentifier: "DONEMODAL", sender: nil)
   }
   
   /*
