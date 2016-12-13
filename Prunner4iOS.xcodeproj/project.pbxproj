@@ -416,6 +416,7 @@
 				CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */,
 				CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */,
 				45451D8C1E00130000143A39 /* DoneModalViewController.swift */,
+				45451D9D1E006CEC00143A39 /* CancelModalViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
