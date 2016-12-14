@@ -275,8 +275,8 @@
 		4578F5931DF1790100F433E3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				CE3C4D7F1DFEFE860012BB9D /* Graph */,
 				45451D8E1E00146F00143A39 /* View */,
+				CE3C4D7F1DFEFE860012BB9D /* Graph */,
 				45451D1A1DF571D300143A39 /* Button */,
 			);
 			name = Components;

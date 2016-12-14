@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,79 +17,28 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7zK-pz-yJ7" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
-                    <rect key="frame" x="125" y="0.0" width="125" height="80"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-4n-3cW" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="101" height="80"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2:20分" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yF9-4J-Enq" userLabel="calorie">
-                            <rect key="frame" x="31" y="15" width="74" height="23"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="23"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="km/h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyU-Oa-ltG">
-                            <rect key="frame" x="81" y="56" width="41" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlO-nA-fki" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
-                    <rect key="frame" x="250" y="0.0" width="125" height="80"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urd-8o-bcv">
-                            <rect key="frame" x="72" y="52" width="31" height="20"/>
-                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2j-oF-4JE" userLabel="time">
-                            <rect key="frame" x="17" y="25" width="47" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDj-nG-IOr" userLabel="distance">
+                            <rect key="frame" x="8" y="8" width="41" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="gDj-nG-IOr" secondAttribute="height" multiplier="41:31" id="Shg-yc-DIR"/>
+                                <constraint firstAttribute="height" constant="31" id="oal-Hw-fmr"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="30"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="d2j-oF-4JE" secondAttribute="trailing" constant="61" id="7eK-gp-xwR"/>
-                        <constraint firstItem="d2j-oF-4JE" firstAttribute="centerY" secondItem="nlO-nA-fki" secondAttribute="centerY" id="Aoh-fE-8bp"/>
-                        <constraint firstItem="urd-8o-bcv" firstAttribute="bottom" secondItem="nlO-nA-fki" secondAttribute="bottomMargin" id="CzF-zB-9OF"/>
-                        <constraint firstItem="urd-8o-bcv" firstAttribute="leading" secondItem="d2j-oF-4JE" secondAttribute="trailing" constant="8" symbolic="YES" id="VDN-3c-q6K"/>
-                        <constraint firstItem="d2j-oF-4JE" firstAttribute="top" secondItem="nlO-nA-fki" secondAttribute="top" constant="25" id="bHw-xa-EIt"/>
-                        <constraint firstItem="d2j-oF-4JE" firstAttribute="leading" secondItem="nlO-nA-fki" secondAttribute="leading" constant="17" id="qJQ-wG-YYl"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfe-4n-3cW" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="125" height="80"/>
-                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGt-J0-3Bp">
+                            <rect key="frame" x="57" y="19" width="18" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:16" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eI7-Pt-LJd">
-                            <rect key="frame" x="57" y="57" width="58" height="20"/>
+                            <rect key="frame" x="35" y="37" width="57.666666666666671" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="4X7-IR-7zZ"/>
                             </constraints>
@@ -96,20 +46,14 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13日" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDj-nG-IOr" userLabel="distance">
-                            <rect key="frame" x="8" y="19" width="82" height="30"/>
-                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="30"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.90884095430374146" green="0.97052758932113647" blue="0.99475747346878052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="eI7-Pt-LJd" secondAttribute="bottom" constant="3" id="Kf5-X2-KL2"/>
-                        <constraint firstItem="eI7-Pt-LJd" firstAttribute="leading" secondItem="zfe-4n-3cW" secondAttribute="leading" constant="57" id="Oqj-bv-jH7"/>
+                        <constraint firstAttribute="bottom" secondItem="eI7-Pt-LJd" secondAttribute="bottom" constant="13" id="Kf5-X2-KL2"/>
+                        <constraint firstItem="eI7-Pt-LJd" firstAttribute="leading" secondItem="zfe-4n-3cW" secondAttribute="leading" constant="35" id="Oqj-bv-jH7"/>
                         <constraint firstItem="gDj-nG-IOr" firstAttribute="leading" secondItem="zfe-4n-3cW" secondAttribute="leadingMargin" id="XrL-hb-BVn"/>
-                        <constraint firstItem="eI7-Pt-LJd" firstAttribute="top" secondItem="gDj-nG-IOr" secondAttribute="bottom" constant="8" symbolic="YES" id="bsh-S0-h7i"/>
-                        <constraint firstAttribute="trailing" secondItem="gDj-nG-IOr" secondAttribute="trailing" constant="35" id="cm1-Cc-gQt"/>
+                        <constraint firstItem="eI7-Pt-LJd" firstAttribute="top" secondItem="gDj-nG-IOr" secondAttribute="bottom" constant="-2" id="bsh-S0-h7i"/>
+                        <constraint firstAttribute="trailing" secondItem="gDj-nG-IOr" secondAttribute="trailing" constant="52" id="cm1-Cc-gQt"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -123,36 +67,127 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PP-yP-imq">
-                    <rect key="frame" x="162" y="50" width="45" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uvk-yB-Dgh" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
+                    <rect key="frame" x="109" y="0.0" width="183.66666666666666" height="80"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esx-OS-CoM">
+                            <rect key="frame" x="66" y="38" width="31" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="esx-OS-CoM" secondAttribute="height" multiplier="31:20" id="7pM-2v-CdY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hb9-Jg-vl6">
+                            <rect key="frame" x="124" y="52" width="86" height="20"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PP-yP-imq">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="7PP-yP-imq" secondAttribute="height" multiplier="9:4" id="182-6N-cXV"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km/h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyU-Oa-ltG">
+                                    <rect key="frame" x="45" y="0.0" width="41" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="RyU-Oa-ltG" secondAttribute="height" multiplier="41:20" id="ffF-hL-Lvp"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-pY-gwe" userLabel="time">
+                            <rect key="frame" x="0.0" y="18" width="64" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="ppO-pY-gwe" secondAttribute="height" multiplier="8:5" id="L1M-bM-H7g"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="40"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m9C-x1-atG">
+                            <rect key="frame" x="132" y="15" width="71" height="23"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yF9-4J-Enq" userLabel="calorie">
+                                    <rect key="frame" x="0.0" y="0.0" width="51" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="yF9-4J-Enq" secondAttribute="height" multiplier="51:23" id="gZy-pb-1bZ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="23"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUu-5K-4Et">
+                                    <rect key="frame" x="51" y="0.0" width="20" height="23"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="dUu-5K-4Et" secondAttribute="height" multiplier="6:7" id="GrP-I1-AsM"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="hb9-Jg-vl6" firstAttribute="top" secondItem="m9C-x1-atG" secondAttribute="bottom" constant="14" id="1Fb-6C-yhh"/>
+                        <constraint firstItem="ppO-pY-gwe" firstAttribute="leading" secondItem="Uvk-yB-Dgh" secondAttribute="leading" id="4TT-Xr-UcY"/>
+                        <constraint firstItem="esx-OS-CoM" firstAttribute="leading" secondItem="ppO-pY-gwe" secondAttribute="trailing" constant="2" id="6vr-H2-H6l"/>
+                        <constraint firstAttribute="width" secondItem="Uvk-yB-Dgh" secondAttribute="height" multiplier="21:8" id="7Kk-nf-Zlk"/>
+                        <constraint firstAttribute="height" constant="70" id="LHU-vq-VKJ"/>
+                        <constraint firstItem="hb9-Jg-vl6" firstAttribute="leading" secondItem="esx-OS-CoM" secondAttribute="trailing" constant="27" id="RTw-qv-n2J"/>
+                        <constraint firstItem="hb9-Jg-vl6" firstAttribute="bottom" secondItem="Uvk-yB-Dgh" secondAttribute="bottomMargin" id="Rc9-XP-FJa"/>
+                        <constraint firstItem="esx-OS-CoM" firstAttribute="bottom" secondItem="ppO-pY-gwe" secondAttribute="bottom" id="T9b-MB-MZo"/>
+                        <constraint firstItem="hb9-Jg-vl6" firstAttribute="centerX" secondItem="m9C-x1-atG" secondAttribute="centerX" id="aJu-zl-9S7"/>
+                        <constraint firstItem="esx-OS-CoM" firstAttribute="top" secondItem="Uvk-yB-Dgh" secondAttribute="top" constant="38" id="sON-81-Zc4"/>
+                        <constraint firstAttribute="width" constant="210" id="sZY-ZQ-hIK"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fe4-Pv-afO">
+                    <rect key="frame" x="335" y="0.0" width="40" height="80"/>
+                    <state key="normal" title="&gt;"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="7zK-pz-yJ7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8cq-a9-oZs"/>
-                <constraint firstAttribute="bottom" secondItem="nlO-nA-fki" secondAttribute="bottom" id="HUc-8P-cQX"/>
                 <constraint firstItem="zfe-4n-3cW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JBa-qe-Rc4"/>
-                <constraint firstItem="nlO-nA-fki" firstAttribute="leading" secondItem="7zK-pz-yJ7" secondAttribute="trailing" id="QqD-wQ-pi6"/>
-                <constraint firstItem="nlO-nA-fki" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="250" id="dCc-0o-Nfp"/>
-                <constraint firstItem="zfe-4n-3cW" firstAttribute="bottom" secondItem="nlO-nA-fki" secondAttribute="bottom" id="gP0-WS-nC2"/>
-                <constraint firstItem="zfe-4n-3cW" firstAttribute="top" secondItem="7zK-pz-yJ7" secondAttribute="top" id="gkh-5Q-Obz"/>
-                <constraint firstItem="7zK-pz-yJ7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="o4Z-9S-tq3"/>
-                <constraint firstItem="7zK-pz-yJ7" firstAttribute="leading" secondItem="zfe-4n-3cW" secondAttribute="trailing" id="waX-2v-84i"/>
-                <constraint firstItem="zfe-4n-3cW" firstAttribute="bottom" secondItem="7zK-pz-yJ7" secondAttribute="bottom" id="ztS-G4-IrX"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JkN-w4-ddC"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="top" secondItem="zfe-4n-3cW" secondAttribute="top" id="MFN-du-uws"/>
+                <constraint firstAttribute="trailing" secondItem="Uvk-yB-Dgh" secondAttribute="trailing" constant="56" id="OqA-7z-Fvl"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="109" id="PJL-Hq-fzo"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="leading" secondItem="zfe-4n-3cW" secondAttribute="trailing" constant="8" symbolic="YES" id="QlR-5t-34F"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="bottom" secondItem="fe4-Pv-afO" secondAttribute="bottom" id="nuw-pJ-dSQ"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="bottom" secondItem="zfe-4n-3cW" secondAttribute="bottom" id="rjY-RH-U0h"/>
+                <constraint firstItem="Uvk-yB-Dgh" firstAttribute="top" secondItem="fe4-Pv-afO" secondAttribute="top" id="sbL-9P-nKO"/>
+                <constraint firstItem="fe4-Pv-afO" firstAttribute="leading" secondItem="Uvk-yB-Dgh" secondAttribute="trailing" constant="16" id="yHu-p5-IQK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="dayLabel" destination="gDj-nG-IOr" id="IrT-Xo-znC"/>
-                <outlet property="distanceLabel" destination="d2j-oF-4JE" id="wK5-3I-Iwv"/>
-                <outlet property="paceLabel" destination="7PP-yP-imq" id="7Sl-Zl-HFO"/>
-                <outlet property="runTimeLabel" destination="yF9-4J-Enq" id="mF4-zD-IEy"/>
-                <outlet property="timeLabel" destination="eI7-Pt-LJd" id="CMH-c2-oVn"/>
+                <outlet property="dayLabel" destination="gDj-nG-IOr" id="gK2-lQ-GiL"/>
+                <outlet property="distanceLabel" destination="ppO-pY-gwe" id="hc3-7p-kNx"/>
+                <outlet property="paceLabel" destination="7PP-yP-imq" id="fD5-WE-nXe"/>
+                <outlet property="runTimeLabel" destination="yF9-4J-Enq" id="BJw-vf-msM"/>
+                <outlet property="timeLabel" destination="eI7-Pt-LJd" id="0BB-mk-1n5"/>
             </connections>
-            <point key="canvasLocation" x="29.5" y="179"/>
+            <point key="canvasLocation" x="69.5" y="90"/>
         </view>
     </objects>
 </document>
