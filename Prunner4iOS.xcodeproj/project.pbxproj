@@ -45,7 +45,6 @@
 		9B5E25B01DC93E75006FD296 /* PrunnerMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5E25AF1DC93E75006FD296 /* PrunnerMapView.xib */; };
 		9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E25B11DC93E8E006FD296 /* PrunnerMapView.swift */; };
 		9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A2941DDD834400A86E03 /* GMPlaceRequest.swift */; };
-		9BC181031DFFDE5E0060D85D /* TabSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BC181021DFFDE5E0060D85D /* TabSelectorView.xib */; };
 		9BC1810B1E0065050060D85D /* HiraginoSans-W0.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 9BC1810A1E0065050060D85D /* HiraginoSans-W0.ttc */; };
 		9BC1810E1E0067430060D85D /* TabSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC1810D1E0067430060D85D /* TabSelectView.swift */; };
 		9BC181101E0067CA0060D85D /* TabSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC1810F1E0067CA0060D85D /* TabSelectViewController.swift */; };
@@ -128,7 +127,6 @@
 		9B5E25AF1DC93E75006FD296 /* PrunnerMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrunnerMapView.xib; path = Views/PrunnerMapView/PrunnerMapView.xib; sourceTree = "<group>"; };
 		9B5E25B11DC93E8E006FD296 /* PrunnerMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrunnerMapView.swift; path = Views/PrunnerMapView/PrunnerMapView.swift; sourceTree = "<group>"; };
 		9B89A2941DDD834400A86E03 /* GMPlaceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GMPlaceRequest.swift; path = Components/APIs/GoogleMaps/GMPlaceRequest.swift; sourceTree = "<group>"; };
-		9BC181021DFFDE5E0060D85D /* TabSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabSelectorView.xib; path = Views/Components/TabSelector/TabSelectorView.xib; sourceTree = "<group>"; };
 		9BC1810A1E0065050060D85D /* HiraginoSans-W0.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HiraginoSans-W0.ttc"; path = "fonts/HiraginoSans-W0.ttc"; sourceTree = "<group>"; };
 		9BC1810D1E0067430060D85D /* TabSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabSelectView.swift; path = Views/Components/TabSelector/TabSelectView.swift; sourceTree = "<group>"; };
 		9BC1810F1E0067CA0060D85D /* TabSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabSelectViewController.swift; path = Views/Components/TabSelector/TabSelectViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 		9BC181011DFFDE0B0060D85D /* TabSelector */ = {
 			isa = PBXGroup;
 			children = (
-				9BC181021DFFDE5E0060D85D /* TabSelectorView.xib */,
 				9BC1810D1E0067430060D85D /* TabSelectView.swift */,
 				9BC1810F1E0067CA0060D85D /* TabSelectViewController.swift */,
 				9BC181121E00686B0060D85D /* TabSelectView.storyboard */,
@@ -582,7 +579,6 @@
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9BC181131E00686B0060D85D /* TabSelectView.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
-				9BC181031DFFDE5E0060D85D /* TabSelectorView.xib in Resources */,
 				45451D7F1DFEF4A100143A39 /* History.storyboard in Resources */,
 				9B0163191DC7F2480086445E /* Main.storyboard in Resources */,
 			);
