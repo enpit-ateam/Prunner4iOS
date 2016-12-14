@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +19,9 @@
                         <viewControllerLayoutGuide type="bottom" id="m6l-Zl-nuk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cI1-ch-ndo">
+
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU7-xY-Luh">
@@ -151,6 +154,7 @@
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
                     </layoutGuides>
+
                     <view key="view" contentMode="scaleToFill" id="nq7-jh-JmL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,7 +207,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
