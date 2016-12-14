@@ -82,7 +82,7 @@
                                 </connections>
                             </pageControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u6b-4h-XOg">
-                                <rect key="frame" x="0.0" y="237" width="375" height="366"/>
+                                <rect key="frame" x="0.0" y="237" width="375" height="322"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="60" id="n1K-5L-SQ8" customClass="TableView" customModule="Prunner4iOS" customModuleProvider="target">
@@ -104,6 +104,7 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BU7-xY-Luh" firstAttribute="top" secondItem="lpH-QH-qT7" secondAttribute="bottom" id="2K3-an-48V"/>
+                            <constraint firstItem="m6l-Zl-nuk" firstAttribute="top" secondItem="u6b-4h-XOg" secondAttribute="bottom" id="7Fo-Gy-ohM"/>
                             <constraint firstItem="MXX-6s-EAk" firstAttribute="centerX" secondItem="cI1-ch-ndo" secondAttribute="centerX" id="KxF-sQ-Kc6"/>
                             <constraint firstItem="u6b-4h-XOg" firstAttribute="leading" secondItem="cI1-ch-ndo" secondAttribute="leading" id="O8f-hm-iSO"/>
                             <constraint firstItem="MXX-6s-EAk" firstAttribute="top" secondItem="BU7-xY-Luh" secondAttribute="bottom" constant="-20" id="gEv-Dc-AH3"/>
@@ -111,7 +112,6 @@
                             <constraint firstAttribute="trailing" secondItem="BU7-xY-Luh" secondAttribute="trailing" id="pnq-aW-kcE"/>
                             <constraint firstItem="BU7-xY-Luh" firstAttribute="leading" secondItem="cI1-ch-ndo" secondAttribute="leading" id="she-Rf-cCc"/>
                             <constraint firstItem="u6b-4h-XOg" firstAttribute="top" secondItem="MXX-6s-EAk" secondAttribute="bottom" id="uyZ-YI-sre"/>
-                            <constraint firstAttribute="bottom" secondItem="u6b-4h-XOg" secondAttribute="bottom" id="vnB-jn-ioh"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -136,17 +136,17 @@
                         <outlet property="navBar" destination="n9J-gp-dtx" id="4O2-oK-XeU"/>
                         <outlet property="pageControl" destination="MXX-6s-EAk" id="3rl-CE-Y07"/>
                         <outlet property="tableView" destination="u6b-4h-XOg" id="feL-IW-4T7"/>
-                        <segue destination="PaD-MA-al9" kind="show" identifier="DETAIL" id="VaE-7u-Uv8"/>
+                        <segue destination="PaD-MA-al9" kind="show" identifier="DETAIL" id="MN7-QY-mRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpe-tT-qKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="367"/>
+            <point key="canvasLocation" x="-167.19999999999999" y="366.56671664167919"/>
         </scene>
         <!--Detail-->
         <scene sceneID="E55-41-eGA">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="PaD-MA-al9" userLabel="Detail" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PaD-MA-al9" userLabel="Detail" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
@@ -156,11 +156,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6y-RB-B0V" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGD-aW-Ogq" customClass="ResultView" customModule="Prunner4iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="437" width="375" height="230"/>
+                                <rect key="frame" x="0.0" y="393" width="375" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="two-47-Zuk"/>
@@ -175,7 +175,7 @@
                             <constraint firstAttribute="trailing" secondItem="FGD-aW-Ogq" secondAttribute="trailing" id="QNc-jE-FuT"/>
                             <constraint firstItem="V6y-RB-B0V" firstAttribute="top" secondItem="nq7-jh-JmL" secondAttribute="top" id="daM-t7-ZO0"/>
                             <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="V6y-RB-B0V" secondAttribute="bottom" constant="1" id="gYe-wf-2nJ"/>
-                            <constraint firstAttribute="bottom" secondItem="FGD-aW-Ogq" secondAttribute="bottom" id="rjl-VC-3jG"/>
+                            <constraint firstItem="CIO-V8-OTy" firstAttribute="top" secondItem="FGD-aW-Ogq" secondAttribute="bottom" id="hEg-aB-oNk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="詳細" id="vFL-og-dOG">
@@ -194,7 +194,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jdo-bc-z8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3E4-5Y-dEj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="520" y="367"/>
+            <point key="canvasLocation" x="616.79999999999995" y="366.56671664167919"/>
         </scene>
         <!--History-->
         <scene sceneID="bIw-6s-Pnd">
@@ -203,7 +203,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -84,7 +84,7 @@ class DoneViewController: UIViewController {
     HistoryService.addHistories(history:
       History(date: Date(),
               route: userState.route,
-              distance: userState.distance,
+              distance: mapState.calcDirectionDistance(),
               time: userState.calcRunTime(),
               placeName: mapState.distination?.name))
     performSegue(withIdentifier: "backToTop", sender: nil)

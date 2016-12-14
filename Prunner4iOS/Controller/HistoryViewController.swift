@@ -42,7 +42,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    // 再描画
     drawGraph(graph: graph, date: thisDate, type: currentType)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
   }
   
   override func didReceiveMemoryWarning() {
