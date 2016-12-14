@@ -58,6 +58,8 @@
 		9BCBFF7E1DC91D6A0039679A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCBFF7D1DC91D6A0039679A /* CoreLocation.framework */; };
 		B7E8AE4BEC3F05FB34BE29E9 /* Pods_Prunner4iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */; };
 		CE12D07A1DF42E6800C6DC54 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */; };
+		CE3051771DFF6F0900CC32EF /* DayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3051761DFF6F0900CC32EF /* DayService.swift */; };
+		CE3C4D811DFEFEB20012BB9D /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C4D801DFEFEB20012BB9D /* Graph.swift */; };
 		CEC4C6381DF164C000CD9A77 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */; };
 		CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C63C1DF1650800CD9A77 /* History.swift */; };
 		CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */; };
@@ -146,6 +148,8 @@
 		A8993F937EF8BC4BF149C7AF /* Pods_Prunner4iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE12D0791DF42E6800C6DC54 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Controller/DetailViewController.swift; sourceTree = "<group>"; };
+		CE3051761DFF6F0900CC32EF /* DayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayService.swift; sourceTree = "<group>"; };
+		CE3C4D801DFEFEB20012BB9D /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Graph.swift; path = Views/Components/Graph/Graph.swift; sourceTree = "<group>"; };
 		CEC4C6371DF164C000CD9A77 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = Controller/HistoryViewController.swift; sourceTree = "<group>"; };
 		CEC4C63C1DF1650800CD9A77 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = Models/History/History.swift; sourceTree = "<group>"; };
 		CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		4578F5931DF1790100F433E3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CE3C4D7F1DFEFE860012BB9D /* Graph */,
 				45451D8E1E00146F00143A39 /* View */,
 				45451D1A1DF571D300143A39 /* Button */,
 			);
@@ -455,6 +460,14 @@
 			name = PrunnerMapView;
 			sourceTree = "<group>";
 		};
+		CE3C4D7F1DFEFE860012BB9D /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				CE3C4D801DFEFEB20012BB9D /* Graph.swift */,
+			);
+			name = Graph;
+			sourceTree = "<group>";
+		};
 		CEC4C6391DF164CE00CD9A77 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */,
+				CE3051761DFF6F0900CC32EF /* DayService.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -794,6 +808,8 @@
 				9B12B1241DDB061800E7977F /* Step.swift in Sources */,
 				4578F5841DED967F00F433E3 /* RunViewController.swift in Sources */,
 				4578F58E1DF13DAA00F433E3 /* UserState.swift in Sources */,
+				CE3051771DFF6F0900CC32EF /* DayService.swift in Sources */,
+				CE3C4D811DFEFEB20012BB9D /* Graph.swift in Sources */,
 				9B12B1261DDB061800E7977F /* Location.swift in Sources */,
 				45451D9E1E006CEC00143A39 /* CancelModalViewController.swift in Sources */,
 				45451D151DF54DC300143A39 /* GMSUtil.swift in Sources */,

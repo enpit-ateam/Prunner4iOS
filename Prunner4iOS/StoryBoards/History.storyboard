@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--History View Controller-->
         <scene sceneID="wEv-qd-ng5">
             <objects>
-                <viewController id="z8P-U2-0iu" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xpe-tT-qKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="z8P-U2-0iu" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lpH-QH-qT7"/>
                         <viewControllerLayoutGuide type="bottom" id="m6l-Zl-nuk"/>
@@ -20,21 +21,42 @@
                     <view key="view" contentMode="scaleToFill" id="cI1-ch-ndo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u6b-4h-XOg">
+                                <rect key="frame" x="0.0" y="328" width="375" height="282"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="n1K-5L-SQ8">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n1K-5L-SQ8" id="Ba5-au-lE5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="z8P-U2-0iu" id="ZjK-j1-blD"/>
+                                    <outlet property="delegate" destination="z8P-U2-0iu" id="VGi-pd-0q7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="F7P-v4-iZm"/>
                     <connections>
+                        <outlet property="tableView" destination="u6b-4h-XOg" id="feL-IW-4T7"/>
                         <segue destination="PaD-MA-al9" kind="show" identifier="DETAIL" id="VaE-7u-Uv8"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xpe-tT-qKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="370"/>
+            <point key="canvasLocation" x="384.80000000000001" y="369.26536731634184"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="E55-41-eGA">
             <objects>
-                <viewController id="PaD-MA-al9" sceneMemberID="viewController">
+                <viewController id="PaD-MA-al9" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
