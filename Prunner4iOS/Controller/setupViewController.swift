@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SetupViewController: UIViewController, GMSMapViewDelegate {
+class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDelegate {
 
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -30,15 +30,18 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
   var polyline: GMSPolyline!
 
   @IBOutlet weak var mapView: PrunnerMapView!
+  @IBOutlet weak var tabSelectView: TabSelectView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    mapView.delegate = self
-    
     // Do any additional setup after loading the view.
-    placeClient = GMSPlacesClient()
+    mapView.delegate = self
+    tabSelectView.delegate = self
     
+    self.tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: "", distance: ""))
+    
+    placeClient = GMSPlacesClient()
     mapState.setCamera(user: userState)
     mapView.camera = mapState.camera!
     
@@ -50,6 +53,17 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
       }
       self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
       self.mapState.setDistinateFromCandidates(for: self.userState)
+      
+      // set tabselector view
+      let tabMax = 3
+      self.tabSelectView.tabStore! = []
+      for (index, candidate) in (self.mapState.candidates?.enumerated())! {
+        self.tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: candidate.name, distance: ""))
+        if index >= tabMax - 1 {
+          break
+        }
+      }
+      self.tabSelectView.selector = 0
       
       self.drawMapView()
     }
@@ -107,6 +121,14 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
       }
     }
   }
+  
+  // MARK: tab selector delegate
+  func onSelectorChanged(index: Int) {
+    tabSelectView.selector = index
+    mapState.distination = self.mapState.candidates?[index]
+    mapState.waypoints = []
+    drawMapView()
+  }
 
   @IBAction func checkButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
@@ -154,7 +176,14 @@ class SetupViewController: UIViewController, GMSMapViewDelegate {
       GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
       GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
       GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
+      
+      // tabViewの更新
+      let routeDistance = self.mapState.calcDirectionDistance() / 1000.0
+      let selector = self.tabSelectView.selector
+      self.tabSelectView.tabStore![selector].distance = String(format: "%.2f", routeDistance )
+      self.tabSelectView.setNeedsDisplay()
     }
+    
   }
   
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {

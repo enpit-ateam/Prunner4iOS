@@ -23,6 +23,7 @@ class TabSelectViewController: UIViewController, TabSelectViewDelegate {
     view.selector = 0
     view.backgroundColor = UIColor.clear
     view.delegate = self
+    
     self.view.addSubview(view)
   }
 
