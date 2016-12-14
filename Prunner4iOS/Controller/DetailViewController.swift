@@ -58,11 +58,11 @@ class DetailViewController: UIViewController {
         let startCal: DateComponents = getDateComponents(from: startDate)
         let endCal: DateComponents = getDateComponents(from: endDate)
         let comps: DateComponents = Calendar(identifier: .gregorian).dateComponents([.hour, .minute], from: startCal, to: endCal)
-        let mets: Double = 60.0 * distance
+        let mets: Double = 60.0 * distanceKm
         
         // set label
         result.DateLabel.text = getText(from: startCal) + " ~ " + getText(from: endCal)
-        result.DistanceLabel.text = String(format: "%.3f", distance)
+        result.DistanceLabel.text = String(format: "%.3f", distanceKm)
         result.TimesLabel.text = String(format: "%d:%2d", comps.hour!, comps.minute!)
         result.CalorieLabel.text = String(format: "%.0f", mets)
         result.PaceLabel.text = String(format: "%.1f", pace)

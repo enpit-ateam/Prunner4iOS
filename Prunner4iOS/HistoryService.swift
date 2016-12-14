@@ -35,7 +35,7 @@ class HistoryService {
   
   class func getHistories(day: Date) -> Histories {
     let calendar = Calendar.current
-    var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: day)
+    let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: day)
     let date_ = calendar.date(from: components)!
     let histories_ = getHistories()
 

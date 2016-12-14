@@ -49,7 +49,7 @@ protocol UIGraphViewDelegate {
   
   public func commonInit() {
     selectedDay = DayService.getComponent(date: Date()).day!
-    backgroundColor = UIColor(red:228/255,  green:247/255,  blue:254/255, alpha:1)
+    backgroundColor = UIColor(red:232/255,  green:248/255,  blue:255/255, alpha:1)
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(Graph.panGraph(sender:)))
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Graph.tapGraph(sender:)))
     self.addGestureRecognizer(panGesture)
@@ -58,28 +58,27 @@ protocol UIGraphViewDelegate {
   
   func panGraph(sender: UIPanGestureRecognizer) {
     let tappedPoint = solveNearestPoint(selectedPoint: sender.location(in: self), points: graph)
-    if delegate.pointTaped != nil {
-      var selectedDay = graph.index(of: tappedPoint)
-      if selectedDay == 0 {
-        selectedDay = 1
-      }
-      self.selectedDay = selectedDay!
-      delegate.pointTaped(selectedDay: selectedDay!)
+
+    var selectedDay = graph.index(of: tappedPoint)
+    if selectedDay == 0 {
+      selectedDay = 1
     }
+    self.selectedDay = selectedDay!
+    delegate.pointTaped(selectedDay: selectedDay!)
+
     self.setNeedsDisplay()
   }
   
   func tapGraph(sender: UITapGestureRecognizer) {
     let tappedPoint = solveNearestPoint(selectedPoint: sender.location(in: self), points: graph)
 
-    if delegate.pointTaped != nil {
-      var selectedDay = graph.index(of: tappedPoint)
-      if selectedDay == 0 {
-        selectedDay = 1
-      }
-      self.selectedDay = selectedDay!
-      delegate.pointTaped(selectedDay: selectedDay!)
+    var selectedDay = graph.index(of: tappedPoint)
+    if selectedDay == 0 {
+      selectedDay = 1
     }
+    self.selectedDay = selectedDay!
+    delegate.pointTaped(selectedDay: selectedDay!)
+    
     self.setNeedsDisplay()
   }
   
@@ -199,7 +198,7 @@ protocol UIGraphViewDelegate {
       }
     }
     line.stroke()
-    if selectedDay != nil && selectedDay != 0{
+    if selectedDay != 0{
         drawSelectedPoint(center: graph[selectedDay], size: 3)
     }
     else {
@@ -216,7 +215,7 @@ protocol UIGraphViewDelegate {
   //月が違う場合の解決も
   public func setDate(date: Date) {
     let day = DayService.getComponent(date: date).day
-    if graph.count != 0 && graph[day!] != nil {
+    if graph.count != 0 {
       selectedDay = day!
     }
   }

@@ -14,12 +14,11 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var pageControl: UIPageControl!
+  @IBOutlet weak var navBar: UINavigationItem!
+  @IBOutlet weak var graph: Graph!
 
   var history_table: Histories = []
   
-  @IBOutlet weak var navBar: UINavigationItem!
-  
-  var graph: Graph = Graph(frame: CGRect(x:30, y:135.0, width:360, height:200.0))
   var thisDate: Date!
   var thisYear: Int = 2016
   var thisMonth: Int = 12
@@ -28,34 +27,33 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // TableCellの登録
     self.tableView.register(UINib(nibName: "TableView", bundle: nil), forCellReuseIdentifier: "historyCell")
     
     history_table = HistoryService.getHistories()
     
     thisDate = Date()
-    
-    let myBoundSize: CGSize = UIScreen.main.bounds.size
-    graph = Graph(frame: CGRect(x:30, y:100.0, width:myBoundSize.width - 60, height:200.0))
-    graph.delegate = self
-    
     thisDate = changeMonth(date: thisDate, month:12)
     
-    drawGraph(graph: graph, date: thisDate, type: currentType)
-    
+    // set delegate
+    graph.delegate = self
     tableView.delegate = self
     tableView.dataSource = self
-    
-    self.view.addSubview(graph)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    drawGraph(graph: graph, date: thisDate, type: currentType)
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
   }
   
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
   func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
-    //let cell = TableView()//tableView.dequeueReusableCell(withIdentifier: "historyCell", for:indexPath) as TableView!
     let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! TableView!
     cell?.setCell(history: history_table[indexPath.row])
-    //drawTableViewLabel(tableCell: cell!, history: history_table[indexPath.row])
-    
-    
     return cell!
   }
   
@@ -64,9 +62,12 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     return history_table.count
   }
   
+  // Index目のCellをタッチしたとき
   func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    //changeSelected(view:graph, day:history_table[indexPath])
-    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
+    // Cellを触るとDetailに遷移する
+    // TODO:
+    // 遷移を矢印のみに変更する
+    performSegue(withIdentifier: "DETAIL", sender: indexPath)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,11 +76,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
       let index = sender as? IndexPath
       vc.history = history_table[index!.row]
     }
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   @IBAction func backButtonTouched(_ sender: Any) {
@@ -230,4 +226,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     return dateText
   }
+  
+  @IBAction func backToHistory(_ segue: UIStoryboardSegue) {}
 }
