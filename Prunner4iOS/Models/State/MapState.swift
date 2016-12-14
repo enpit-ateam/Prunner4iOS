@@ -83,6 +83,7 @@ class MapState {
       let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: lc) - distance)
       return d1 < d2
     }
+    self.candidates = sortedPlaces
     self.distination = sortedPlaces[0]
   }
   

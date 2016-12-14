@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="384.05797101449281" y="368.47826086956525"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Detail-->
         <scene sceneID="E55-41-eGA">
             <objects>
-                <viewController id="PaD-MA-al9" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="PaD-MA-al9" userLabel="Detail" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
@@ -106,12 +106,43 @@
                     <view key="view" contentMode="scaleToFill" id="nq7-jh-JmL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGD-aW-Ogq" customClass="ResultView" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="437" width="375" height="230"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="dKU-YW-b5Q"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6y-RB-B0V" customClass="PrunnerMapView" customModule="Prunner4iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="436"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="V6y-RB-B0V" firstAttribute="top" secondItem="BqH-Cv-31y" secondAttribute="top" id="JTu-2k-6Z0"/>
+                            <constraint firstItem="FGD-aW-Ogq" firstAttribute="leading" secondItem="BqH-Cv-31y" secondAttribute="leading" id="JnU-ot-B1y"/>
+                            <constraint firstItem="V6y-RB-B0V" firstAttribute="leading" secondItem="BqH-Cv-31y" secondAttribute="leading" id="K3b-KM-iTn"/>
+                            <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="V6y-RB-B0V" secondAttribute="bottom" constant="1" id="YLr-ig-4UV"/>
+                            <constraint firstAttribute="bottom" secondItem="FGD-aW-Ogq" secondAttribute="bottom" id="ZRw-W3-2FY"/>
+                            <constraint firstAttribute="trailing" secondItem="FGD-aW-Ogq" secondAttribute="trailing" id="nQJ-QJ-aXY"/>
+                            <constraint firstAttribute="trailing" secondItem="V6y-RB-B0V" secondAttribute="trailing" id="q4W-Zf-Tha"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="詳細" id="vFL-og-dOG">
+                        <barButtonItem key="leftBarButtonItem" image="BackNavBarItem" id="oaK-Tw-mpX">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="V6y-RB-B0V" id="gR3-mO-A2p"/>
+                        <outlet property="resultView" destination="FGD-aW-Ogq" id="xZk-q7-Wu1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jdo-bc-z8h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1412" y="368"/>
+            <point key="canvasLocation" x="1412" y="367.46626686656674"/>
         </scene>
         <!--History-->
         <scene sceneID="bIw-6s-Pnd">
@@ -120,9 +151,14 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="20"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -149,6 +185,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackNavBarItem" width="16" height="20"/>
         <image name="BookNormal" width="31" height="24"/>
         <image name="BookSelected" width="31" height="24"/>
     </resources>

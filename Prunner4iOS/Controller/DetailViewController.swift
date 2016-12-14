@@ -24,25 +24,25 @@ class DetailViewController: UIViewController {
   var endMarker: GMSMarker!
   var polyline: GMSPolyline!
   
-  @IBOutlet weak var twButton: CustomButton!
+  // 変数
   var history: History!
   
-  @IBOutlet weak var runDistance: UILabel!
-  @IBOutlet weak var runTime: UILabel!
-  @IBOutlet weak var pace: UILabel!
-  @IBOutlet weak var value: UILabel!
-  
+  // IBOutlet
+  // @IBOutlet weak var twButton: CustomButton!
+  @IBOutlet weak var resultView: ResultView!
   @IBOutlet weak var mapView: PrunnerMapView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     placeClient = GMSPlacesClient()
-    if let route = history.route,
+    if let startDate = history.date,
+       let route = history.route,
        let start = history.runStart(),
        let end = history.runEnd(),
        let distance = history.distance,
-       let time = history.time
+       let time = history.time,
+       let placeName = history.placeName
     {
       // マップの描画
       mapView.camera = GMSUtil.getCamera(withLocation: start, distance: distance)
@@ -50,23 +50,47 @@ class DetailViewController: UIViewController {
       GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: "中継地点")
       GMSUtil.setPolyline(&polyline, mapView: mapView, route: route)
       
-      
-      runTime.text      = time.description
-      runDistance.text  = distance.description
-      pace.text         = (distance / Double(time)).description
-      value.text        = "Good!"
+      if let result = resultView {
+        let distanceKm: Double = distance / 1000.0
+        let runTimeHour: Double = Double(time) / 3600.0
+        let pace: Double = distanceKm / runTimeHour
+        let endDate: Date = startDate.addingTimeInterval(Double(time))
+        let startCal: DateComponents = getDateComponents(from: startDate)
+        let endCal: DateComponents = getDateComponents(from: endDate)
+        let comps: DateComponents = Calendar(identifier: .gregorian).dateComponents([.hour, .minute], from: startCal, to: endCal)
+        let mets: Double = 60.0 * distance
+        
+        // set label
+        result.DateLabel.text = getText(from: startCal) + " ~ " + getText(from: endCal)
+        result.DistanceLabel.text = String(format: "%.3f", distance)
+        result.TimesLabel.text = String(format: "%d:%2d", comps.hour!, comps.minute!)
+        result.CalorieLabel.text = String(format: "%.0f", mets)
+        result.PaceLabel.text = String(format: "%.1f", pace)
+        result.PlaceNameLabel.text = placeName
+      }
     }
-  }
-  @IBAction func twTapped(_ sender: Any) {
-    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-    cv?.setInitialText("てすとてきすと")
-    self.present(cv!, animated: true, completion:nil )
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  private func getText(from comp: DateComponents) -> String {
+    return String(format: "%2d/%2d %2d:%2d", comp.month!, comp.day!, comp.hour!, comp.minute!)
+  }
+  
+  public func getDateComponents(from date: Date) -> DateComponents {
+    let cal = Calendar(identifier: .gregorian)
+    let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
+    return comps
+  }
+  
+//  @IBAction func twTapped(_ sender: Any) {
+//    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+//    cv?.setInitialText("てすとてきすと")
+//    self.present(cv!, animated: true, completion:nil )
+//  }
   
   /*
    // MARK: - Navigation
