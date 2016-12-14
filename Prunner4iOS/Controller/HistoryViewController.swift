@@ -14,10 +14,72 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var pageControl: UIPageControl!
+  @IBOutlet weak var navBar: UINavigationItem!
+  @IBOutlet weak var graph: Graph!
 
   var history_table: Histories = []
   
-  @IBOutlet weak var navBar: UINavigationItem!
+  var thisDate: Date!
+  var thisYear: Int = 2016
+  var thisMonth: Int = 12
+  var currentType:HistoryDataMode = .Distance
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // TableCellの登録
+    self.tableView.register(UINib(nibName: "TableView", bundle: nil), forCellReuseIdentifier: "historyCell")
+    
+    history_table = HistoryService.getHistories()
+    
+    thisDate = Date()
+    thisDate = changeMonth(date: thisDate, month:12)
+    
+    // set delegate
+    graph.delegate = self
+    tableView.delegate = self
+    tableView.dataSource = self
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    // 再描画
+    drawGraph(graph: graph, date: thisDate, type: currentType)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
+  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! TableView!
+    cell?.setCell(history: history_table[indexPath.row])
+    return cell!
+  }
+  
+  //データの個数を返すメソッド
+  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
+    return history_table.count
+  }
+  
+  // Index目のCellをタッチしたとき
+  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+    // Cellを触るとDetailに遷移する
+    // TODO:
+    // 遷移を矢印のみに変更する
+    performSegue(withIdentifier: "DETAIL", sender: indexPath)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "DETAIL" {
+      let vc = segue.destination as! DetailViewController
+      let index = sender as? IndexPath
+      vc.history = history_table[index!.row]
+    }
+  }
   
   @IBAction func backButtonTouched(_ sender: Any) {
     thisMonth = thisMonth - 1
@@ -33,6 +95,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
+  
   @IBAction func nextButtonTouched(_ sender: Any) {
     thisMonth = thisMonth + 1
     if thisMonth > 12 {
@@ -54,12 +117,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
       changePage(page: pageControl.currentPage)
     }
   }
+  
   @IBAction func backGraphButton(_ sender: Any) {
     if pageControl.currentPage - 1 >= 0{
       pageControl.currentPage = pageControl.currentPage - 1
       changePage(page: pageControl.currentPage)
     }
-
+    
   }
   
   @IBAction func changePage(_ sender: UIPageControl) {
@@ -77,70 +141,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     default:
       break
     }
-  }
-  
-  
-  var graph: Graph = Graph(frame: CGRect(x:30, y:135.0, width:360, height:200.0))
-  var thisDate: Date!
-  var thisYear: Int = 2016
-  var thisMonth: Int = 12
-  var currentType:HistoryDataMode = .Distance
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    self.tableView.register(UINib(nibName: "TableView", bundle: nil), forCellReuseIdentifier: "historyCell")
-    
-    history_table = HistoryService.getHistories()
-    
-    thisDate = Date()
-    
-    let myBoundSize: CGSize = UIScreen.main.bounds.size
-    graph = Graph(frame: CGRect(x:30, y:100.0, width:myBoundSize.width - 60, height:200.0))
-    graph.delegate = self
-    
-    thisDate = changeMonth(date: thisDate, month:12)
-    
-    drawGraph(graph: graph, date: thisDate, type: currentType)
-    
-    tableView.delegate = self
-    tableView.dataSource = self
-    
-    self.view.addSubview(graph)
-  }
-  
-  //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
-  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
-    //let cell = TableView()//tableView.dequeueReusableCell(withIdentifier: "historyCell", for:indexPath) as TableView!
-    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! TableView!
-    cell?.setCell(history: history_table[indexPath.row])
-    //drawTableViewLabel(tableCell: cell!, history: history_table[indexPath.row])
-    
-    
-    return cell!
-  }
-  
-  //データの個数を返すメソッド
-  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
-    return history_table.count
-  }
-  
-  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    //changeSelected(view:graph, day:history_table[indexPath])
-    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "DETAIL" {
-      let vc = segue.destination as! DetailViewController
-      let index = sender as? IndexPath
-      vc.history = history_table[index!.row]
-    }
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   private func makeCellText(history:History) -> String{
@@ -229,4 +229,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     return dateText
   }
+  
+  @IBAction func backToHistory(_ segue: UIStoryboardSegue) {}
 }
