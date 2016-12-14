@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="n1K-5L-SQ8" id="Ba5-au-lE5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -53,10 +53,10 @@
             </objects>
             <point key="canvasLocation" x="384.80000000000001" y="369.26536731634184"/>
         </scene>
-        <!--詳細-->
+        <!--Detail-->
         <scene sceneID="E55-41-eGA">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="PaD-MA-al9" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="PaD-MA-al9" userLabel="Detail" customClass="DetailViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
@@ -109,7 +109,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -977,6 +977,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 54951384B5AC65C75FDB5EE6 /* Pods-Prunner4iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Prunner4iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -990,6 +991,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Prunner4iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
