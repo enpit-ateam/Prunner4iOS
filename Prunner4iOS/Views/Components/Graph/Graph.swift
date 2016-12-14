@@ -97,7 +97,7 @@ protocol UIGraphViewDelegate {
     let rect_ = CGRect(
       x: rect.minX + 30,
       y: rect.minY + 30,
-      width: rect.width - 30 * CGFloat(2),
+      width: rect.width - 10 * CGFloat(2),
       height: rect.height - 30 * CGFloat(2))
     
     let xInterval:CGFloat = rect_.height / CGFloat(5 + 1) //日にち分と基軸 x軸の間隔
