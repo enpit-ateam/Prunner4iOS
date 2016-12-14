@@ -51,15 +51,6 @@ class DoneViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func recordButtonTapped(_ sender: Any) {
-//    HistoryService.addHistories(history:
-//      History(date: Date(),
-//              route: userState.route,
-//              distance: userState.distance,
-//              time: userState.runTime))
-    performSegue(withIdentifier: "TOP", sender: nil)
-  }
-
   private func drawResultViewLabel() {
     if let result = resultView {
       let distance: Double = mapState.calcDirectionDistance() / 1000.0
@@ -87,13 +78,23 @@ class DoneViewController: UIViewController {
     let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
     return comps
   }
+
+  
+  @IBAction func historyButtonTapped(_ sender: Any) {
+    HistoryService.addHistories(history:
+      History(date: Date(),
+              route: userState.route,
+              distance: userState.distance,
+              time: userState.calcRunTime(),
+              placeName: mapState.distination?.name))
+    performSegue(withIdentifier: "backToTop", sender: nil)
+  }
   
   @IBAction func tweetButtonTapped(_ sender: Any) {
     let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
     cv.setInitialText("")
     self.present(cv, animated: true, completion: nil)
   }
-  
   /*
    // MARK: - Navigation
    
