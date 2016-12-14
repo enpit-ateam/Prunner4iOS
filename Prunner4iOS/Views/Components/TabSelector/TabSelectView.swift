@@ -150,21 +150,21 @@ class TabSelectView: UIView {
     // Route
     var strSize = 12
     var att = [
-      NSFontAttributeName: UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!,
+      NSFontAttributeName: UIFont(name: "HiraginoSans-W3", size: CGFloat(strSize))!,
       NSForegroundColorAttributeName: UIColor.hexStr(hexStr: "4a4a4a", alpha: 1)
     ]
     NSString(string: tabStore![index].title).draw(at: CGPoint(x: start+titleHeight, y: (titleHeight-strSize)/2), withAttributes: att)
     // PlaceName
     strSize = 20
-    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!
+    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W3", size: CGFloat(strSize))!
     NSString(string: tabStore![index].placeName).draw(at: CGPoint(x: titleHeight/2, y: tabHeight/2 - strSize), withAttributes: att)
     // Distance
     strSize = 40
-    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!
+    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W3", size: CGFloat(strSize))!
     NSString(string: tabStore![index].distance).draw(at: CGPoint(x: titleHeight + tabWidth - 200, y: tabHeight-strSize-10), withAttributes: att)
     // km
     strSize = 25
-    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!
+    att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W3", size: CGFloat(strSize))!
     NSString(string: "km").draw(at: CGPoint(x: titleHeight + tabWidth - 70, y: tabHeight-strSize-10), withAttributes: att)
   }
   
