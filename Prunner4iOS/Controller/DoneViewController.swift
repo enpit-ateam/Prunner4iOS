@@ -11,6 +11,7 @@ import CoreFoundation
 import GoogleMaps
 import GooglePlacePicker
 import CoreLocation
+import Social
 
 class DoneViewController: UIViewController {
   
@@ -85,6 +86,12 @@ class DoneViewController: UIViewController {
     let cal = Calendar(identifier: .gregorian)
     let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
     return comps
+  }
+  
+  @IBAction func tweetButtonTapped(_ sender: Any) {
+    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
+    cv.setInitialText("")
+    self.present(cv, animated: true, completion: nil)
   }
   
   /*
