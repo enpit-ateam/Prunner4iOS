@@ -15,6 +15,39 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   @IBOutlet weak var tableView: UITableView!
   
   var history_table: Histories = []
+  
+  @IBOutlet weak var navBar: UINavigationItem!
+  
+  @IBAction func backButtonTouched(_ sender: Any) {
+    thisMonth = thisMonth - 1
+    if thisMonth < 1 {
+      thisMonth = 12
+      thisYear = thisYear - 1
+    }
+    thisDate = changeMonth(date: thisDate, month: thisMonth)
+    thisDate = changeYear(date: thisDate, year: thisYear)
+    navBar.title = getTitle(date: thisDate)
+    drawGraph(graph: graph, date: thisDate)
+    self.history_table = HistoryService.getHistories(month: self.thisDate)
+    drawGraph(graph: graph, date: thisDate)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
+  }
+  @IBAction func nextButtonTouched(_ sender: Any) {
+    thisMonth = thisMonth + 1
+    if thisMonth > 12 {
+      thisMonth = 1
+      thisYear = thisYear + 1
+    }
+    thisDate = changeMonth(date: thisDate, month: thisMonth)
+    thisDate = changeYear(date: thisDate, year: thisYear)
+    navBar.title = getTitle(date: thisDate)
+    drawGraph(graph: graph, date: thisDate)
+    self.history_table = HistoryService.getHistories(month: self.thisDate)
+    drawGraph(graph: graph, date: thisDate)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
+  }
   var graph: Graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
   var thisDate: Date!
   var thisYear: Int = 2016
@@ -99,6 +132,12 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     graph.setNeedsDisplay()
   }
   
+  private func changeYear(date: Date, year: Int) -> Date {
+    let calendar = Calendar.current
+    var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
+    return calendar.date(from: DateComponents(year: year, month: components.month, day: components.day ))!
+  }
+  
   private func changeMonth(date: Date, month: Int) -> Date {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
@@ -120,5 +159,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     drawGraph(graph: graph, date: thisDate)
     self.tableView.reloadData()
     super.viewWillAppear(true)
+  }
+  
+  private func getTitle(date: Date) -> String{
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy/MM"
+    
+    let dateText:String = formatter.string(from: date)
+    
+    return dateText
   }
 }

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--History View Controller-->
+        <!--2016/12-->
         <scene sceneID="wEv-qd-ng5">
             <objects>
                 <viewController id="z8P-U2-0iu" customClass="HistoryViewController" customModule="Prunner4iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -43,8 +43,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="F7P-v4-iZm"/>
+                    <navigationItem key="navigationItem" title="2016/12" id="n9J-gp-dtx">
+                        <barButtonItem key="leftBarButtonItem" title="&lt;11月" id="Ahf-5H-1FS">
+                            <connections>
+                                <action selector="backButtonTouched:" destination="z8P-U2-0iu" id="0eH-9H-36N"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="12月&gt;" id="x4y-Tq-45Q">
+                            <connections>
+                                <action selector="nextButtonTouched:" destination="z8P-U2-0iu" id="5gF-tb-DR8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="navBar" destination="n9J-gp-dtx" id="4O2-oK-XeU"/>
                         <outlet property="tableView" destination="u6b-4h-XOg" id="feL-IW-4T7"/>
                         <segue destination="PaD-MA-al9" kind="show" identifier="DETAIL" id="VaE-7u-Uv8"/>
                     </connections>
@@ -96,4 +108,5 @@
         <image name="BookNormal" width="31" height="24"/>
         <image name="BookSelected" width="31" height="24"/>
     </resources>
+    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
