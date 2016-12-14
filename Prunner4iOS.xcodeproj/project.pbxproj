@@ -64,6 +64,8 @@
 		CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C63C1DF1650800CD9A77 /* History.swift */; };
 		CEC4C6421DF16AC600CD9A77 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */; };
 		CEC4C6441DF2ADF700CD9A77 /* Histories.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4C6431DF2ADF700CD9A77 /* Histories.swift */; };
+		CEF076DF1E00FDB800F0566E /* TableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF076DE1E00FDB800F0566E /* TableView.xib */; };
+		CEF076E11E00FDD700F0566E /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF076E01E00FDD700F0566E /* TableView.swift */; };
 		E773F1B235227E2413D9E20E /* Pods_Prunner4iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8E9569EB6EF830DE37699B /* Pods_Prunner4iOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +156,8 @@
 		CEC4C63C1DF1650800CD9A77 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = Models/History/History.swift; sourceTree = "<group>"; };
 		CEC4C6411DF16AC600CD9A77 /* HistoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		CEC4C6431DF2ADF700CD9A77 /* Histories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Histories.swift; path = Models/History/Histories.swift; sourceTree = "<group>"; };
+		CEF076DE1E00FDB800F0566E /* TableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableView.xib; path = Views/TableView/TableView.xib; sourceTree = "<group>"; };
+		CEF076E01E00FDD700F0566E /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = Views/TableView/TableView.swift; sourceTree = "<group>"; };
 		FA2B4E3E101A2951DCDCDC33 /* Pods-Prunner4iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOSTests/Pods-Prunner4iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -433,6 +437,7 @@
 				4578F5931DF1790100F433E3 /* Components */,
 				9B5E25AC1DC93DE0006FD296 /* PrunnerMapView */,
 				45451D911E003AEB00143A39 /* DoneModal */,
+				CEF076DC1E00FD4900F0566E /* TableView */,
 				45451D981E00533D00143A39 /* ResultView */,
 				45451D821DFFB98600143A39 /* TabView */,
 			);
@@ -492,6 +497,15 @@
 				CE3051761DFF6F0900CC32EF /* DayService.swift */,
 			);
 			name = History;
+			sourceTree = "<group>";
+		};
+		CEF076DC1E00FD4900F0566E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				CEF076DE1E00FDB800F0566E /* TableView.xib */,
+				CEF076E01E00FDD700F0566E /* TableView.swift */,
+			);
+			name = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -613,6 +627,7 @@
 				45451D931E003B1E00143A39 /* DoneModalView.xib in Resources */,
 				9B5E25B01DC93E75006FD296 /* PrunnerMapView.xib in Resources */,
 				45451D731DFEAB7900143A39 /* Assets in Resources */,
+				CEF076DF1E00FDB800F0566E /* TableView.xib in Resources */,
 				45451D811DFEF4E200143A39 /* Run.storyboard in Resources */,
 				45451D3B1DF6A26200143A39 /* DetailScene.storyboard in Resources */,
 				45451D301DF6959600143A39 /* SetupScene.storyboard in Resources */,
@@ -802,6 +817,7 @@
 				9B89A2951DDD834400A86E03 /* GMPlaceRequest.swift in Sources */,
 				9B5E25B21DC93E8E006FD296 /* PrunnerMapView.swift in Sources */,
 				9B12B1351DDC3A0200E7977F /* Place.swift in Sources */,
+				CEF076E11E00FDD700F0566E /* TableView.swift in Sources */,
 				45451D8D1E00130000143A39 /* DoneModalViewController.swift in Sources */,
 				CEC4C63D1DF1650800CD9A77 /* History.swift in Sources */,
 				9B12B1281DDB061800E7977F /* Route.swift in Sources */,

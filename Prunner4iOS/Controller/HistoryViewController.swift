@@ -23,6 +23,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.tableView.register(UINib(nibName: "TableView", bundle: nil), forCellReuseIdentifier: "historyCell")
+    
     history_table = HistoryService.getHistories()
     
     thisDate = Date()
@@ -43,10 +45,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
   func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for:indexPath) as UITableViewCell
+    //let cell = TableView()//tableView.dequeueReusableCell(withIdentifier: "historyCell", for:indexPath) as TableView!
+    let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! TableView!
+    cell?.setCell(history: history_table[indexPath.row])
+    //drawTableViewLabel(tableCell: cell!, history: history_table[indexPath.row])
     
-    cell.textLabel?.text = makeCellText(history: history_table[indexPath.row])
-    return cell
+    
+    return cell!
   }
   
   //データの個数を返すメソッド
