@@ -31,20 +31,24 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
 
   @IBOutlet weak var mapView: PrunnerMapView!
   @IBOutlet weak var tabSelectView: TabSelectView!
+  let tabMax: Int = 3
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    mapView.delegate = self
     tabSelectView.delegate = self
-    
-    self.tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: "", distance: ""))
+    tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: "", distance: ""))
     
     placeClient = GMSPlacesClient()
+    mapView.delegate = self
     mapState.setCamera(user: userState)
     mapView.camera = mapState.camera!
     
+    setupMapView()
+  }
+  
+  public func setupMapView() {
     getPlaces(distance: userState.distance!, location: userState.current!) { places in
       if places == nil || places.count == 0 {
         // TODO:
@@ -54,19 +58,52 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
       self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
       self.mapState.setDistinateFromCandidates(for: self.userState)
       
-      // set tabselector view
-      let tabMax = 3
-      self.tabSelectView.tabStore! = []
-      for (index, candidate) in (self.mapState.candidates?.enumerated())! {
-        self.tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: candidate.name, distance: ""))
-        if index >= tabMax - 1 {
-          break
-        }
-      }
-      self.tabSelectView.selector = 0
+      self.setView(for: self.tabSelectView, tab: self.tabMax, with: self.mapState.candidates!)
       
       self.drawMapView()
     }
+  }
+  
+  public func drawMapView() {
+    let current = self.userState.current!
+    let target = self.mapState.distination?.geometry.location
+    self.getDirection(current: current, target: target!) { direction in
+      if direction == nil {
+        // TODO:
+        // エラー処理
+        return
+      }
+      self.mapState.direction = direction
+      let route = self.mapState.getRoute()!
+      
+      // マップの更新
+      GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
+      GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
+      GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
+      GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
+      
+      // タブの更新
+      let routeDistanceKM = self.mapState.calcDirectionDistance() / 1000.0
+      self.updateView(for: self.tabSelectView, distance: routeDistanceKM)
+    }
+    
+  }
+  
+  private func setView(for view: TabSelectView, tab: Int, with places: [Place]) {
+    view.tabStore = []
+    for (index, place) in places.enumerated() {
+      if index >= tab {
+        break
+      }
+      view.tabStore!.append(RouteSelectElement(title: "", placeName: place.name, distance: ""))
+    }
+    view.selector = 0
+    view.setNeedsDisplay()
+  }
+  
+  private func updateView(for view: TabSelectView, distance: Double) {
+    view.tabStore![view.selector].distance = String(format: "%.2f", distance)
+    view.setNeedsDisplay()
   }
   
   override func didReceiveMemoryWarning() {
@@ -87,7 +124,6 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
   @IBAction func backButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
-  
   
   func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
     // Markerのドラッグ開始時に呼ばれる
@@ -155,35 +191,6 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
     }
     
     return request
-  }
-  
-  public func drawMapView() {
-    let current = self.userState.current!
-    let target = self.mapState.distination?.geometry.location
-    self.getDirection(current: current, target: target!) { direction in
-      if direction == nil {
-        // TODO:
-        // エラー処理
-        return
-      }
-      self.mapState.direction = direction
-      let route = self.mapState.getRoute()!
-      
-      // マップの描画
-      // カメラの更新は行わない
-      // self.mapView.camera = self.mapState.camera!
-      GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
-      GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
-      GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
-      GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
-      
-      // tabViewの更新
-      let routeDistance = self.mapState.calcDirectionDistance() / 1000.0
-      let selector = self.tabSelectView.selector
-      self.tabSelectView.tabStore![selector].distance = String(format: "%.2f", routeDistance )
-      self.tabSelectView.setNeedsDisplay()
-    }
-    
   }
   
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
