@@ -15,8 +15,9 @@ class HistoryService {
   private static var forTestHistories: Histories = [
     History(date: Date(),
       route: nil,
-      distance: 114.5141919,
-      time: 10000),
+      distance: 6000.0,
+      time: 3600,
+      placeName: "筑波大学" ),
   ]
   
   class func getHistories() -> Histories {
