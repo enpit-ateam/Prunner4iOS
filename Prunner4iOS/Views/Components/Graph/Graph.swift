@@ -39,16 +39,21 @@ protocol UIGraphViewDelegate {
   
   override required init(frame: CGRect) {
     super.init(frame: frame)
-    self.selectedDay = DayService.getComponent(date: Date()).day!
-    self.backgroundColor = UIColor(red:228/255,  green:247/255,  blue:254/255, alpha:1)
+    commonInit()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    commonInit()
+  }
+  
+  public func commonInit() {
+    selectedDay = DayService.getComponent(date: Date()).day!
+    backgroundColor = UIColor(red:228/255,  green:247/255,  blue:254/255, alpha:1)
     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(Graph.panGraph(sender:)))
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(Graph.tapGraph(sender:)))
     self.addGestureRecognizer(panGesture)
     self.addGestureRecognizer(tapGesture)
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
   
   func panGraph(sender: UIPanGestureRecognizer) {

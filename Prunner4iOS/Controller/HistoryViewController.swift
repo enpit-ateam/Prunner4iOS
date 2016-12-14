@@ -19,67 +19,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   
   @IBOutlet weak var navBar: UINavigationItem!
   
-  @IBAction func backButtonTouched(_ sender: Any) {
-    thisMonth = thisMonth - 1
-    if thisMonth < 1 {
-      thisMonth = 12
-      thisYear = thisYear - 1
-    }
-    thisDate = changeMonth(date: thisDate, month: thisMonth)
-    thisDate = changeYear(date: thisDate, year: thisYear)
-    navBar.title = getTitle(date: thisDate)
-    self.history_table = HistoryService.getHistories(month: self.thisDate)
-    drawGraph(graph: graph, date: thisDate, type: currentType)
-    self.tableView.reloadData()
-    super.viewWillAppear(true)
-  }
-  @IBAction func nextButtonTouched(_ sender: Any) {
-    thisMonth = thisMonth + 1
-    if thisMonth > 12 {
-      thisMonth = 1
-      thisYear = thisYear + 1
-    }
-    thisDate = changeMonth(date: thisDate, month: thisMonth)
-    thisDate = changeYear(date: thisDate, year: thisYear)
-    navBar.title = getTitle(date: thisDate)
-    self.history_table = HistoryService.getHistories(month: self.thisDate)
-    drawGraph(graph: graph, date: thisDate, type: currentType)
-    self.tableView.reloadData()
-    super.viewWillAppear(true)
-  }
-  
-  @IBAction func nextGraphButton(_ sender: Any) {
-    if pageControl.currentPage + 1 <= pageControl.numberOfPages - 1{
-      pageControl.currentPage = pageControl.currentPage + 1
-      changePage(page: pageControl.currentPage)
-    }
-  }
-  @IBAction func backGraphButton(_ sender: Any) {
-    if pageControl.currentPage - 1 >= 0{
-      pageControl.currentPage = pageControl.currentPage - 1
-      changePage(page: pageControl.currentPage)
-    }
-
-  }
-  
-  @IBAction func changePage(_ sender: UIPageControl) {
-    changePage(page: sender.currentPage)
-  }
-  
-  private func changePage(page: Int) {
-    switch page {
-    case 0:
-      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Distance)
-    case 1:
-      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Time)
-    case 2:
-      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Pace)
-    default:
-      break
-    }
-  }
-  
-  
   var graph: Graph = Graph(frame: CGRect(x:30, y:135.0, width:360, height:200.0))
   var thisDate: Date!
   var thisYear: Int = 2016
@@ -141,6 +80,68 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  @IBAction func backButtonTouched(_ sender: Any) {
+    thisMonth = thisMonth - 1
+    if thisMonth < 1 {
+      thisMonth = 12
+      thisYear = thisYear - 1
+    }
+    thisDate = changeMonth(date: thisDate, month: thisMonth)
+    thisDate = changeYear(date: thisDate, year: thisYear)
+    navBar.title = getTitle(date: thisDate)
+    self.history_table = HistoryService.getHistories(month: self.thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
+  }
+  
+  @IBAction func nextButtonTouched(_ sender: Any) {
+    thisMonth = thisMonth + 1
+    if thisMonth > 12 {
+      thisMonth = 1
+      thisYear = thisYear + 1
+    }
+    thisDate = changeMonth(date: thisDate, month: thisMonth)
+    thisDate = changeYear(date: thisDate, year: thisYear)
+    navBar.title = getTitle(date: thisDate)
+    self.history_table = HistoryService.getHistories(month: self.thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
+    self.tableView.reloadData()
+    super.viewWillAppear(true)
+  }
+  
+  @IBAction func nextGraphButton(_ sender: Any) {
+    if pageControl.currentPage + 1 <= pageControl.numberOfPages - 1{
+      pageControl.currentPage = pageControl.currentPage + 1
+      changePage(page: pageControl.currentPage)
+    }
+  }
+  
+  @IBAction func backGraphButton(_ sender: Any) {
+    if pageControl.currentPage - 1 >= 0{
+      pageControl.currentPage = pageControl.currentPage - 1
+      changePage(page: pageControl.currentPage)
+    }
+    
+  }
+  
+  @IBAction func changePage(_ sender: UIPageControl) {
+    changePage(page: sender.currentPage)
+  }
+  
+  private func changePage(page: Int) {
+    switch page {
+    case 0:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Distance)
+    case 1:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Time)
+    case 2:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Pace)
+    default:
+      break
+    }
   }
   
   private func makeCellText(history:History) -> String{

@@ -26,12 +26,6 @@ class TableView: UITableViewCell {
   @IBOutlet weak var runTimeLabel: UILabel!
   @IBOutlet weak var paceLabel: UILabel!
   
-//  @IBOutlet weak var dayLabel: UILabel!
-//  @IBOutlet weak var timeLabel: UILabel!
-//  @IBOutlet weak var distanceLabel: UILabel!
-//  @IBOutlet weak var runTimeLabel: UILabel!
-//  @IBOutlet weak var paceLabel: UILabel!
-  
   func setCell(history: History) {
     let distance: Double = history.distance! / 1000.0
     let time: Int = history.time!
