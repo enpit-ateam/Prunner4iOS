@@ -79,8 +79,8 @@ class MapState {
       let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
       let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
       let lc = CLLocationCoordinate2DMake(current.lat, current.lng)
-      let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: lc) - distance)
-      let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: lc) - distance)
+      let d1 = fabs(fabs(lc1.latitude - lc.latitude) + fabs(lc1.longitude - lc.longitude) - distance)
+      let d2 = fabs(fabs(lc2.latitude - lc.latitude) + fabs(lc2.longitude - lc.longitude) - distance)
       return d1 < d2
     }
     self.candidates = sortedPlaces
@@ -104,8 +104,8 @@ class MapState {
       let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
       let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
       let lc = CLLocationCoordinate2DMake(current.lat, current.lng)
-      let d1 = fabs(self.calcCoordinatesDistance(lc1: lc1, lc2: lc) - distance)
-      let d2 = fabs(self.calcCoordinatesDistance(lc1: lc2, lc2: lc) - distance)
+      let d1 = fabs(fabs(lc1.latitude - lc.latitude) + fabs(lc1.longitude - lc.longitude) - distance)
+      let d2 = fabs(fabs(lc2.latitude - lc.latitude) + fabs(lc2.longitude - lc.longitude) - distance)
       return d1 < d2
     }
     
