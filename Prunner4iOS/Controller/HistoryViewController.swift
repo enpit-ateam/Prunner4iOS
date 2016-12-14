@@ -13,7 +13,8 @@ import Foundation.NSDateFormatter
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGraphViewDelegate {
   
   @IBOutlet weak var tableView: UITableView!
-  
+  @IBOutlet weak var pageControl: UIPageControl!
+
   var history_table: Histories = []
   
   @IBOutlet weak var navBar: UINavigationItem!
@@ -27,7 +28,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     thisDate = changeMonth(date: thisDate, month: thisMonth)
     thisDate = changeYear(date: thisDate, year: thisYear)
     navBar.title = getTitle(date: thisDate)
-    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.history_table = HistoryService.getHistories(month: self.thisDate)
     drawGraph(graph: graph, date: thisDate, type: currentType)
     self.tableView.reloadData()
@@ -42,15 +42,32 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     thisDate = changeMonth(date: thisDate, month: thisMonth)
     thisDate = changeYear(date: thisDate, year: thisYear)
     navBar.title = getTitle(date: thisDate)
-    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.history_table = HistoryService.getHistories(month: self.thisDate)
     drawGraph(graph: graph, date: thisDate, type: currentType)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
   
+  @IBAction func nextGraphButton(_ sender: Any) {
+    if pageControl.currentPage + 1 <= pageControl.numberOfPages - 1{
+      pageControl.currentPage = pageControl.currentPage + 1
+      changePage(page: pageControl.currentPage)
+    }
+  }
+  @IBAction func backGraphButton(_ sender: Any) {
+    if pageControl.currentPage - 1 >= 0{
+      pageControl.currentPage = pageControl.currentPage - 1
+      changePage(page: pageControl.currentPage)
+    }
+
+  }
+  
   @IBAction func changePage(_ sender: UIPageControl) {
-    switch sender.currentPage {
+    changePage(page: sender.currentPage)
+  }
+  
+  private func changePage(page: Int) {
+    switch page {
     case 0:
       drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Distance)
     case 1:
@@ -60,8 +77,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     default:
       break
     }
-    
-    print(sender.currentPage)
   }
   
   

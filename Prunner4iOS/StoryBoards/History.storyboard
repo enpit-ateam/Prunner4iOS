@@ -40,7 +40,7 @@
                                     <outlet property="delegate" destination="z8P-U2-0iu" id="VGi-pd-0q7"/>
                                 </connections>
                             </tableView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="MXX-6s-EAk">
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="pageControl" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="MXX-6s-EAk">
                                 <rect key="frame" x="107" y="300" width="160" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,11 +53,17 @@
                                 <rect key="frame" x="0.0" y="227" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="backGraphButton:" destination="z8P-U2-0iu" eventType="touchDown" id="x0E-Qm-5aA"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHX-ZS-WrE">
                                 <rect key="frame" x="384" y="227" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="nextGraphButton:" destination="z8P-U2-0iu" eventType="touchDown" id="GZR-1H-3Ok"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,6 +86,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navBar" destination="n9J-gp-dtx" id="4O2-oK-XeU"/>
+                        <outlet property="pageControl" destination="MXX-6s-EAk" id="3rl-CE-Y07"/>
                         <outlet property="tableView" destination="u6b-4h-XOg" id="feL-IW-4T7"/>
                         <segue destination="PaD-MA-al9" kind="show" identifier="DETAIL" id="VaE-7u-Uv8"/>
                     </connections>
@@ -113,7 +120,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
