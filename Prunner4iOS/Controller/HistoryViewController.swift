@@ -27,9 +27,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     thisDate = changeMonth(date: thisDate, month: thisMonth)
     thisDate = changeYear(date: thisDate, year: thisYear)
     navBar.title = getTitle(date: thisDate)
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.history_table = HistoryService.getHistories(month: self.thisDate)
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
@@ -42,16 +42,34 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     thisDate = changeMonth(date: thisDate, month: thisMonth)
     thisDate = changeYear(date: thisDate, year: thisYear)
     navBar.title = getTitle(date: thisDate)
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.history_table = HistoryService.getHistories(month: self.thisDate)
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
-  var graph: Graph = Graph(frame: CGRect(x:0, y:135.0, width:400, height:200.0))
+  
+  @IBAction func changePage(_ sender: UIPageControl) {
+    switch sender.currentPage {
+    case 0:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Distance)
+    case 1:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Time)
+    case 2:
+      drawGraph(graph: graph, date: thisDate, type: HistoryDataMode.Pace)
+    default:
+      break
+    }
+    
+    print(sender.currentPage)
+  }
+  
+  
+  var graph: Graph = Graph(frame: CGRect(x:30, y:135.0, width:360, height:200.0))
   var thisDate: Date!
   var thisYear: Int = 2016
   var thisMonth: Int = 12
+  var currentType:HistoryDataMode = .Distance
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,12 +81,12 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     thisDate = Date()
     
     let myBoundSize: CGSize = UIScreen.main.bounds.size
-    graph = Graph(frame: CGRect(x:0, y:135.0, width:myBoundSize.width, height:200.0))
+    graph = Graph(frame: CGRect(x:30, y:100.0, width:myBoundSize.width - 60, height:200.0))
     graph.delegate = self
     
     thisDate = changeMonth(date: thisDate, month:12)
     
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     
     tableView.delegate = self
     tableView.dataSource = self
@@ -121,9 +139,35 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     return cellText
   }
   
-  private func drawGraph(graph: Graph, date: Date) {
+  private func drawGraph(graph: Graph, date: Date, type: HistoryDataMode) {
     let xLabel = DayService.getMonthOfDayList(date: date).map({(d:Int) -> String in d.description})
-    let yLabel = DayService.getDistanceTable(date: date, historyTable: HistoryService.getHistories(month: date)).map({(distance: Double) -> CGFloat in return CGFloat(distance)})
+    var yLabel =
+      DayService.getDistanceTable(
+        date: date,
+        historyTable: HistoryService.getHistories(month: date),
+        type: type
+        )
+        .map({(distance: Double) -> CGFloat in return CGFloat(distance)})
+    switch type{
+    case .Distance:
+      break
+    case .Time:
+      yLabel =
+        DayService.getDistanceTable(
+          date: date,
+          historyTable: HistoryService.getHistories(month: date),
+          type: type
+        )
+        .map({(time: Double) -> CGFloat in return CGFloat(time)})
+    case .Pace:
+      yLabel =
+        DayService.getDistanceTable(
+          date: date,
+          historyTable: HistoryService.getHistories(month: date),
+          type: type
+        )
+        .map({(pace: Double) -> CGFloat in return CGFloat(pace)})
+    }
     
     graph.setLabel(
       xLabel: xLabel,
@@ -156,7 +200,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     print(selectedDay)
     self.thisDate = changeDay(date: self.thisDate, day: selectedDay)
     self.history_table = HistoryService.getHistories(day: self.thisDate)
-    drawGraph(graph: graph, date: thisDate)
+    drawGraph(graph: graph, date: thisDate, type: currentType)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }

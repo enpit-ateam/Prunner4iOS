@@ -35,9 +35,9 @@ class HistoryService {
   class func getHistories(day: Date) -> Histories {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: day)
-    components.day = components.day!
     let date_ = calendar.date(from: components)!
     let histories_ = getHistories()
+
     return histories_.filter({(h:History) -> Bool in calendar.isDate(date_, equalTo: h.date!, toGranularity: .day)})
   }
   
