@@ -95,6 +95,18 @@ class DoneViewController: UIViewController {
     cv.setInitialText("")
     self.present(cv, animated: true, completion: nil)
   }
+  
+  @IBAction func doneButtonTapped(_ sender: Any) {
+    HistoryService.addHistories(history:
+      History(date: Date(),
+              route: userState.route,
+              distance: mapState.calcDirectionDistance(),
+              time: userState.calcRunTime(),
+              placeName: mapState.distination?.name))
+    performSegue(withIdentifier: "backToTop", sender: nil)
+  }
+  
+  
   /*
    // MARK: - Navigation
    
