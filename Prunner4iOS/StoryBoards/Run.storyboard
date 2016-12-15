@@ -32,7 +32,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem tag="1" title="Run" image="98DBE204-53F8-4507-AA57-D89F5125C79C" selectedImage="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" id="4Zo-Cn-SOA"/>
+                                    <tabBarItem tag="1" title="Run" image="64B3BE12-DF45-4DB9-A349-CD137D612EC0" selectedImage="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" id="4Zo-Cn-SOA"/>
                                     <tabBarItem tag="2" title="History" image="221104B8-ADCF-4E84-9301-F612DC0534FC" selectedImage="C06ABAD6-1AE3-496F-B160-D897ADF10428" id="cI6-bk-vni"/>
                                 </items>
                             </tabBar>
@@ -239,19 +239,18 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0x-S8-5Tc" customClass="CustomCircleView" customModule="Prunner4iOS" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="55" width="240" height="90"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DoneModal" translatesAutoresizingMaskIntoConstraints="NO" id="A1G-HC-gkV">
-                                                    <rect key="frame" x="20" y="10" width="200" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="Ef8-a6-7qe"/>
-                                                        <constraint firstAttribute="height" constant="70" id="rxg-PR-p4B"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2tb-ai-Ho0" customClass="SlideSwitchView" customModule="Prunner4iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="2" y="2" width="236" height="86"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstItem="A1G-HC-gkV" firstAttribute="centerX" secondItem="Z0x-S8-5Tc" secondAttribute="centerX" id="FNZ-He-VDa"/>
-                                                <constraint firstItem="A1G-HC-gkV" firstAttribute="centerY" secondItem="Z0x-S8-5Tc" secondAttribute="centerY" id="dFt-i7-9fL"/>
+                                                <constraint firstAttribute="trailing" secondItem="2tb-ai-Ho0" secondAttribute="trailing" constant="2" id="8z2-XZ-BdK"/>
+                                                <constraint firstItem="2tb-ai-Ho0" firstAttribute="leading" secondItem="Z0x-S8-5Tc" secondAttribute="leading" constant="2" id="Blz-hn-edM"/>
+                                                <constraint firstAttribute="bottom" secondItem="2tb-ai-Ho0" secondAttribute="bottom" constant="2" id="OAc-35-IpE"/>
+                                                <constraint firstItem="2tb-ai-Ho0" firstAttribute="top" secondItem="Z0x-S8-5Tc" secondAttribute="top" constant="2" id="iZL-1b-xXq"/>
                                                 <constraint firstAttribute="height" constant="90" id="wAe-bF-TB0"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -319,15 +318,12 @@
                         <blurEffect style="light"/>
                     </visualEffectView>
                     <connections>
+                        <outlet property="sliderView" destination="2tb-ai-Ho0" id="fyG-KJ-MfG"/>
                         <segue destination="YYa-rX-hH6" kind="show" identifier="DONE" id="EBX-nC-e3f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljt-OA-uIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="7pz-TS-v6L">
-                    <connections>
-                        <action selector="rightSwaiped:" destination="w7A-eM-rLr" id="cDU-cL-fjB"/>
-                    </connections>
-                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="7pz-TS-v6L"/>
             </objects>
             <point key="canvasLocation" x="1920.8" y="416.94152923538235"/>
         </scene>
@@ -597,7 +593,7 @@
     <resources>
         <image name="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" width="16" height="16"/>
         <image name="221104B8-ADCF-4E84-9301-F612DC0534FC" width="16" height="16"/>
-        <image name="98DBE204-53F8-4507-AA57-D89F5125C79C" width="30" height="30">
+        <image name="64B3BE12-DF45-4DB9-A349-CD137D612EC0" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -712,7 +708,6 @@ GFIYVRhaAAAAAAAAAgEAAAAAAAAAQQAAAAAAAAAAAAAAAAAAGFw
         <image name="BackNavBarItem" width="16" height="20"/>
         <image name="C06ABAD6-1AE3-496F-B160-D897ADF10428" width="16" height="16"/>
         <image name="CheckButton" width="75" height="75"/>
-        <image name="DoneModal" width="280" height="101"/>
         <image name="RunnerNormal" width="30" height="30"/>
         <image name="RunnerSelected" width="30" height="30"/>
         <image name="StartButton" width="80" height="80"/>

@@ -8,35 +8,14 @@
 
 import UIKit
 
-import UIKit
-
-extension UIColor {
-  class func hexStr ( hexStr : NSString, alpha : CGFloat) -> UIColor {
-    var hexStr = hexStr
-    let alpha = alpha
-    hexStr = hexStr.replacingOccurrences(of: "#", with: "") as NSString
-    let scanner = Scanner(string: hexStr as String)
-    var color: UInt32 = 0
-    if scanner.scanHexInt32(&color) {
-      let r = CGFloat((color & 0xFF0000) >> 16) / 255.0
-      let g = CGFloat((color & 0x00FF00) >> 8) / 255.0
-      let b = CGFloat(color & 0x0000FF) / 255.0
-      return UIColor(red:r,green:g,blue:b,alpha:alpha)
-    } else {
-      print("invalid hex string")
-      return UIColor.white
-    }
-  }
-}
-
 protocol SlideSwitchViewDelegate {
   func onSwitched()
 }
 
 class SlideSwitchView: UIView {
   
-  private var _controllerRadius = 120
-  private var _margin = 10
+  private var _controllerRadius: CGFloat = CGFloat(120)
+  private var _margin: CGFloat = CGFloat(10)
   private var _baseColorHex = "71e9ce"
   private var _controllerPoint:CGPoint?
   private var _arrowRadius:CGFloat = 5.0
@@ -57,11 +36,19 @@ class SlideSwitchView: UIView {
     get {
       return CGFloat(_controllerRadius)
     }
+    set(radius) {
+      _controllerRadius = radius
+      self.setNeedsDisplay()
+    }
   }
   
   var margin:CGFloat {
     get {
       return CGFloat(_margin)
+    }
+    set(margin) {
+      _margin = margin
+      self.setNeedsDisplay()
     }
   }
   
@@ -99,10 +86,16 @@ class SlideSwitchView: UIView {
     commonInit()
   }
   
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    commonInit()
+  }
+  
   public func commonInit() {
     let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanned(gestureRecognizer:)))
     self.addGestureRecognizer(panGestureRecognizer)
     controllerPoint = controllerInitPosition
+    self.setNeedsDisplay()
   }
   
   func onPanned(gestureRecognizer: UIPanGestureRecognizer) {
@@ -153,7 +146,7 @@ class SlideSwitchView: UIView {
     vector.addLine(to: CGPoint(x: end - 10, y: bounds.height/2 - 10))
     vector.move(to: CGPoint(x: end, y: bounds.height/2 ))
     vector.addLine(to: CGPoint(x: end - 10, y: bounds.height/2 + 10))
-    vector.lineWidth = 5
+    vector.lineWidth = 3
     UIColor.hexStr(hexStr: baseColorHex as NSString, alpha: alpha).setStroke()
     vector.stroke()
     
