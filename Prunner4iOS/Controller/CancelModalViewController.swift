@@ -8,12 +8,20 @@
 
 import UIKit
 
-class CancelModalViewController: UIViewController {
+class CancelModalViewController: UIViewController, SlideSwitchViewDelegate {
+  
+  @IBOutlet weak var sliderView: SlideSwitchView!
+  var initialFlg = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    sliderView.controllerRadius = CGFloat(60)
+    sliderView.margin = CGFloat(5)
+    sliderView.baseColorHex = "ee7a33"
+    sliderView.controllerPoint = sliderView.controllerInitPosition
+    sliderView.delegate = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -27,6 +35,14 @@ class CancelModalViewController: UIViewController {
   
   @IBAction func cancelButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
+  }
+  
+  func onSwitched() {
+    if initialFlg {
+      performSegue(withIdentifier: "backToSetup", sender: nil)
+      dismiss(animated: true, completion: nil)
+      initialFlg = false
+    }
   }
   
   /*
