@@ -190,7 +190,8 @@ class HistoryViewController:UIViewController,UITableViewDelegate, UITableViewDat
     
     graph.setLabel(
       xLabel: xLabel,
-      yLabel: yLabel
+      yLabel: yLabel,
+      type: type
     )
     graph.setDate(date: thisDate)
     graph.setNeedsDisplay()
