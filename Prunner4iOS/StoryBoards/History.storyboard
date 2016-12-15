@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eB0-cR-fvk">
-
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,9 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="m6l-Zl-nuk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cI1-ch-ndo">
-
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU7-xY-Luh">
@@ -154,7 +151,6 @@
                         <viewControllerLayoutGuide type="top" id="Dvu-xG-JsA"/>
                         <viewControllerLayoutGuide type="bottom" id="CIO-V8-OTy"/>
                     </layoutGuides>
-
                     <view key="view" contentMode="scaleToFill" id="nq7-jh-JmL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,6 +166,17 @@
                                     <constraint firstAttribute="height" constant="230" id="two-47-Zuk"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-74-WX4">
+                                <rect key="frame" x="295" y="313" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="RGR-wI-rSp"/>
+                                    <constraint firstAttribute="height" constant="60" id="mFq-T5-HDO"/>
+                                </constraints>
+                                <state key="normal" image="Dustbox"/>
+                                <connections>
+                                    <action selector="removeButtonTapped:" destination="PaD-MA-al9" eventType="touchUpInside" id="gtQ-GD-IBS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -177,16 +184,18 @@
                             <constraint firstItem="FGD-aW-Ogq" firstAttribute="leading" secondItem="nq7-jh-JmL" secondAttribute="leading" id="A9M-qn-7XV"/>
                             <constraint firstItem="V6y-RB-B0V" firstAttribute="leading" secondItem="nq7-jh-JmL" secondAttribute="leading" id="KD3-Dq-XCc"/>
                             <constraint firstAttribute="trailing" secondItem="FGD-aW-Ogq" secondAttribute="trailing" id="QNc-jE-FuT"/>
+                            <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="dcE-74-WX4" secondAttribute="bottom" constant="20" id="bay-Oy-ROK"/>
                             <constraint firstItem="V6y-RB-B0V" firstAttribute="top" secondItem="nq7-jh-JmL" secondAttribute="top" id="daM-t7-ZO0"/>
                             <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="V6y-RB-B0V" secondAttribute="bottom" constant="1" id="gYe-wf-2nJ"/>
                             <constraint firstItem="CIO-V8-OTy" firstAttribute="top" secondItem="FGD-aW-Ogq" secondAttribute="bottom" id="hEg-aB-oNk"/>
+                            <constraint firstAttribute="trailing" secondItem="dcE-74-WX4" secondAttribute="trailing" constant="20" id="pVi-Qx-mD1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="詳細" id="vFL-og-dOG">
                         <barButtonItem key="leftBarButtonItem" image="BackNavBarItem" id="oaK-Tw-mpX">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="3E4-5Y-dEj" kind="unwind" unwindAction="backToHistory:" id="Zjt-6m-npG"/>
+                                <segue destination="3E4-5Y-dEj" kind="unwind" identifier="backToHistory" unwindAction="backToHistory:" id="Zjt-6m-npG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -200,14 +209,14 @@
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="366.56671664167919"/>
         </scene>
-        <!--History-->
+        <!--History Navigation-->
         <scene sceneID="bIw-6s-Pnd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eB0-cR-fvk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eB0-cR-fvk" userLabel="History Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -230,6 +239,7 @@
         <image name="BackNavBarItem" width="16" height="20"/>
         <image name="BookNormal" width="31" height="24"/>
         <image name="BookSelected" width="31" height="24"/>
+        <image name="Dustbox" width="85" height="85"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -32,7 +32,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem tag="1" title="Run" image="2DB6FEAD-A452-47F4-A920-144F79BD49F6" selectedImage="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" id="4Zo-Cn-SOA"/>
+                                    <tabBarItem tag="1" title="Run" image="98DBE204-53F8-4507-AA57-D89F5125C79C" selectedImage="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" id="4Zo-Cn-SOA"/>
                                     <tabBarItem tag="2" title="History" image="221104B8-ADCF-4E84-9301-F612DC0534FC" selectedImage="C06ABAD6-1AE3-496F-B160-D897ADF10428" id="cI6-bk-vni"/>
                                 </items>
                             </tabBar>
@@ -597,7 +597,7 @@
     <resources>
         <image name="21D75694-8E63-41C8-9422-2BFB5B8BE8C0" width="16" height="16"/>
         <image name="221104B8-ADCF-4E84-9301-F612DC0534FC" width="16" height="16"/>
-        <image name="2DB6FEAD-A452-47F4-A920-144F79BD49F6" width="30" height="30">
+        <image name="98DBE204-53F8-4507-AA57-D89F5125C79C" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

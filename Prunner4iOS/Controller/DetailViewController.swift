@@ -89,11 +89,14 @@ class DetailViewController: UIViewController {
     return comps
   }
   
-//  @IBAction func twTapped(_ sender: Any) {
-//    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-//    cv?.setInitialText("てすとてきすと")
-//    self.present(cv!, animated: true, completion:nil )
-//  }
+  @IBAction func removeButtonTapped(_ sender: Any) {
+    removeData()
+    performSegue(withIdentifier: "backToHistory", sender: nil)
+  }
+  
+  private func removeData() {
+    
+  }
   
   /*
    // MARK: - Navigation
