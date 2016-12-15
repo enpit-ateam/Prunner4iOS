@@ -90,12 +90,13 @@ class DetailViewController: UIViewController {
   }
   
   @IBAction func removeButtonTapped(_ sender: Any) {
+    // TODO: 動きません
     removeData()
     performSegue(withIdentifier: "backToHistory", sender: nil)
   }
   
   private func removeData() {
-    
+    HistoryService.removeHistories(history: self.history!)
   }
   
   /*
