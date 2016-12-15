@@ -79,13 +79,29 @@ class MapState {
       let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
       let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
       let lc = CLLocationCoordinate2DMake(current.lat, current.lng)
-      let d1 = fabs(fabs(lc1.latitude - lc.latitude) + fabs(lc1.longitude - lc.longitude) - distance)
-      let d2 = fabs(fabs(lc2.latitude - lc.latitude) + fabs(lc2.longitude - lc.longitude) - distance)
+      let d1 = fabs(calcAbsSubLatitude(from: lc1, to: lc) + calcAbsSubLongitude(from: lc1, to: lc) - (actualDistance))
+      let d2 = fabs(calcAbsSubLatitude(from: lc2, to: lc) + calcAbsSubLongitude(from: lc2, to: lc) - (actualDistance))
       return d1 < d2
     }
     self.candidates = sortedPlaces
     self.distination = sortedPlaces[0]
   }
+  
+  private func calcAbsSubLongitude(from A: CLLocationCoordinate2D, to B: CLLocationCoordinate2D) -> Double {
+    let R = 6378137.0
+    let PI = 3.141513
+    
+    return (PI*R/180.0) * fabs(A.longitude - B.longitude)
+  }
+  
+  private func calcAbsSubLatitude(from A: CLLocationCoordinate2D, to B: CLLocationCoordinate2D) -> Double {
+    let R = 6378137.0
+    let PI = 3.141513
+    
+    let lngR = fabs(R * sin( PI/180.0 * B.longitude))
+    return (PI*lngR/180.0) * fabs(A.latitude - B.latitude)
+  }
+  
   
   private func calcCoordinatesDistance(lc1: CLLocationCoordinate2D, lc2: CLLocationCoordinate2D) -> CLLocationDistance {
     let l1 = CLLocation(latitude: lc1.latitude, longitude: lc1.longitude)
