@@ -91,13 +91,18 @@ class SlideSwitchView: UIView {
   
   override init(frame: CGRect){
     super.init(frame: frame)
-    let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanned(gestureRecognizer:)))
-    self.addGestureRecognizer(panGestureRecognizer)
-    controllerPoint = controllerInitPosition
+    commonInit()
   }
   
   required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: aDecoder)!
+    commonInit()
+  }
+  
+  public func commonInit() {
+    let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanned(gestureRecognizer:)))
+    self.addGestureRecognizer(panGestureRecognizer)
+    controllerPoint = controllerInitPosition
   }
   
   func onPanned(gestureRecognizer: UIPanGestureRecognizer) {
