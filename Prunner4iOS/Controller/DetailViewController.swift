@@ -89,8 +89,13 @@ class DetailViewController: UIViewController {
     return comps
   }
   
-  @IBAction func removeButtonTapped(_ sender: Any) {
+  //@IBAction func removeButtonTapped(_ sender: Any) {
     // TODO: 動きません
+  //  removeData()
+  //  performSegue(withIdentifier: "backToHistory", sender: nil)
+  //}
+  
+  @IBAction func removeButtonTapped(_ sender: Any) {
     removeData()
     performSegue(withIdentifier: "backToHistory", sender: nil)
   }

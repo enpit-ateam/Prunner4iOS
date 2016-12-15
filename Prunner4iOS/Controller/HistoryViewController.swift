@@ -42,7 +42,7 @@ class HistoryViewController:UIViewController,UITableViewDelegate, UITableViewDat
   override func viewWillAppear(_ animated: Bool) {
     // 再描画
     drawGraph(graph: graph, date: thisDate, type: currentType)
-    history_table = HistoryService.getHistories()
+    history_table = HistoryService.getHistories(month: thisDate)
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
@@ -234,5 +234,7 @@ class HistoryViewController:UIViewController,UITableViewDelegate, UITableViewDat
     performSegue(withIdentifier: "DETAIL", sender: selectedIndex)
   }
   
-  @IBAction func backToHistory(_ segue: UIStoryboardSegue) {}
+  @IBAction func backToHistory(_ segue: UIStoryboardSegue) {
+    viewWillAppear(true)
+  }
 }
