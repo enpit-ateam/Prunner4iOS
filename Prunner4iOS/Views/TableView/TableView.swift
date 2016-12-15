@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TableViewDelegate {
+  func tapped(selectedIndex: IndexPath)
+}
+
 class TableView: UITableViewCell {
   
   /*
@@ -22,11 +26,18 @@ class TableView: UITableViewCell {
   
   @IBOutlet weak var dayLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var rightButton: UIButton!
   @IBOutlet weak var distanceLabel: UILabel!
   @IBOutlet weak var runTimeLabel: UILabel!
   @IBOutlet weak var paceLabel: UILabel!
   
-  func setCell(history: History) {
+  
+  
+  private var indexPath:IndexPath!
+  public var delegate: TableViewDelegate!
+  
+  func setCell(history: History, indexPath: IndexPath) {
+    self.indexPath = indexPath
     let distance: Double = history.distance! / 1000.0
     let time: Int = history.time!
     let hour: Int = time / (60 * 60)
@@ -40,4 +51,12 @@ class TableView: UITableViewCell {
     runTimeLabel.text = String(format: "%d:%2d", hour, minute)
     paceLabel.text = String(format: "%d", pace)
   }
+ 
+  @IBAction func rightButtonClicked(_ sender: Any) {
+    delegate.tapped(selectedIndex: indexPath)
+  }
+  
+  
+  
+  
 }

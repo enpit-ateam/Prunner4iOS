@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,7 +72,7 @@
                     <rect key="frame" x="90" y="0.0" width="235" height="55"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="owX-Gl-K6B">
-                            <rect key="frame" x="10" y="13.333333333333336" width="74" height="30"/>
+                            <rect key="frame" x="10" y="12.666666666666664" width="74.333333333333343" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppO-pY-gwe" userLabel="time">
                                     <rect key="frame" x="0.0" y="0.0" width="43.333333333333343" height="30"/>
@@ -81,7 +81,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esx-OS-CoM">
-                                    <rect key="frame" x="43.333333333333343" y="9.9999999999999982" width="30.666666666666657" height="20"/>
+                                    <rect key="frame" x="43.333333333333343" y="10.000000000000002" width="31" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="esx-OS-CoM" secondAttribute="height" multiplier="31:20" id="7pM-2v-CdY"/>
                                     </constraints>
@@ -166,6 +166,9 @@
                                 <constraint firstAttribute="height" constant="35" id="akr-OP-g90"/>
                             </constraints>
                             <state key="normal" image="TableCellNext"/>
+                            <connections>
+                                <action selector="rightButtonClicked:" destination="iN0-l3-epB" eventType="touchDown" id="bY2-bl-cRz"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.97254901959999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -202,6 +205,7 @@
                 <outlet property="dayLabel" destination="gDj-nG-IOr" id="gK2-lQ-GiL"/>
                 <outlet property="distanceLabel" destination="ppO-pY-gwe" id="hc3-7p-kNx"/>
                 <outlet property="paceLabel" destination="7PP-yP-imq" id="fD5-WE-nXe"/>
+                <outlet property="rightButton" destination="fe4-Pv-afO" id="4gJ-yD-kYE"/>
                 <outlet property="runTimeLabel" destination="yF9-4J-Enq" id="BJw-vf-msM"/>
                 <outlet property="timeLabel" destination="eI7-Pt-LJd" id="0BB-mk-1n5"/>
             </connections>
