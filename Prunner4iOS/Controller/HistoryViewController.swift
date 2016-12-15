@@ -33,7 +33,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     history_table = HistoryService.getHistories()
     
     thisDate = Date()
-    thisDate = changeMonth(date: thisDate, month:12)
+    //thisDate = changeMonth(date: thisDate, month:12)
     
     // set delegate
     graph.delegate = self
@@ -70,7 +70,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Cellを触るとDetailに遷移する
     // TODO:
     // 遷移を矢印のみに変更する
-    performSegue(withIdentifier: "DETAIL", sender: indexPath)
+    graph.selectedDay = DayService.getComponent(date: history_table[indexPath.row].date!).day!
+    graph.setNeedsDisplay()
+    //performSegue(withIdentifier: "DETAIL", sender: indexPath)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -192,6 +194,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     graph.setNeedsDisplay()
   }
   
+  
+  //DayServiceに移す
   private func changeYear(date: Date, year: Int) -> Date {
     let calendar = Calendar.current
     var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: date)
@@ -213,12 +217,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   public func pointTaped(selectedDay: Int) {
-    print(selectedDay)
-    self.thisDate = changeDay(date: self.thisDate, day: selectedDay)
-    self.history_table = HistoryService.getHistories(day: self.thisDate)
-    drawGraph(graph: graph, date: thisDate, type: currentType)
-    self.tableView.reloadData()
-    super.viewWillAppear(true)
   }
   
   private func getTitle(date: Date) -> String{
