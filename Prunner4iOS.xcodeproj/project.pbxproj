@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A70D9D3F4C92E001DD99199 /* Pods_Prunner4iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */; };
+		451F12E31E024CA500A82B37 /* HiraginoGW0.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 451F12E21E024CA500A82B37 /* HiraginoGW0.ttc */; };
 		45451D151DF54DC300143A39 /* GMSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D141DF54DC300143A39 /* GMSUtil.swift */; };
 		45451D1C1DF571EE00143A39 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45451D1B1DF571EE00143A39 /* CustomButton.swift */; };
 		45451D2F1DF6959600143A39 /* RunScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45451D2C1DF6959600143A39 /* RunScene.storyboard */; };
@@ -91,7 +92,7 @@
 /* Begin PBXFileReference section */
 		075C5A1A00DB0E11F38FC7D3 /* Pods-Prunner4iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prunner4iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Prunner4iOS/Pods-Prunner4iOS.release.xcconfig"; sourceTree = "<group>"; };
 		2AB45D5F2FAA1A4D92437C4C /* Pods_Prunner4iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prunner4iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		451F12E11E024B9E00A82B37 /* HiraginoGW0.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = HiraginoGW0.ttc; path = Views/Resouces/Fonts/HiraginoGW0.ttc; sourceTree = "<group>"; };
+		451F12E21E024CA500A82B37 /* HiraginoGW0.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = HiraginoGW0.ttc; path = Views/Resouces/Fonts/HiraginoGW0.ttc; sourceTree = "<group>"; };
 		45451D141DF54DC300143A39 /* GMSUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GMSUtil.swift; path = Models/Drawing/GMSUtil.swift; sourceTree = "<group>"; };
 		45451D1B1DF571EE00143A39 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomButton.swift; path = Views/Components/Button/CustomButton.swift; sourceTree = "<group>"; };
 		45451D2C1DF6959600143A39 /* RunScene.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RunScene.storyboard; path = Scenes/RunScene.storyboard; sourceTree = "<group>"; };
@@ -300,7 +301,7 @@
 		45A112A11E012D6F0004FC1C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				451F12E11E024B9E00A82B37 /* HiraginoGW0.ttc */,
+				451F12E21E024CA500A82B37 /* HiraginoGW0.ttc */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -664,6 +665,7 @@
 				45451D9A1E00536200143A39 /* ResultView.xib in Resources */,
 				9B0163211DC7F2480086445E /* LaunchScreen.storyboard in Resources */,
 				9B01631E1DC7F2480086445E /* Assets.xcassets in Resources */,
+				451F12E31E024CA500A82B37 /* HiraginoGW0.ttc in Resources */,
 				45A1129C1E012A080004FC1C /* TabSelectorView.xib in Resources */,
 				45A1129D1E012A080004FC1C /* TabSelectView.storyboard in Resources */,
 				45451D7F1DFEF4A100143A39 /* History.storyboard in Resources */,
