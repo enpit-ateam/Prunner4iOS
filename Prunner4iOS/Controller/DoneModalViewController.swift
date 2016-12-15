@@ -8,12 +8,19 @@
 
 import UIKit
 
-class DoneModalViewController: UIViewController {
+class DoneModalViewController: UIViewController, SlideSwitchViewDelegate {
+  
+  @IBOutlet weak var sliderView: SlideSwitchView!
+  var initialFlg = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+    sliderView.controllerRadius = CGFloat(60)
+    sliderView.margin = CGFloat(5)
+    sliderView.controllerPoint = sliderView.controllerInitPosition
+    sliderView.delegate = self
   }
   
   override func didReceiveMemoryWarning() {
@@ -28,10 +35,13 @@ class DoneModalViewController: UIViewController {
   @IBAction func cancelButtonTapped(_ sender: Any) {
     dismiss(animated: true, completion: nil)
   }
-  
-  @IBAction func rightSwaiped(_ sender: Any) {
-    performSegue(withIdentifier: "DONE", sender: nil)
-    dismiss(animated: true, completion: nil)
+
+  func onSwitched() {
+    if initialFlg {
+      performSegue(withIdentifier: "DONE", sender: nil)
+      dismiss(animated: true, completion: nil)
+      initialFlg = false
+    }
   }
   
   /*
