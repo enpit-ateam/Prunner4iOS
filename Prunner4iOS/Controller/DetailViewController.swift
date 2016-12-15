@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
   var history: History!
   
   // IBOutlet
-  // @IBOutlet weak var twButton: CustomButton!
   @IBOutlet weak var resultView: ResultView!
   @IBOutlet weak var mapView: PrunnerMapView!
   
@@ -36,20 +35,24 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     placeClient = GMSPlacesClient()
-    if let startDate = history.date,
-       let route = history.route,
-       let start = history.runStart(),
-       let end = history.runEnd(),
+    if let route = history.route,
        let distance = history.distance,
-       let time = history.time,
+       let start = history.start,
+       let end = history.end,
        let placeName = history.placeName
     {
       // マップの描画
       mapView.camera = GMSUtil.getCamera(withLocation: start, distance: distance)
       GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: start)
-      GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: "中継地点")
+      GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: placeName)
       GMSUtil.setPolyline(&polyline, mapView: mapView, route: route)
-      
+    }
+    
+    if let startDate = history.date,
+       let distance = history.distance,
+       let time = history.time,
+       let placeName = history.placeName
+    {
       if let result = resultView {
         let distanceKm: Double = distance / 1000.0
         let runTimeHour: Double = Double(time) / 3600.0
@@ -58,11 +61,11 @@ class DetailViewController: UIViewController {
         let startCal: DateComponents = getDateComponents(from: startDate)
         let endCal: DateComponents = getDateComponents(from: endDate)
         let comps: DateComponents = Calendar(identifier: .gregorian).dateComponents([.hour, .minute], from: startCal, to: endCal)
-        let mets: Double = 60.0 * distance
+        let mets: Double = 60.0 * distanceKm
         
         // set label
         result.DateLabel.text = getText(from: startCal) + " ~ " + getText(from: endCal)
-        result.DistanceLabel.text = String(format: "%.3f", distance)
+        result.DistanceLabel.text = String(format: "%.3f", distanceKm)
         result.TimesLabel.text = String(format: "%d:%2d", comps.hour!, comps.minute!)
         result.CalorieLabel.text = String(format: "%.0f", mets)
         result.PaceLabel.text = String(format: "%.1f", pace)
@@ -86,11 +89,20 @@ class DetailViewController: UIViewController {
     return comps
   }
   
-//  @IBAction func twTapped(_ sender: Any) {
-//    let cv = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-//    cv?.setInitialText("てすとてきすと")
-//    self.present(cv!, animated: true, completion:nil )
-//  }
+  //@IBAction func removeButtonTapped(_ sender: Any) {
+    // TODO: 動きません
+  //  removeData()
+  //  performSegue(withIdentifier: "backToHistory", sender: nil)
+  //}
+  
+  @IBAction func removeButtonTapped(_ sender: Any) {
+    removeData()
+    performSegue(withIdentifier: "backToHistory", sender: nil)
+  }
+  
+  private func removeData() {
+    HistoryService.removeHistories(history: self.history!)
+  }
   
   /*
    // MARK: - Navigation

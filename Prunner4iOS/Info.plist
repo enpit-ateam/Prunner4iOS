@@ -26,6 +26,10 @@
 	<string>ランニングをサポートするために位置情報を取得する必要があります。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>ランニングをサポートするために位置情報を取得する必要があります。</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HiraginoGW0.ttc</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

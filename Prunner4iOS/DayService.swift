@@ -7,33 +7,95 @@
 //
 
 import Foundation
+
+enum HistoryDataMode {
+  case Distance
+  case Time
+  case Pace
+}
+
 class DayService {
   class public func changeMonth(date: Date, month: Int) -> Date {
     let calendar = Calendar.current
     return calendar.date(bySetting: .month, value: month, of: date)!
   }
-  class public func getDistanceTable(date: Date, historyTable: [History]) -> [Double]{
-    var dayDistances:[Int: [Double]] = [0:[0]]
-    for h in historyTable {
-      let hDay = getComponent(date: h.date!).day!
-      if dayDistances[hDay] != nil {
-        dayDistances[hDay]!.append(h.distance!)
+  //getDistanceTable(date: Date, historyTable: [History])
+  class public func getDistanceTable(date: Date, historyTable: [History], type: HistoryDataMode) -> [Double]{
+    var dayDatas:[Int: [Double]] = [0:[0]]
+    switch type {
+    case .Distance:
+      for h in historyTable {
+        let hDay = getComponent(date: h.date!).day!
+        if dayDatas[hDay] != nil {
+          dayDatas[hDay]!.append(h.distance!)
+        }
+        else {
+          dayDatas[hDay] = [h.distance!]
+        }
       }
-      else {
-        dayDistances[hDay] = [h.distance!]
+      var ansTable:[Double] = []
+      for key in 0...getMaxDay(date: date)! {
+        if dayDatas[key] == nil || dayDatas[key]!.count == 0 {
+          ansTable.append(0)
+          continue
+        }
+        ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}))
       }
+      
+      return ansTable
+
+    case .Time:
+      for h in historyTable {
+        let hDay = getComponent(date: h.date!).day!
+        if dayDatas[hDay] != nil {
+          dayDatas[hDay]!.append(Double(h.time!))
+        }
+        else {
+          dayDatas[hDay] = [Double(h.time!)]
+        }
+      }
+      var ansTable:[Double] = []
+      for key in 0...getMaxDay(date: date)! {
+        if dayDatas[key] == nil || dayDatas[key]!.count == 0 {
+          ansTable.append(0)
+          continue
+        }
+        ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}))
+      }
+      
+      return ansTable
+    case .Pace:
+      for h in historyTable {
+        let hDay = getComponent(date: h.date!).day!
+        if dayDatas[hDay] != nil {
+          dayDatas[hDay]!.append(h.distance! / Double(h.time!))
+        }
+        else {
+          dayDatas[hDay] = [h.distance! / Double(h.time! == 0 ? 1 : h.time!)]
+        }
+      }
+      var ansTable:[Double] = []
+      for key in 0...getMaxDay(date: date)! {
+        if dayDatas[key] == nil || dayDatas[key]!.count == 0 {
+          ansTable.append(0)
+          continue
+        }
+        ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}) / Double(dayDatas[key]!.count))
+      }
+      
+      return ansTable
     }
     
-    var ansTable:[Double] = []
-    for key in 0...getMaxDay(date: date)! {
-      if dayDistances[key] == nil || dayDistances[key]!.count == 0 {
-        ansTable.append(0)
-        continue
-      }
-      ansTable.append(dayDistances[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}) / Double(dayDistances[key]!.count))
-    }
-
-    return ansTable
+//    var ansTable:[Double] = []
+//    for key in 0...getMaxDay(date: date)! {
+//      if dayDatas[key] == nil || dayDatas[key]!.count == 0 {
+//        ansTable.append(0)
+//        continue
+//      }
+//      ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}) / Double(dayDatas[key]!.count))
+//    }
+//
+//    return ansTable
   }
   
   class public func getMonthOfDayList(date: Date) -> [Int] {

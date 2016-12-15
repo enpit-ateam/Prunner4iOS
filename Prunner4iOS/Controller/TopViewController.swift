@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SVProgressHUD
 
 class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
   
@@ -31,6 +32,9 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
       // 測位開始
       locationManager?.requestLocation()
     }
+    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+    SVProgressHUD.setMinimumDismissTimeInterval(1)
+    SVProgressHUD.show(withStatus: "現在地を取得中です")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -72,8 +76,10 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if let location = locations.last {
       userState.current = Location(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+      SVProgressHUD.showSuccess(withStatus: "現在地を取得しました")
     } else {
       print("Could't get any location services.")
+      SVProgressHUD.showError(withStatus: "現在地の取得に失敗しました")
     }
   }
   
