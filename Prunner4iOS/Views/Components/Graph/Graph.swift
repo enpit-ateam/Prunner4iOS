@@ -31,7 +31,7 @@ protocol UIGraphViewDelegate {
   var graph:[CGPoint] = []
   //var tappedPoint:CGPoint? = nil
   var texts:[UILabel] = []
-  var selectedDay:Int = 1
+  public var selectedDay:Int = 1
   
   var baseLineColor:UIColor = UIColor(red:163/255, green: 170/255, blue:176/255, alpha: 1)
   var lineColor:UIColor = UIColor(red:44/255, green:230/255, blue:205/255, alpha: 1)
@@ -63,7 +63,7 @@ protocol UIGraphViewDelegate {
     if selectedDay == 0 {
       selectedDay = 1
     }
-    self.selectedDay = selectedDay!
+    //self.selectedDay = selectedDay!
     delegate.pointTaped(selectedDay: selectedDay!)
 
     self.setNeedsDisplay()
@@ -76,7 +76,7 @@ protocol UIGraphViewDelegate {
     if selectedDay == 0 {
       selectedDay = 1
     }
-    self.selectedDay = selectedDay!
+    //self.selectedDay = selectedDay!
     delegate.pointTaped(selectedDay: selectedDay!)
     
     self.setNeedsDisplay()
