@@ -107,7 +107,7 @@ protocol UIGraphViewDelegate {
     for h in 0...6 {
       let label = UILabel(frame: CGRect(x: 0, y: rect_.height - rect_.height * CGFloat(h) / CGFloat(6) + rect_.minY - 5, width: 28, height: 10))
       label.font = UIFont.systemFont(ofSize: CGFloat(8))
-      let label_value:String = String(format:"%.0f", CGFloat(h) * yLabel.max()! / CGFloat(6))
+      let label_value:String = String(format:"%.1f", CGFloat(h) * yLabel.max()! / CGFloat(6) / 1000)
       label.text = label_value
       label.textAlignment = NSTextAlignment.right
       label.textColor = baseLineColor
