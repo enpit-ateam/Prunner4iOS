@@ -19,6 +19,7 @@ class DoneModalViewController: UIViewController, SlideSwitchViewDelegate {
     // Do any additional setup after loading the view.
     sliderView.controllerRadius = CGFloat(60)
     sliderView.margin = CGFloat(5)
+    sliderView.controllerPoint = sliderView.controllerInitPosition
     sliderView.delegate = self
   }
   

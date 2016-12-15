@@ -70,7 +70,7 @@ class SlideSwitchView: UIView {
     }
   }
   
-  private var controllerInitPosition:CGPoint {
+  var controllerInitPosition:CGPoint {
     get {
       return CGPoint(x:controllerRadius/2+margin, y: bounds.height/2)
     }
@@ -94,7 +94,6 @@ class SlideSwitchView: UIView {
   public func commonInit() {
     let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanned(gestureRecognizer:)))
     self.addGestureRecognizer(panGestureRecognizer)
-    controllerPoint = controllerInitPosition
     self.setNeedsDisplay()
   }
   
