@@ -75,6 +75,9 @@ class MapState {
     // 一番Distanceに近いPlaceを返す
     let current: Location = user.current!
     let distance = user.distance!
+    
+    // 往復分なのでdistanceの半分になるのが望ましい
+    let actualDistance = distance / 2.0
     let sortedPlaces = candidates!.sorted {(place1 : Place, place2 : Place) -> Bool in
       let lc1 = CLLocationCoordinate2DMake((place1.geometry.location.lat)!, (place1.geometry.location.lng)!)
       let lc2 = CLLocationCoordinate2DMake((place2.geometry.location.lat)!, (place2.geometry.location.lng)!)
