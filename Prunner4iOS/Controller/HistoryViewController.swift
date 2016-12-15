@@ -30,8 +30,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // TableCellの登録
     self.tableView.register(UINib(nibName: "TableView", bundle: nil), forCellReuseIdentifier: "historyCell")
     
-    history_table = HistoryService.getHistories()
-    
     thisDate = Date()
     thisDate = changeMonth(date: thisDate, month:12)
     
@@ -44,6 +42,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   override func viewWillAppear(_ animated: Bool) {
     // 再描画
     drawGraph(graph: graph, date: thisDate, type: currentType)
+    history_table = HistoryService.getHistories()
     self.tableView.reloadData()
     super.viewWillAppear(true)
   }
