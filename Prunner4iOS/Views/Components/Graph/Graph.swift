@@ -128,11 +128,11 @@ protocol UIGraphViewDelegate {
       NSFontAttributeName: UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!,
       NSForegroundColorAttributeName: UIColor(red:163/255, green: 170/255, blue:176/255, alpha: 0.5)
     ] as [String : Any]
-    NSString(string: label_text).draw(at: CGPoint(x: rect_.minX, y: rect_.minY), withAttributes: att)
+    NSString(string: label_text).draw(at: CGPoint(x: rect_.minX + CGFloat(10), y: rect_.minY), withAttributes: att)
     // PlaceName
     strSize = 20
     att[NSFontAttributeName] = UIFont(name: "HiraginoSans-W0", size: CGFloat(strSize))!
-    NSString(string: sub_label_text).draw(at: CGPoint(x: rect_.minX + CGFloat(label_len * 32) + CGFloat(5), y: rect_.minY + CGFloat(12)), withAttributes: att)
+    NSString(string: sub_label_text).draw(at: CGPoint(x: rect_.minX + CGFloat(10) + CGFloat(label_len * 32) + CGFloat(5), y: rect_.minY + CGFloat(12)), withAttributes: att)
     
     //ToDo ラベルの設定
     for h in 0...6 {
