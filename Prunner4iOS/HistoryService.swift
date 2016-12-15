@@ -68,11 +68,15 @@ class HistoryService {
     // インスタンスが違うため　ｰ>　別途検索する必要があるがそもそもNSUserDefaultsで
     // DBのように扱うのは向いていないので削除ボタンを作成する際はCoreDataを使いたい
     // 時間がないので今回は削除は実装しないことにした
-    userDefaults.register(defaults: ["DataStore": "default"])
     histories = self.getHistories()
-    let index = histories.index(of: history)
-    if let i = index {
-      histories.remove(at: i)
+    var index = -1
+    for i in 0..<histories.count {
+      if index == -1 && histories[i] == history {
+        index = i
+      }
+    }
+    if index != -1 {
+      histories.remove(at: index)
       syncHistories()
     }
   }

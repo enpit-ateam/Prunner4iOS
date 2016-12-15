@@ -166,16 +166,29 @@
                                     <constraint firstAttribute="height" constant="230" id="two-47-Zuk"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJP-tE-k5F">
+                                <rect key="frame" x="295" y="313" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="id6-vt-5t6"/>
+                                    <constraint firstAttribute="height" constant="60" id="mtM-b3-Ujx"/>
+                                </constraints>
+                                <state key="normal" image="Dustbox.png"/>
+                                <connections>
+                                    <action selector="removeButtonTapped:" destination="PaD-MA-al9" eventType="touchDown" id="6gv-tl-P3T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="V6y-RB-B0V" secondAttribute="trailing" id="2CY-hh-rZd"/>
                             <constraint firstItem="FGD-aW-Ogq" firstAttribute="leading" secondItem="nq7-jh-JmL" secondAttribute="leading" id="A9M-qn-7XV"/>
                             <constraint firstItem="V6y-RB-B0V" firstAttribute="leading" secondItem="nq7-jh-JmL" secondAttribute="leading" id="KD3-Dq-XCc"/>
+                            <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="GJP-tE-k5F" secondAttribute="bottom" constant="20" id="ON4-Xz-Sf1"/>
                             <constraint firstAttribute="trailing" secondItem="FGD-aW-Ogq" secondAttribute="trailing" id="QNc-jE-FuT"/>
                             <constraint firstItem="V6y-RB-B0V" firstAttribute="top" secondItem="nq7-jh-JmL" secondAttribute="top" id="daM-t7-ZO0"/>
                             <constraint firstItem="FGD-aW-Ogq" firstAttribute="top" secondItem="V6y-RB-B0V" secondAttribute="bottom" constant="1" id="gYe-wf-2nJ"/>
                             <constraint firstItem="CIO-V8-OTy" firstAttribute="top" secondItem="FGD-aW-Ogq" secondAttribute="bottom" id="hEg-aB-oNk"/>
+                            <constraint firstAttribute="trailing" secondItem="GJP-tE-k5F" secondAttribute="trailing" constant="20" id="juI-OG-ajR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="詳細" id="vFL-og-dOG">
@@ -203,7 +216,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="bWS-rV-lnx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bWS-rV-lnx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.4039215686" green="0.72156862749999995" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -226,6 +239,7 @@
         <image name="BackNavBarItem" width="16" height="20"/>
         <image name="BookNormal" width="31" height="24"/>
         <image name="BookSelected" width="31" height="24"/>
+        <image name="Dustbox.png" width="85" height="85"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

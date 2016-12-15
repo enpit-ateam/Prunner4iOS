@@ -35,6 +35,34 @@ public class History: NSObject, NSCoding {
     self.placeName = placeName
   }
   
+  static public func == (lhs: History, rhs: History) -> Bool {
+    let left = lhs
+    let right = rhs
+    let lComponent = DayService.getComponent(date: left.date!)
+    let rComponent = DayService.getComponent(date: right.date!)
+    //[.year, .month, .day, .hour, .minute, .second]
+    return lComponent.year == rComponent.year &&
+      lComponent.month == rComponent.month &&
+      lComponent.day == rComponent.day &&
+      lComponent.hour == rComponent.hour &&
+      lComponent.minute == rComponent.minute &&
+      lComponent.second == rComponent.second
+  }
+  
+  static public func != (lhs: History, rhs: History) -> Bool {
+    let left = lhs
+    let right = rhs
+    let lComponent = DayService.getComponent(date: left.date!)
+    let rComponent = DayService.getComponent(date: right.date!)
+    //[.year, .month, .day, .hour, .minute, .second]
+    return lComponent.year != rComponent.year &&
+      lComponent.month != rComponent.month &&
+      lComponent.day != rComponent.day &&
+      lComponent.hour != rComponent.hour &&
+      lComponent.minute != rComponent.minute &&
+      lComponent.second != rComponent.second
+  }
+  
   required convenience public init(coder aDecoder: NSCoder) {
     let date      = aDecoder.decodeObject(forKey: "date") as! Date?
     let route     = aDecoder.decodeObject(forKey: "route") as! Route?
