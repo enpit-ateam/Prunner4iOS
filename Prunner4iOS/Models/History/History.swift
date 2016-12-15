@@ -14,18 +14,24 @@ public class History: NSObject, NSCoding {
   public var distance: Double?
   public var time: Int?
   public var placeName: String?
+  public var start: Location?
+  public var end: Location?
   
   public init(
     date: Date?,
     route: Route?,
     distance: Double?,
     time: Int?,
+    start: Location?,
+    end: Location?,
     placeName: String?
   ) {
     self.date = date
     self.route = route
     self.distance = distance
     self.time = time
+    self.start = start
+    self.end = end
     self.placeName = placeName
   }
   
@@ -34,6 +40,8 @@ public class History: NSObject, NSCoding {
     let route     = aDecoder.decodeObject(forKey: "route") as! Route?
     let distance  = aDecoder.decodeObject(forKey: "distance") as! Double?
     let time      = aDecoder.decodeObject(forKey: "time") as! Int?
+    let start     = aDecoder.decodeObject(forKey: "start") as! Location?
+    let end       = aDecoder.decodeObject(forKey: "end") as! Location?
     let placeName = aDecoder.decodeObject(forKey: "placeName") as! String?
     
     self.init(
@@ -41,6 +49,8 @@ public class History: NSObject, NSCoding {
       route: route,
       distance: distance,
       time: time,
+      start: start,
+      end: end,
       placeName: placeName
     )
   }
@@ -49,6 +59,8 @@ public class History: NSObject, NSCoding {
     aCoder.encode(route, forKey: "route")
     aCoder.encode(distance, forKey: "distance")
     aCoder.encode(time, forKey: "time")
+    aCoder.encode(start, forKey: "start")
+    aCoder.encode(end, forKey: "end")
     aCoder.encode(placeName, forKey: "placeName")
   }
   

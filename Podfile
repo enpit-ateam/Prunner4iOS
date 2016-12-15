@@ -12,7 +12,7 @@ target 'Prunner4iOS' do
   pod 'SwiftyJSON'
   pod 'APIKit'
   pod 'ObjectMapper'
-  pod 'SwiftSVG', :git => 'git@github.com:enpit-ateam/SwiftSVG.git'
+  pod 'SVProgressHUD'
   
   target 'Prunner4iOSTests' do
     inherit! :search_paths

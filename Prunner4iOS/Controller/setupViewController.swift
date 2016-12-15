@@ -146,8 +146,8 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
     self.mapState.selectedWaypoint = nil
   }
   
-  func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-    if marker.title != "delete" {
+  func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+    if marker.title != "削除" {
       return
     }
     let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)

@@ -81,12 +81,7 @@ class DoneViewController: UIViewController {
 
   
   @IBAction func historyButtonTapped(_ sender: Any) {
-    HistoryService.addHistories(history:
-      History(date: Date(),
-              route: userState.route,
-              distance: mapState.calcDirectionDistance(),
-              time: userState.calcRunTime(),
-              placeName: mapState.distination?.name))
+    saveToHistory()
     performSegue(withIdentifier: "backToTop", sender: nil)
   }
   
@@ -95,6 +90,24 @@ class DoneViewController: UIViewController {
     cv.setInitialText("")
     self.present(cv, animated: true, completion: nil)
   }
+  
+  @IBAction func doneButtonTapped(_ sender: Any) {
+    saveToHistory()
+    performSegue(withIdentifier: "backToTop", sender: nil)
+  }
+  
+  func saveToHistory() {
+    HistoryService.addHistories(history:
+      History(date: Date(),
+              route: userState.route,
+              distance: mapState.calcDirectionDistance(),
+              time: userState.calcRunTime(),
+              start: userState.current,
+              end: mapState.distination?.geometry.location,
+              placeName: mapState.distination?.name))
+  }
+  
+  
   /*
    // MARK: - Navigation
    

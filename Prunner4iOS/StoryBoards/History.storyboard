@@ -182,7 +182,7 @@
                         <barButtonItem key="leftBarButtonItem" image="BackNavBarItem" id="oaK-Tw-mpX">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="3E4-5Y-dEj" kind="unwind" unwindAction="backToHistory:" id="Zjt-6m-npG"/>
+                                <segue destination="3E4-5Y-dEj" kind="unwind" identifier="backToHistory" unwindAction="backToHistory:" id="Zjt-6m-npG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -196,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="366.56671664167919"/>
         </scene>
-        <!--History-->
+        <!--History Navigation-->
         <scene sceneID="bIw-6s-Pnd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eB0-cR-fvk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eB0-cR-fvk" userLabel="History Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="History" image="BookNormal" selectedImage="BookSelected" id="ejO-6T-oR5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

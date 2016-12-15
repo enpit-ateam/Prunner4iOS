@@ -42,7 +42,7 @@ class TableView: UITableViewCell {
     let time: Int = history.time!
     let hour: Int = time / (60 * 60)
     let minute: Int = (time % (60 * 60)) / 60
-    let pace: Int = Int(distance / Double((time == 0 ? 1 : time)))
+    let pace: Int = Int(distance / Double((time == 0 ? 1 : time)) * 3600.0)
     let startDate = history.date!
     let day:Int = DayService.getComponent(date: startDate).day!
     dayLabel.text = day.description

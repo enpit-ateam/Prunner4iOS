@@ -13,10 +13,13 @@ class HistoryService {
   
   private static var histories: Histories = []
   private static var forTestHistories: Histories = [
-    History(date: Date(),
+    History(
+      date: Date(),
       route: nil,
       distance: 6000.0,
       time: 3600,
+      start: nil,
+      end: nil,
       placeName: "筑波大学" ),
   ]
   
@@ -55,10 +58,26 @@ class HistoryService {
     userDefaults.register(defaults: ["DataStore": "default"])
     histories = self.getHistories()
     histories.append(history)
-    saveHistories();
+    syncHistories();
   }
   
-  private class func saveHistories(){
+  class func removeHistories(history: History) {
+    // 動きそうだけど動かない
+    
+    // 原因：histories.index(of: history)の行でindexを取れていない
+    // インスタンスが違うため　ｰ>　別途検索する必要があるがそもそもNSUserDefaultsで
+    // DBのように扱うのは向いていないので削除ボタンを作成する際はCoreDataを使いたい
+    // 時間がないので今回は削除は実装しないことにした
+    userDefaults.register(defaults: ["DataStore": "default"])
+    histories = self.getHistories()
+    let index = histories.index(of: history)
+    if let i = index {
+      histories.remove(at: i)
+      syncHistories()
+    }
+  }
+  
+  private class func syncHistories(){
     userDefaults.register(defaults: ["DataStore": "default"])
     userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: histories), forKey: "History")
     userDefaults.synchronize()

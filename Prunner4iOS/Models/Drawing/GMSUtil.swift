@@ -26,7 +26,7 @@ class GMSUtil {
   
   public static func setStartMarker(_ marker: inout GMSMarker!, mapView: GMSMapView!, current: Location) {
     reset(marker: marker)
-    marker = createGMSMarker(mapView: mapView, location: current, title: "現在地")
+    marker = createGMSMarker(mapView: mapView, location: current, title: "スタート")
     designStartMarker(marker: marker)
   }
 
@@ -100,7 +100,7 @@ class GMSUtil {
     marker.isTappable = true
     // TODO:
     // デリートボタン的なWindowをちゃんと実装したい
-    marker.title = "delete"
+    marker.title = "削除"
     marker.map = mapView
     return marker
   }
@@ -149,15 +149,16 @@ class GMSUtil {
     if marker == nil {
       return
     }
-    marker.icon = GMSMarker.markerImage(with: UIColor.black)
+    let color: UIColor = UIColor(colorLiteralRed: 100/255, green: 100/255, blue: 100/255, alpha: 1.0)
+    marker.icon = GMSMarker.markerImage(with: color)
   }
   
   private static func designPolyline(polyline: GMSPolyline!) {
     if polyline == nil {
       return
     }
-    let strokeColor = UIColor.blue
-    let strokeWidth = 5.0
+    let strokeColor = UIColor(colorLiteralRed: 255/255, green: 109/255, blue: 14/255, alpha: 1.0)
+    let strokeWidth = 4.0
     
     polyline.strokeColor = strokeColor
     polyline.strokeWidth = CGFloat(strokeWidth)

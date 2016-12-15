@@ -38,8 +38,9 @@ class MapState {
   }
   
   private func prepareZoom(distance: Double) -> Float {
-    let zoom = 20 - log2(distance/10)
-    return Float(zoom)
+    let zoom = 22 - log2(distance/10)
+    let C: Double = 1.0
+    return Float(zoom * C)
   }
   
   public func isReady() -> Bool {
