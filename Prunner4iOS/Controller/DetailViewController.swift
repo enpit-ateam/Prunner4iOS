@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
   var history: History!
   
   // IBOutlet
-  // @IBOutlet weak var twButton: CustomButton!
   @IBOutlet weak var resultView: ResultView!
   @IBOutlet weak var mapView: PrunnerMapView!
   
@@ -36,20 +35,24 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     placeClient = GMSPlacesClient()
-    if let startDate = history.date,
-       let route = history.route,
-       let start = history.runStart(),
-       let end = history.runEnd(),
+    if let route = history.route,
        let distance = history.distance,
-       let time = history.time,
+       let start = history.start,
+       let end = history.end,
        let placeName = history.placeName
     {
       // マップの描画
       mapView.camera = GMSUtil.getCamera(withLocation: start, distance: distance)
       GMSUtil.setStartMarker(&startMarker, mapView: mapView, current: start)
-      GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: "中継地点")
+      GMSUtil.setEndMarker(&endMarker, mapView: mapView, withLocation: end, title: placeName)
       GMSUtil.setPolyline(&polyline, mapView: mapView, route: route)
-      
+    }
+    
+    if let startDate = history.date,
+       let distance = history.distance,
+       let time = history.time,
+       let placeName = history.placeName
+    {
       if let result = resultView {
         let distanceKm: Double = distance / 1000.0
         let runTimeHour: Double = Double(time) / 3600.0

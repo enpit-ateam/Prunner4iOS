@@ -13,10 +13,13 @@ class HistoryService {
   
   private static var histories: Histories = []
   private static var forTestHistories: Histories = [
-    History(date: Date(),
+    History(
+      date: Date(),
       route: nil,
       distance: 6000.0,
       time: 3600,
+      start: nil,
+      end: nil,
       placeName: "筑波大学" ),
   ]
   
