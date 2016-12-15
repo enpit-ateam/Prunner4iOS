@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Foundation.NSDateFormatter
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGraphViewDelegate {
+class HistoryViewController:UIViewController,UITableViewDelegate, UITableViewDataSource, UIGraphViewDelegate, TableViewDelegate {
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var pageControl: UIPageControl!
@@ -56,7 +56,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
   //データを返すメソッド（スクロールなどでページを更新する必要が出るたびに呼び出される）
   func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell") as! TableView!
-    cell?.setCell(history: history_table[indexPath.row])
+    cell?.setCell(history: history_table[indexPath.row], indexPath: indexPath)
+    cell?.delegate = self
     return cell!
   }
   
@@ -72,6 +73,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // 遷移を矢印のみに変更する
     graph.selectedDay = DayService.getComponent(date: history_table[indexPath.row].date!).day!
     graph.setNeedsDisplay()
+    tableView.deselectRow(at: indexPath, animated: true)
+
     //performSegue(withIdentifier: "DETAIL", sender: indexPath)
   }
   
@@ -226,6 +229,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let dateText:String = formatter.string(from: date)
     
     return dateText
+  }
+  
+  public func tapped(selectedIndex: IndexPath) {
+    performSegue(withIdentifier: "DETAIL", sender: selectedIndex)
   }
   
   @IBAction func backToHistory(_ segue: UIStoryboardSegue) {}
