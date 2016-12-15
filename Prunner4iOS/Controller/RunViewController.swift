@@ -17,9 +17,6 @@ class RunViewController: UIViewController {
   let userState = UserState.sharedInstance
   let mapState = MapState.sharedInstance
   
-  // 時間測定用
-  var startTime: Date?
-  
   // GoogleMap
   var placePicker: GMSPlacePicker?
   var placeClient: GMSPlacesClient?
@@ -33,7 +30,9 @@ class RunViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    startTime = Date()
+    
+    // DoneModalのdelegateを実装
+    userState.startDate = Date()
     placeClient = GMSPlacesClient()
     
     // マップの描画
@@ -47,10 +46,10 @@ class RunViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
-  @IBAction func doneButtonTapped(_ sender: Any) {
-    userState.setRunTime(start: startTime, end: Date())
-    performSegue(withIdentifier: "DONE", sender: nil)
+  
+  @IBAction func checkButtonTapped(_ sender: Any) {
+    userState.endDate = Date()
+    performSegue(withIdentifier: "DONEMODAL", sender: nil)
   }
   
   /*
@@ -62,5 +61,7 @@ class RunViewController: UIViewController {
    // Pass the selected object to the new view controller.
    }
    */
+  
+  // MARK: back to setup
   
 }

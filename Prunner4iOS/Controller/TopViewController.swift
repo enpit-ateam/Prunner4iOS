@@ -8,10 +8,12 @@
 
 import UIKit
 import CoreLocation
+import SVProgressHUD
 
 class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
   
   @IBOutlet weak var inputDistanceTextField: UITextField!
+  
   var locationManager: CLLocationManager?
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -20,7 +22,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
-    
+
     // 位置情報サービスが利用できるかどうかをチェック
     if CLLocationManager.locationServicesEnabled() {
       locationManager = CLLocationManager()
@@ -30,6 +32,9 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
       // 測位開始
       locationManager?.requestLocation()
     }
+    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)
+    SVProgressHUD.setMinimumDismissTimeInterval(1)
+    SVProgressHUD.show(withStatus: "現在地を取得中です")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -46,16 +51,12 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func runButtonTapped(_ sender: Any) {
+  @IBAction func startButtonTapped(_ sender: Any) {
     userState.setDistance(text: inputDistanceTextField.text)
     if !userState.isReady() {
       return
     }
     performSegue(withIdentifier: "SETUP", sender: nil)
-  }
-  
-  @IBAction func recordButtonTapped(_ sender: Any) {
-    performSegue(withIdentifier: "HISTORY", sender: nil)
   }
   
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -75,8 +76,10 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if let location = locations.last {
       userState.current = Location(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
+      SVProgressHUD.showSuccess(withStatus: "現在地を取得しました")
     } else {
       print("Could't get any location services.")
+      SVProgressHUD.showError(withStatus: "現在地の取得に失敗しました")
     }
   }
   
@@ -96,7 +99,6 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
     }
   }
   
-  
   /*
    // MARK: - Navigation
    
@@ -106,5 +108,7 @@ class TopViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
    // Pass the selected object to the new view controller.
    }
    */
+  
+  @IBAction func backToTop(_ segue: UIStoryboardSegue) {}
   
 }

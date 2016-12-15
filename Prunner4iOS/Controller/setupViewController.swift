@@ -15,7 +15,7 @@ import SwiftyJSON
 
 import APIKit
 
-class SetupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GMSMapViewDelegate {
+class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDelegate {
 
   var userState = UserState.sharedInstance
   var mapState = MapState.sharedInstance
@@ -29,22 +29,26 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
   var waypointMarkers: [GMSMarker?] = []
   var polyline: GMSPolyline!
 
-  @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var mapView: PrunnerMapView!
+  @IBOutlet weak var tabSelectView: TabSelectView!
+  let tabMax: Int = 3
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tableView.delegate = self
-    tableView.dataSource = self
-    mapView.delegate = self
-    
     // Do any additional setup after loading the view.
-    placeClient = GMSPlacesClient()
+    tabSelectView.delegate = self
+    tabSelectView.tabStore!.append(RouteSelectElement(title: "", placeName: "", distance: ""))
     
+    placeClient = GMSPlacesClient()
+    mapView.delegate = self
     mapState.setCamera(user: userState)
     mapView.camera = mapState.camera!
     
+    setupMapView()
+  }
+  
+  public func setupMapView() {
     getPlaces(distance: userState.distance!, location: userState.current!) { places in
       if places == nil || places.count == 0 {
         // TODO:
@@ -54,57 +58,57 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
       self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
       self.mapState.setDistinateFromCandidates(for: self.userState)
       
+      self.setView(for: self.tabSelectView, tab: self.tabMax, with: self.mapState.candidates!)
+      
       self.drawMapView()
     }
+  }
+  
+  public func drawMapView() {
+    let current = self.userState.current!
+    let target = self.mapState.distination?.geometry.location
+    self.getDirection(current: current, target: target!) { direction in
+      if direction == nil {
+        // TODO:
+        // エラー処理
+        return
+      }
+      self.mapState.direction = direction
+      let route = self.mapState.getRoute()!
+      
+      // マップの更新
+      GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
+      GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
+      GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
+      GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
+      
+      // タブの更新
+      let routeDistanceKM = self.mapState.calcDirectionDistance() / 1000.0
+      self.updateView(for: self.tabSelectView, distance: routeDistanceKM)
+    }
+    
+  }
+  
+  private func setView(for view: TabSelectView, tab: Int, with places: [Place]) {
+    view.tabStore = []
+    for (index, place) in places.enumerated() {
+      if index >= tab {
+        break
+      }
+      view.tabStore!.append(RouteSelectElement(title: "", placeName: place.name, distance: ""))
+    }
+    view.selector = 0
+    view.setNeedsDisplay()
+  }
+  
+  private func updateView(for view: TabSelectView, distance: Double) {
+    view.tabStore![view.selector].distance = String(format: "%.2f", distance)
+    view.setNeedsDisplay()
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
-  }
-  
-  // MARK: tableView delegates
-  
-  func tableView(_ tableView:UITableView, cellForRowAt indexPath:IndexPath) -> UITableViewCell {
-    guard let places = self.mapState.candidates else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
-      
-      cell.textLabel?.text = "TMP"
-      return cell
-    }
-    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
-    
-    let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for:indexPath) as UITableViewCell
-    
-    cell.textLabel?.text = self.mapState.candidates?[indexPath.row].name
-    return cell
-  }
-  
-  //データの個数を返すメソッド
-  func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
-    guard let places = self.mapState.candidates else {
-      return 0
-    }
-    self.mapState.candidates = self.mapState.sortPlaces(places: places, user: self.userState)
-    guard let count = self.mapState.candidates?.count else {
-      return 0
-    }
-    return count
-  }
-  
-  func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
-    guard self.mapState.candidates != nil else {
-      return
-    }
-    
-    guard self.mapState.candidates?[indexPath.row].geometry.location != nil else{
-      return
-    }
-    
-    self.mapState.distination = self.mapState.candidates?[indexPath.row]
-    self.mapState.waypoints = []
-    
-    drawMapView()
   }
   
   // MARK: GMSMapViewDelegate
@@ -114,6 +118,11 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     self.mapState.waypoints.append(location)
     
     drawMapView()
+  }
+  
+  // MARK: Back to TOP
+  @IBAction func backButtonTapped(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
   }
   
   func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
@@ -137,8 +146,8 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     self.mapState.selectedWaypoint = nil
   }
   
-  func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-    if marker.title != "delete" {
+  func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+    if marker.title != "削除" {
       return
     }
     let tappedPosition: Location = Location(lat: marker.position.latitude, lng: marker.position.longitude)
@@ -149,18 +158,20 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
   }
   
-  @IBAction func runButtonTapped(_ sender: Any) {
+  // MARK: tab selector delegate
+  func onSelectorChanged(index: Int) {
+    tabSelectView.selector = index
+    mapState.distination = self.mapState.candidates?[index]
+    mapState.waypoints = []
+    drawMapView()
+  }
+
+  @IBAction func checkButtonTapped(_ sender: Any) {
     if !mapState.isReady() {
       return
     }
     userState.route = mapState.getRoute()
     performSegue(withIdentifier: "RUN", sender: nil)
-  }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "RUN" {
-      let _ = segue.destination as! RunViewController
-    }
   }
   
   public func generateWaypointsRequest(target: Location, waypoints: [Location]?) -> String {
@@ -182,38 +193,15 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
     return request
   }
   
-  public func drawMapView() {
-    let current = self.userState.current!
-    let target = self.mapState.distination?.geometry.location
-    self.getDirection(current: current, target: target!) { direction in
-      if direction == nil {
-        // TODO:
-        // エラー処理
-        return
-      }
-      self.mapState.direction = direction
-      let route = self.mapState.getRoute()!
-      
-      // マップの描画
-      // カメラの更新は行わない
-      // self.mapView.camera = self.mapState.camera!
-      GMSUtil.setStartMarker(&self.startMarker, mapView: self.mapView, current: self.userState.current!)
-      GMSUtil.setEndMarker(&self.endMarker, mapView: self.mapView, withDistination: self.mapState.distination!)
-      GMSUtil.setPolyline(&self.polyline, mapView: self.mapView, route: route)
-      GMSUtil.replaceWaypointMarkers(&self.waypointMarkers, mapView: self.mapView, waypoints: self.mapState.waypoints)
-      self.tableView.reloadData()
-    }
-  }
-  
   private func getPlaces(distance: Double, location: Location, _ callback: @escaping ([Place]!) -> Void) {
     // Placeのリストを返す
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMPlaceRequest.NearBySearch()
-    
+    let actualDistance = distance / 2.0
     request.queryParameters = [
       "key": appDelegate.apiKey as AnyObject,
       "location": String.init(format: "%f,%f", location.lat, location.lng) as AnyObject,
-      "radius": String.init(format: "%f", distance) as AnyObject
+      "radius": String.init(format: "%f", actualDistance) as AnyObject
     ]
     var places: [Place]!
     Session.send(request) { result in
@@ -286,5 +274,8 @@ class SetupViewController: UIViewController, UITableViewDataSource, UITableViewD
    // Pass the selected object to the new view controller.
    }
    */
+  
+  @IBAction func backToSetup(_ segue: UIStoryboardSegue) {}
+
   
 }
