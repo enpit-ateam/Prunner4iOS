@@ -39,7 +39,7 @@ class DayService {
           ansTable.append(0)
           continue
         }
-        ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}) / Double(dayDatas[key]!.count))
+        ansTable.append(dayDatas[key]!.reduce(0, {(acc:Double, d:Double) -> Double in return acc + d}))
       }
       
       return ansTable
