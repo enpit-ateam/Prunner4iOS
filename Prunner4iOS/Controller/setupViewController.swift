@@ -197,11 +197,11 @@ class SetupViewController: UIViewController, GMSMapViewDelegate, TabSelectViewDe
     // Placeのリストを返す
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let request = GMPlaceRequest.NearBySearch()
-    
+    let actualDistance = distance / 2.0
     request.queryParameters = [
       "key": appDelegate.apiKey as AnyObject,
       "location": String.init(format: "%f,%f", location.lat, location.lng) as AnyObject,
-      "radius": String.init(format: "%f", distance) as AnyObject
+      "radius": String.init(format: "%f", actualDistance) as AnyObject
     ]
     var places: [Place]!
     Session.send(request) { result in
